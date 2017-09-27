@@ -1,5 +1,5 @@
 <?php
-class BaseModel {
+class BaseModel{
     // Known attributes
     protected $table_name = '';
     protected $primary_key = null; // Not known EVERY time...

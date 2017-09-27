@@ -45,7 +45,7 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
         </div>
         <div class='pull-left info'>
           <p>Alexander Pierce</p>
-          <a href='#'> Directeur</a>
+          <a > Directeur</a>
         </div>
       </div>
       <!-- search form -->
@@ -69,14 +69,14 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
           </ul>
         </li>
         <li class='active treeview'>
-          <a href='#'>
+          <a href='index.html''>
             <i class='fa fa-edit'></i> <span>Professeur</span>
             <span class='pull-right-container'>
               <i class='fa fa-angle-left pull-right'></i>
             </span>
           </a>
           <ul class='treeview-menu'>
-            <li class='active'><a href='index.html'><i class='fa fa-circle-o'></i> Ajout Professeur</a></li>
+            <li class='active'><a href='index.php'><i class='fa fa-circle-o'></i>Ajout et consultation</a></li>
           </ul>
         </li>
 
