@@ -11,9 +11,8 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
         Professeurs
       </h1>
       <ol class='breadcrumb'>
-        <li><a href='#'><i class='fa fa-dashboard'></i> Acceuil</a></li>
+        <li><a href='#'>Acceuil</a></li>
         <li><a href='#'>Professeurs</a></li>
-        <li class='active'>Data tables</li>
       </ol>
     </section>
 <section class='content'>
