@@ -1,3 +1,4 @@
 <?php
 
-require_once 'panel/panel.php';
+require_once 'panel/profList.php';
+?>
