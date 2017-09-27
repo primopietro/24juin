@@ -104,7 +104,7 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
                   <td>Doe</td>
                   <td>John</td>
                   <td>Cuisine</td>
-                  <td><a href='#'><i class='fa fa-times text-red'></i></a></td>
+                  <td ><a href='#'><i class='fa fa-times text-red'></i></a></td>
                 </tr>
                 <tr>
                   <td>219</td>
