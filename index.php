@@ -10,6 +10,7 @@ require_once "vue/header/header.php";
 require_once "vue/body/body.php";
 ?>
 </div>
+
 <?php 
 require_once "system/footer.php";
 ?>
