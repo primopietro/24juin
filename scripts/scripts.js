@@ -17,44 +17,20 @@ $(function () {
   })
 })
 
-//Menu links
-$(document).on("click",".treeview-menu",function(){
-	if(!$(this).hasClass("active") && !$(this).hasClass('logout')){
-		$(".treeview").removeClass("active");
-		$(this).addClass("active");
-		var link = $(this).attr("shopLink");
-		$.ajax({
-			url : ajaxPath + "vue/body/"+link+".php",
-			beforeSend : function() { enableLoader() ;
-				console.log("getting new body started");
-			}
-		}).done(function(data) {
-			console.log(" getting new body success");
-			$("#mainContent").html(data);
-			
-		}).always(function() { disableLoader();
-			console.log(" getting new body finished");
-		});
-	}
-});
-
 $(document).on("click",".treeview ",function(){
 	$(".treeview ").removeClass("active");
 	$(this).addClass("active");
 });
 	
-
-
-
 $(document).on("click",".treeview-menu a",function(){
 	//Variables
 	var actionName = $(this).attr("action");
 	var navigation = $(this).closest("ul").attr("navigation");
 	console.log(actionName);
 	console.log(navigation);
-	var actions = "actions="+actionName;
+	var actions = "navigation="+navigation+"&actions="+actionName;
 	$.ajax({
-		url : ajaxPath + "vue/body/"+navigation+".php",
+		url : ajaxPath + "vue/body/viewManager.php",
 		data:actions,
 		beforeSend : function() { enableLoader() ;
 			console.log("getting new body started");
