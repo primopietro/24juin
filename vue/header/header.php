@@ -69,14 +69,14 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
           </ul>
         </li>
         <li class='active treeview'>
-          <a href='index.html''>
+        <a href='#'>
             <i class='fa fa-edit'></i> <span>Professeur</span>
             <span class='pull-right-container'>
               <i class='fa fa-angle-left pull-right'></i>
             </span>
           </a>
-          <ul class='treeview-menu'>
-            <li class='active'><a href='index.php'><i class='fa fa-circle-o'></i>Ajout et consultation</a></li>
+          <ul class='treeview-menu' shopLink='prof'>
+            <li class='active'><a href='#'><i class='fa fa-circle-o'></i>Ajout et consultation</a></li>
           </ul>
         </li>
 
@@ -89,11 +89,8 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
               <i class='fa fa-angle-left pull-right'></i>
             </span>
           </a>
-          <ul class='treeview-menu'>
-            <li><a href='pages/layout/top-nav.html'><i class='fa fa-circle-o'></i> Top Navigation</a></li>
-            <li><a href='pages/layout/boxed.html'><i class='fa fa-circle-o'></i> Boxed</a></li>
-            <li><a href='pages/layout/fixed.html'><i class='fa fa-circle-o'></i> Fixed</a></li>
-            <li><a href='pages/layout/collapsed-sidebar.html'><i class='fa fa-circle-o'></i> Collapsed Sidebar</a></li>
+          <ul class='treeview-menu' shopLink='groupe'>
+             <li class='active'><a href='#'><i class='fa fa-circle-o'></i>Ajout et consultation</a></li>
           </ul>
         </li>
          <li class='treeview'>
