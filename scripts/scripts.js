@@ -38,6 +38,13 @@ $(document).on("click",".treeview-menu",function(){
 	}
 });
 
+$(document).on("click",".treeview ",function(){
+	$(".treeview ").removeClass("active");
+	$(this).addClass("active");
+});
+	
+
+
 
 $(document).on("click",".treeview-menu a",function(){
 	//Variables
