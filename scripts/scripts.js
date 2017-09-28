@@ -1,6 +1,6 @@
 //Variables
 var ajaxPath = "http://localhost/24juin/";
-/Prevent defaults
+
 $("form").submit(function(e){
     e.preventDefault();
 });
@@ -38,6 +38,30 @@ $(document).on("click",".treeview-menu",function(){
 	}
 });
 
+
+$(document).on("click",".treeview-menu a",function(){
+	//Variables
+	var actionName = $(this).attr("action");
+	var navigation = $(this).closest("ul").attr("navigation");
+	console.log(actionName);
+	console.log(navigation);
+	var actions = "actions="+actionName;
+	$.ajax({
+		url : ajaxPath + "vue/body/"+navigation+".php",
+		data:actions,
+		beforeSend : function() { enableLoader() ;
+			console.log("getting new body started");
+		}
+	}).done(function(data) {
+		console.log(" getting new body success");
+		$("#mainContent").html(data);
+		
+	}).always(function() { disableLoader();
+		console.log(" getting new body finished");
+	});
+	
+	
+});
 //Get new body
 function getBody(){
 	$.ajax({
