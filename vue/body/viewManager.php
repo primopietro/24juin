@@ -8,11 +8,11 @@ $actions = "";
 if(isset($_GET['actions'])){	
 	$navigation = htmlspecialchars($_GET['navigation']);
 	$actions = $_GET['actions'];
-	$_SESSION['curret_page'] = $navigation;
+	$_SESSION['current_page'] = $navigation;
 	$_SESSION['current_actions'] = $actions;
 }
 else{
-	$navigation = htmlspecialchars($_SESSION['curret_page']);
+	$navigation = htmlspecialchars($_SESSION['current_page']);
 	$actions = htmlspecialchars($_SESSION['current_actions']);
 }
 getVue($navigation,$actions);
