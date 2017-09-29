@@ -15,6 +15,7 @@ if(!isset($_SESSION)){
 	$_SESSION['current_actions'] = "add,view";
 }
 
+
 require_once "vue/body/viewManager.php";
 ?>
 </div>
