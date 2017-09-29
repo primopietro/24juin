@@ -1,7 +1,7 @@
 <?php
-$elementMenu;
-function getHeader($object, $actions){
 
+function getHeader($object, $actions){
+	$elementMenu ="add";
     if ($actions=="add") {
         $elementMenu="Ajout";
     }else if ($actions=="view") {
