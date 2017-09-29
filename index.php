@@ -10,7 +10,7 @@ require_once "vue/header/header.php";
 <?php 
 //TODO: temporary
 //Default routing when get in the index
-if(!isset($_SESSION)){
+if(!isset($_SESSION['current_page'] )){
 	$_SESSION['current_page'] = "prof";
 	$_SESSION['current_actions'] = "add,view";
 }
