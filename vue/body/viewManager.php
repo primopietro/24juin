@@ -1,10 +1,11 @@
 <?php
-
+require_once 'header.php';
 $fixedPath ="panel/";
 $navigation = htmlspecialchars($_GET['navigation']);
 
 if(isset($_GET['actions'])){	
-	require_once $finalString = $fixedPath . $navigation . '/header.php';
+	
+	echo getHeader($navigation,$_GET['actions']);
 	$actualActions = explode(",", $_GET['actions'] );
 	
 	for($i=0;$i<sizeof($actualActions); $i++){

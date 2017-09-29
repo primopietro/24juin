@@ -1,15 +1,16 @@
 <?php
 
-    $default = "
+function getHeader($object, $actions){
+	$default = "
     <!-- Content Header (Page header) -->
     <section class='content-header'>
       <h1>
         Groupes
       </h1>
       <ol class='breadcrumb'>
-        <li><a href='#'>Acceuil</a></li>
-        <li><a href='#'>Groupes</a></li>
+        <li><a href='#'>".$object."</a></li>
+        <li><a href='#'>".$actions."</a></li>
       </ol>
     </section>";
-    echo $default;
-    ?>
+	return $default;
+}

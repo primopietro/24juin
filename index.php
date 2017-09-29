@@ -9,7 +9,8 @@ require_once "vue/header/header.php";
 <?php 
 //TODO: temporary
 //Make something that calls viewManager.php with user settings
-require_once "vue/body/panel/prof/header.php";
+require_once "vue/body/header.php";
+echo getHeader("prof","add,view");
 require_once "vue/body/panel/prof/add.php";
 require_once "vue/body/panel/prof/view.php";
 ?>
