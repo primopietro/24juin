@@ -1,7 +1,5 @@
 <?php
 
-require_once ($_SERVER ["DOCUMENT_ROOT"] . '/hypermedia-lab1/Lab1/MVC/model/client.php');
-require_once ($_SERVER ["DOCUMENT_ROOT"] . '/hypermedia-lab1/Lab1/MVC/model/utilisateur.php');
 function getHeaderLinks($aUser){
 	$links ="";
 	if (!$aUser->getAdministrateur()) {

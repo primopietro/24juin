@@ -1,7 +1,6 @@
 <?php
 
-require_once ($_SERVER ["DOCUMENT_ROOT"] . '/hypermedia-lab1/Lab1/MVC/model/client.php');
-require_once ($_SERVER ["DOCUMENT_ROOT"] . '/hypermedia-lab1/Lab1/MVC/model/utilisateur.php');
+
 function getHeaderSettings($aUser){
 	$settings ="";
 	if (!$aUser->getAdministrateur()) {

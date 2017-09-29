@@ -1,6 +1,4 @@
 <?php
-require_once ($_SERVER["DOCUMENT_ROOT"] . '/hypermedia-lab1/Lab1/MVC/model/client.php');
-require_once ($_SERVER["DOCUMENT_ROOT"] . '/hypermedia-lab1/Lab1/MVC/model/utilisateur.php');
 require_once "settings.php";
 require_once "links.php";
 if(!isset($_SESSION)){session_start();}
