@@ -77,6 +77,8 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
           </a>
           <ul class='treeview-menu' navigation='prof' >
             <li class='active'><a href='#' action='add,view'><i class='fa fa-circle-o'></i>Ajout et consultation</a></li>
+			 <li class='active'><a href='#' action='add'><i class='fa fa-circle-o'></i>Ajout</a></li>
+			 <li class='active'><a href='#' action='view'><i class='fa fa-circle-o'></i>Consultation</a></li>
           </ul>
         </li>
 
