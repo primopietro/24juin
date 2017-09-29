@@ -72,7 +72,7 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
               <i class='fa fa-angle-left pull-right'></i>
             </span>
           </a>
-          <ul class='treeview-menu' navigation='prof' >
+          <ul class='treeview-menu' navigation='Professeur' >
             <li class='active'><a href='#' action='add,view'><i class='fa fa-circle-o'></i>Ajout et consultation</a></li>
 			 <li class='active'><a href='#' action='add'><i class='fa fa-circle-o'></i>Ajout</a></li>
 			 <li class='active'><a href='#' action='view'><i class='fa fa-circle-o'></i>Consultation</a></li>
@@ -88,7 +88,7 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
               <i class='fa fa-angle-left pull-right'></i>
             </span>
           </a>
-          <ul class='treeview-menu' navigation='groupe' >
+          <ul class='treeview-menu' navigation='Groupe' >
              <li class='active'><a href='#' action='add,view'><i class='fa fa-circle-o'></i>Ajout et consultation</a></li>
           </ul>
         </li>
