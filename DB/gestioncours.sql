@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2017 at 01:05 AM
+-- Generation Time: Sep 29, 2017 at 01:07 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -370,7 +370,8 @@ CREATE TABLE `timeslot_week` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) NOT NULL,
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
