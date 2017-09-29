@@ -7,7 +7,6 @@ class Prof extends BaseModel {
 	protected $nom;
 	protected $prenom;
 
-	//modif
 	public function setPk_prof($aPK) {
 		$this->pk_prof = $aPK;
 	}
