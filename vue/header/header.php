@@ -3,8 +3,7 @@ require_once ($_SERVER["DOCUMENT_ROOT"] . '/hypermedia-lab1/Lab1/MVC/model/clien
 require_once ($_SERVER["DOCUMENT_ROOT"] . '/hypermedia-lab1/Lab1/MVC/model/utilisateur.php');
 require_once "settings.php";
 require_once "links.php";
-session_start();
-
+if(!isset($_SESSION)){session_start();}
 // if session not set (user not logged in)
 if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdministrateur()) {
     $default = "<div class='wrapper'>

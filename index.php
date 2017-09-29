@@ -1,5 +1,6 @@
 
 <?php 
+if(!isset($_SESSION)){session_start();}
 require_once "system/header.php";
 require_once "vue/header/header.php";
 ?>
@@ -8,11 +9,13 @@ require_once "vue/header/header.php";
 <div class="content-wrapper" id='mainContent' style="min-height: 100vh; ">
 <?php 
 //TODO: temporary
-//Make something that calls viewManager.php with user settings
-require_once "vue/body/header.php";
-echo getHeader("prof","add,view");
-require_once "vue/body/panel/prof/add.php";
-require_once "vue/body/panel/prof/view.php";
+//Default routing when get in the index
+if(!isset($_SESSION)){
+	$_SESSION['curret_page'] = "prof";
+	$_SESSION['current_actions'] = "add,view";
+}
+
+require_once "vue/body/viewManager.php";
 ?>
 </div>
 
