@@ -1,5 +1,5 @@
 <?php
-
+require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_groupe.php';
     $default = "
    <section class='content'>
     <div class='row'>
@@ -27,28 +27,13 @@
                   <th>Supprimer</th>
                 </tr>
             <thead>
-            <tbody>
-                <tr>
-                  <td>CAY-4118</td>
-                  <td>2017</td>
-                  <td ><a href='#'><i class='fa fa-times text-red'></i></a></td>
-                </tr>
-                <tr>
-                  <td>TI-4215</td>
-                  <td>2016</td>
-                  <td><a href='#'><i class='fa fa-times text-red'></i></a></td>
-                </tr>
-                <tr>
-                  <td>AUT-1215</td>
-                 <td>2016</td>
-                 <td><a href='#'><i class='fa fa-times text-red'></i></a></td>
-                </tr>
-                <tr>
-                  <td>CU-1517</td>
-                 <td>2017</td>
-                 <td><a href='#'><i class='fa fa-times text-red'></i></a></td>
-                </tr>
-
+            <tbody>";
+    
+    $aGroupe = new Groupe();
+    $aListOfGroupe = $aGroupe->getActiveGroupe();
+    $default .= $aGroupe->printGroupe($aListOfGroupe);
+    
+    $default .= "</tbody>
               </table>
             </div>
             <!-- /.box-body -->
@@ -61,4 +46,3 @@
     <!-- /.content -->";
     
     echo $default;
-

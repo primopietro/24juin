@@ -153,7 +153,7 @@ class BaseModel{
         
         $sql = "SELECT * FROM `" . $this->table_name . "` ";
         $result = $conn->query ( $sql );
-        
+        //echo $sql;
         if ($result->num_rows > 0) {
             $localObjects = array ();
             while ( $row = $result->fetch_assoc () ) {
