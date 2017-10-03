@@ -11,19 +11,20 @@ $dbName = "gestioncours";
 $conn = new mysqli($server,$user, $password, $dbName);
 $conn->set_charset("utf8");
 
-$bigQuery = "-- phpMyAdmin SQL Dump
+$bigQuery = "
+-- phpMyAdmin SQL Dump
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- HÃ´te : 127.0.0.1:3306
--- GÃ©nÃ©rÃ© le :  mar. 26 sep. 2017 Ã  16:27
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  mar. 03 oct. 2017 à 14:07
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
-SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO';
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
-SET time_zone = '+00:00';
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -32,7 +33,7 @@ SET time_zone = '+00:00';
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de donnÃ©es :  `gestioncours`
+-- Base de données :  `gestioncours`
 --
 CREATE DATABASE IF NOT EXISTS `gestioncours` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `gestioncours`;
@@ -185,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `object` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
--- DÃ©chargement des donnÃ©es de la table `object`
+-- Déchargement des données de la table `object`
 --
 
 INSERT INTO `object` (`id_object`, `name`) VALUES
@@ -361,6 +362,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -381,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contraintes pour les tables dÃ©chargÃ©es
+-- Contraintes pour les tables déchargées
 --
 
 --
@@ -418,16 +420,11 @@ ALTER TABLE `customer_user`
   ADD CONSTRAINT `customer_user_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `groupe`
---
-ALTER TABLE `groupe`
-  ADD CONSTRAINT `groupe_ibfk_1` FOREIGN KEY (`id_groupe`) REFERENCES `groupe_qualification` (`id_groupe`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Contraintes pour la table `groupe_qualification`
 --
 ALTER TABLE `groupe_qualification`
-  ADD CONSTRAINT `groupe_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `groupe_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `groupe_qualification_ibfk_2` FOREIGN KEY (`id_groupe`) REFERENCES `groupe` (`id_groupe`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `program_qualification`

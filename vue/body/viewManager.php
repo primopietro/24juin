@@ -10,12 +10,20 @@ if(isset($_GET['actions'])){
 	$actions = $_GET['actions'];
 	$_SESSION['current_page'] = $navigation;
 	$_SESSION['current_actions'] = $actions;
+	
+	getVue($navigation,$actions);
 }
 else{
-	$navigation = htmlspecialchars($_SESSION['current_page']);
-	$actions = htmlspecialchars($_SESSION['current_actions']);
+    if(isset($_SESSION['current_page'])){
+        $navigation = htmlspecialchars($_SESSION['current_page']);
+        $actions = htmlspecialchars($_SESSION['current_actions']);
+        getVue($navigation,$actions);
+    }else{
+        require_once "login/login.php";
+    }
+	
 }
-getVue($navigation,$actions);
+
 
 function getVue($navigation,$actions){
 	//Variables
