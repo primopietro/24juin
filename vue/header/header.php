@@ -36,8 +36,14 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
                 
                 }
             }
+    
+        
         }
     }
+    
+    
+    
+    
     
     
     $default = "<div class='wrapper'>
