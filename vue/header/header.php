@@ -25,7 +25,7 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
         <ul class='nav navbar-nav'>
           <li>
             <a href='#'>
-            <i class='fa fa-sign-out'></i> DÃ©connexion
+            <i class='fa fa-sign-out'></i> Déconnexion
             </a>
             </li>
 			</ul>
