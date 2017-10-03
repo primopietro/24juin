@@ -6,6 +6,7 @@ if(!isset($_SESSION)){session_start();}
 if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdministrateur()) {
     $default = "<div class='wrapper'>
 
+
   <header class='main-header'>
     <!-- Logo -->
     <a href='index2.html' class='logo'>
