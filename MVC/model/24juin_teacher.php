@@ -8,8 +8,6 @@ class Prof extends BaseModel {
 	protected $family_name;
 
 	
-	
-	
 
     /**
      * id_teacher

@@ -124,6 +124,8 @@ class BaseModel{
     	$internalAttributes = get_object_vars ( $this);
     	
     	$sql = "SELECT * FROM `" . $this->table_name . "` WHERE ".$argument. " ".$operation." ".$value." ";
+    	
+    	
     	$result = $conn->query ( $sql );
     	
     	if ($result->num_rows > 0) {
