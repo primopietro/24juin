@@ -36,8 +36,19 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
                 
                 }
             }
+<<<<<<< HEAD
         }
     }
+=======
+    
+        
+        }
+    }
+    
+    
+    
+    
+>>>>>>> branch 'login2.0' of https://github.com/primopietro/24juin.git
     
     
     $default = "<div class='wrapper'>
@@ -59,6 +70,7 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
       </a>
 <div class='navbar-custom-menu'>
         <ul class='nav navbar-nav'>
+<<<<<<< HEAD
           <li>
 <<<<<<< Upstream, based on origin/master
             <a href='#'>
@@ -67,6 +79,11 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
             <a id='logout'>
             <i class='fa fa-sign-out'></i> Déconnexion
 >>>>>>> 6eb9c75 ok
+=======
+          <li>
+            <a id='logout'>
+            <i class='fa fa-sign-out'></i> Déconnexion
+>>>>>>> branch 'login2.0' of https://github.com/primopietro/24juin.git
             </a>
             </li>
 			</ul>
