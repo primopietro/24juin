@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2017 at 01:07 AM
+-- Generation Time: Oct 04, 2017 at 07:26 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -157,13 +157,13 @@ INSERT INTO `object` (`id_object`, `name`) VALUES
 (1, 'building'),
 (2, 'classroom'),
 (3, 'customer'),
-(5, 'groupe'),
-(6, 'program'),
-(7, 'qualification'),
-(8, 'teacher'),
-(9, 'user'),
-(10, 'right'),
-(11, 'role');
+(4, 'groupe'),
+(5, 'program'),
+(6, 'qualification'),
+(7, 'teacher'),
+(8, 'user'),
+(9, 'right'),
+(10, 'role');
 
 -- --------------------------------------------------------
 
@@ -244,6 +244,16 @@ CREATE TABLE `right` (
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `right`
+--
+
+INSERT INTO `right` (`id_right`, `name`) VALUES
+(1, 'add'),
+(2, 'update'),
+(3, 'view'),
+(4, 'delete');
+
 -- --------------------------------------------------------
 
 --
@@ -258,6 +268,62 @@ CREATE TABLE `right_object_role` (
   `id_role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `right_object_role`
+--
+
+INSERT INTO `right_object_role` (`id_right_object_role`, `id_right`, `id_object`, `id_role`) VALUES
+(1, 1, 1, 1),
+(2, 2, 1, 1),
+(3, 3, 1, 1),
+(4, 4, 1, 1),
+(5, 1, 2, 1),
+(6, 2, 2, 1),
+(7, 3, 2, 1),
+(8, 4, 2, 1),
+(9, 1, 3, 1),
+(10, 2, 3, 1),
+(11, 3, 3, 1),
+(12, 4, 3, 1),
+(13, 1, 4, 1),
+(14, 2, 4, 1),
+(15, 3, 4, 1),
+(16, 4, 4, 1),
+(17, 1, 5, 1),
+(18, 2, 5, 1),
+(19, 3, 5, 1),
+(20, 4, 5, 1),
+(21, 1, 6, 1),
+(22, 2, 6, 1),
+(23, 3, 6, 1),
+(24, 4, 6, 1),
+(25, 1, 7, 1),
+(26, 2, 7, 1),
+(27, 3, 7, 1),
+(28, 4, 7, 1),
+(29, 1, 8, 1),
+(30, 2, 8, 1),
+(31, 3, 8, 1),
+(32, 4, 8, 1),
+(33, 1, 9, 1),
+(34, 2, 9, 1),
+(35, 3, 9, 1),
+(36, 4, 9, 1),
+(37, 1, 10, 1),
+(38, 2, 10, 1),
+(39, 3, 10, 1),
+(40, 4, 10, 1),
+(41, 3, 1, 2),
+(42, 3, 2, 2),
+(43, 3, 3, 2),
+(44, 3, 4, 2),
+(45, 3, 5, 2),
+(46, 3, 6, 2),
+(47, 3, 7, 2),
+(48, 3, 8, 2),
+(49, 3, 9, 2),
+(50, 3, 10, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -269,6 +335,14 @@ CREATE TABLE `role` (
   `id_role` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id_role`, `name`) VALUES
+(1, 'admin'),
+(2, 'client');
 
 -- --------------------------------------------------------
 
@@ -374,6 +448,14 @@ CREATE TABLE `user` (
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `name`, `password`) VALUES
+(1, 'admin', 'password'),
+(2, 'client', 'password');
+
 -- --------------------------------------------------------
 
 --
@@ -386,6 +468,14 @@ CREATE TABLE `user_role` (
   `id_user` int(11) NOT NULL,
   `id_role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_role`
+--
+
+INSERT INTO `user_role` (`id_user_role`, `id_user`, `id_role`) VALUES
+(1, 1, 1),
+(2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -675,17 +765,17 @@ ALTER TABLE `qualification_teached`
 -- AUTO_INCREMENT for table `right`
 --
 ALTER TABLE `right`
-  MODIFY `id_right` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_right` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `right_object_role`
 --
 ALTER TABLE `right_object_role`
-  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `schedule`
 --
@@ -720,12 +810,12 @@ ALTER TABLE `timeslot_week`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id_user_role` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `week`
 --

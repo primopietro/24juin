@@ -118,7 +118,7 @@ class BaseModel{
         
         $conn->close ();
     }
-    public  function getListOfAllDBObjectsWhere($argument,$operation, $value) {
+    public function getListOfAllDBObjectsWhere($argument,$operation, $value) {
     	include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
     	
     	$internalAttributes = get_object_vars ( $this);

@@ -1,53 +1,14 @@
 <?php
-require_once "settings.php";
-require_once "links.php";
-if (! isset($_SESSION)) {
-    session_start();
+if (! isset ( $_SESSION )) {
+	session_start ();
 }
-// if session not set (user not logged in)
-if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdministrateur()) {
-    
-    require_once $_SERVER["DOCUMENT_ROOT"] . "/24juin/MVC/model/24juin_object.php";
-    require_once $_SERVER["DOCUMENT_ROOT"] . "/24juin/MVC/model/24juin_right.php";
-    require_once $_SERVER["DOCUMENT_ROOT"] . "/24juin/MVC/model/24juin_role.php";
-  
-    $newMenuList = array();
-  
-    foreach ($_SESSION["rights"] as $aLocalRights) {
-        if ($aLocalRights != null) {
-            if (sizeof($aLocalRights) > 0) {
-                foreach ($aLocalRights as $aLocalRight) {
-                    $anObject = new Object();
-                    $aRight = new Right();
-                    
-                    $anObject = $anObject->getListOfAllDBObjectsWhere("id_object", "=", $aLocalRight['id_object']);
-                   
-                    
-                    $aRight = $aRight->getListOfAllDBObjectsWhere("id_right", "=", $aLocalRight['id_right']);
-                                       
-                    
-                    
-                    foreach($anObject as $localObj){
-                        $newMenuList[$localObj['name']]['object'] = $localObj;
-                        $newMenuList[$localObj['name']]['rights'][] =  $aRight;
-                     
-                    }
-                  
-                
-                }
-            }
-        }
-    }
-    
-    
-    
-    
-    $default = "<div class='wrapper'>
+
+$default = "<div class='wrapper'>
 
 
   <header class='main-header'>
     <!-- Logo -->
-    <a href='index2.html' class='logo'>
+    <a href='index.php' class='logo'>
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class='logo-mini'><b>24</b>J</span>
       <!-- logo for regular state and mobile devices -->
@@ -94,34 +55,35 @@ if (! isset($_SESSION["currentClient"]) || $_SESSION["currentUser"]->getAdminist
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class='sidebar-menu' data-widget='tree'>
         <li class='header'>Menu</li>";
-    
-    foreach($newMenuList as $localItem){
-        $default .=" <li class='treeview'>
+if (isset ( $_SESSION ["rightList"] )) {
+	foreach ( $_SESSION ["rightList"] as $localItem ) {
+		$default .= " <li class='treeview'>
           <a href='#'>
-            <i class='fa fa-calendar'></i> <span>".$localItem['object']['name']."</span>
+            <i class='fa fa-calendar'></i> <span>" . $localItem ['object'] ['name'] . "</span>
             <span class='pull-right-container'>
               <i class='fa fa-angle-left pull-right'></i>
             </span>
           </a>
-          <ul class='treeview-menu' navigation='".$localItem['object']['name']."'>";
-      
-            foreach($localItem['rights'] as $temp1){
-                foreach($temp1 as $temp2){
-                    $default.=" <li action='".$temp2['name']."'><a action='".$temp2['name']."' ><i class='fa fa-circle-o'></i>".$temp2['name']."</a></li> ";
-                    
-                }
-            }
-            
-       
-         $default.="   </ul>
+          <ul class='treeview-menu' navigation='" . $localItem ['object'] ['name'] . "'>";
+		//TODO: add ACTIVE page based off session variable
+		foreach ( $localItem ['rights'] as $aLocalRight ) {
+			if($aLocalRight['name'] == "view" || $aLocalRight['name'] == "add" ){
+				$default .= " <li action='" . $aLocalRight['name'] . "'><a action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>" . $aLocalRight['name'] . "</a></li> ";
+				
+			}
+				
+		}
+		
+		$default .= "   </ul>
         </li>";
-    }
-    
-    $default .=" 
+	}
+}
+
+$default .= " 
         
     </section>
     <!-- /.sidebar -->
   </aside>";
-    
-    echo $default;
-} // if session is set (user logged in)
+
+echo $default;
+
