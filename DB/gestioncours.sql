@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2017 at 07:26 PM
+-- Generation Time: Oct 04, 2017 at 10:24 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -205,6 +205,13 @@ CREATE TABLE `qualification` (
   `name` varchar(255) NOT NULL,
   `nb_hours` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `qualification`
+--
+
+INSERT INTO `qualification` (`id_qualification`, `code`, `name`, `nb_hours`) VALUES
+(3, '22', 'a', 22);
 
 -- --------------------------------------------------------
 
@@ -747,15 +754,15 @@ ALTER TABLE `object`
 ALTER TABLE `program`
   MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `qualification`
---
-ALTER TABLE `qualification`
-  MODIFY `id_qualification` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `program_qualification`
 --
 ALTER TABLE `program_qualification`
   MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `qualification`
+--
+ALTER TABLE `qualification`
+  MODIFY `id_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `qualificationteached_timeslot`
 --
