@@ -16,7 +16,12 @@ $(function() {
 		'autoWidth' : false
 	})
 })
-
+$(document).on("click","#closeModal",function(){
+	$("#objModal").modal("hide");
+	setTimeout(function(){ $("#objModal").remove();
+	$(".modal-backdrop.fade.in").remove(); }, 300);
+	
+});
 $(document).on("click", ".treeview ", function() {
 	$(".treeview ").removeClass("active");
 	$(this).addClass("active");
@@ -119,6 +124,79 @@ $(document).on("click", ".action", function() {
 			console.log("Login finished");
 
 		});
+	}else if(actionName == "add"){
+		var objType = $(this).attr("objtype");
+		var dataToBeSent = "action="+actionName+"&objType="+objType;
+		$("#objModal").remove();
+		$.ajax({
+			url : ajaxPath + "vue/modal/modal.php",
+			data : dataToBeSent,
+			type : 'POST',
+			beforeSend : function() {
+				enableLoader();
+				console.log("Starting to get modal to add object ");
+			}
+		}).done(function(response) {
+			$("body").append(response);
+			console.log("Modal obtained successfully");
+
+		}).always(function() {
+			disableLoader();
+			console.log("End of modal to add object ");
+		});		
+	}else if(actionName == "addObj"){
+		var form = $(this).closest(".modal-footer").prev();
+		var dataToBeSent = form.serialize();
+		console.log(dataToBeSent);
+		dataToBeSent+="&objType="+ $(this).attr("objtype");
+		$.ajax({
+			url : ajaxPath + "actions/add.php",
+			data : dataToBeSent,
+			type : 'POST',
+			beforeSend : function() {
+				enableLoader();
+				console.log("Beginning of add object ");
+			}
+		}).done(function(response) {
+			if(response == "success"){
+				console.log("Add object success");
+				
+			}else{
+				console.log("Add object failed");
+			}
+			
+		}).always(function() {
+			disableLoader();
+			$(".modal").remove();
+			$(".modal-backdrop").remove();
+			getNewView();
+			console.log("End of add object ");
+		});	
+	}else if(actionName == "delete"){
+		var idobj = $(this).attr("idobj");
+		var objType = $(this).attr("objtype");
+		var dataToBeSent ="&idobj="+ idobj+"&objtype="+objType;
+		$.ajax({
+			url : ajaxPath + "actions/delete.php",
+			data : dataToBeSent,
+			type : 'POST',
+			beforeSend : function() {
+				enableLoader();
+				console.log("Beginning of delete object ");
+			}
+		}).done(function(response) {
+			if(response == "success"){
+				console.log("Delete object success");
+				
+			}else{
+				console.log("Delete object failed");
+			}
+			
+		}).always(function() {
+			disableLoader();
+			getNewView();
+			console.log("End of delete object ");
+		});	
 	}
 
 });

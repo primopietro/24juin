@@ -102,6 +102,21 @@ class BaseModel{
         $conn->close ();
     }
     
+    //Delete from database
+    function deleteFromDB($anID) {
+    	$sql = "DELETE FROM `" . $this->table_name . "`
+ 		WHERE `" . $this->table_name . "`.`" . $this->primary_key . "`=  $anID  ";
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+    	
+    	if ($conn->query ( $sql ) === TRUE) {
+    		return "success";
+    	} else {
+    		return "fail";
+    	}
+    	
+    	$conn->close ();
+    }
+    
     // Set to disabled
     function removeDBObject($anID) {
         $sql = "UPDATE `" . $this->table_name . "`

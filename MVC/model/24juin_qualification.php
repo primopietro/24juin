@@ -90,7 +90,7 @@ class Qualification extends BaseModel {
     	$content = '';
     	if($aListOfQualifications != null){
     		foreach($aListOfQualifications as $aQualification){
-    			$content .= $this->getEachQualificationComponentList($aQualification);
+    			$content .= $this->getEachQualificationComponentList($aQualification,$canBeUpdated,$canBeDeleted);
     		}
     	}
     	
@@ -102,14 +102,14 @@ class Qualification extends BaseModel {
     	$line = '';
     	$line .= "<tr>";
     	$line .= "<td>" . $aQualification['code']. "</td>";
-    	$line .= "<td>" . $aQualification['name	'] . "</td>";
+    	$line .= "<td>" . $aQualification['name'] . "</td>";
     	$line .= "<td>" . $aQualification['nb_hours']. "</td>";
     	if($canBeUpdated){
-    		$line .= "<td><a action='update' class='action' idobj='".  $aQualification['id_qualification']."'><i class='fa fa-pencil text-green'></i></a></td>";
+    		$line .= "<td><a objtype='".$aQualification['table_name']."' action='update' class='action' idobj='".  $aQualification['id_qualification']."'><i class='fa fa-pencil text-green'></i></a></td>";
     	}
     	if($canBeDeleted){
     		
-    		$line .= "<td><a action='delete' class='action' idobj='".$aQualification['id_qualification']."'><i class='fa fa-times text-red'></i></a></td>";
+    		$line .= "<td><a objtype='".$aQualification['table_name']."' action='delete' class='action' idobj='".$aQualification['id_qualification']."'><i class='fa fa-times text-red'></i></a></td>";
     	}
     	$line .= "</tr>";
     	

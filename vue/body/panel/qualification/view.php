@@ -19,7 +19,7 @@ if(isset($rights['view'])){
               <h3 class='box-title'>Liste ".$objName."</h3>";
 			
 	if(isset($rights['add'])){
-		$default .= "<br>  <a class='action' action='add'>Ajouter </a>";
+		$default .= "<br>  <a class='action' action='add' objtype='".$objName."'>Ajouter </a>";
 	}
 	$default .= "<div class='box-tools'>
 			

@@ -747,6 +747,11 @@ ALTER TABLE `object`
 ALTER TABLE `program`
   MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `qualification`
+--
+ALTER TABLE `qualification`
+  MODIFY `id_qualification` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `program_qualification`
 --
 ALTER TABLE `program_qualification`

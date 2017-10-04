@@ -16,3 +16,11 @@ li.treeview.menu-open.active ul {
     width: 360px;
     margin: 7% 17vw;
 }
+
+.modal{
+	z-index:9001;
+}
+
+.modal-backdrop.fade.in{
+	z-index:9000;	
+}
