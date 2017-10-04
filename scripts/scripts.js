@@ -144,6 +144,26 @@ $(document).on("click", ".action", function() {
 			disableLoader();
 			console.log("End of modal to add object ");
 		});		
+	}else if(actionName == "update"){
+		var objType = $(this).attr("objtype");
+		var dataToBeSent = "action="+actionName+"&objType="+objType+"&idobj="+$(this).attr("idobj");
+		$("#objModal").remove();
+		$.ajax({
+			url : ajaxPath + "vue/modal/modal.php",
+			data : dataToBeSent,
+			type : 'POST',
+			beforeSend : function() {
+				enableLoader();
+				console.log("Starting to get modal to update object ");
+			}
+		}).done(function(response) {
+			$("body").append(response);
+			console.log("Modal obtained successfully");
+
+		}).always(function() {
+			disableLoader();
+			console.log("End of modal to update object ");
+		});		
 	}else if(actionName == "addObj"){
 		var form = $(this).closest(".modal-footer").prev();
 		var dataToBeSent = form.serialize();
@@ -171,6 +191,35 @@ $(document).on("click", ".action", function() {
 			$(".modal-backdrop").remove();
 			getNewView();
 			console.log("End of add object ");
+		});	
+	}else if(actionName == "updateObj"){
+		var form = $(this).closest(".modal-footer").prev();
+		var idobj = form.attr('idobj');
+		var dataToBeSent = form.serialize();
+		console.log(dataToBeSent);
+		dataToBeSent+="&objType="+ $(this).attr("objtype")+"&idobj="+idobj;
+		$.ajax({
+			url : ajaxPath + "actions/update.php",
+			data : dataToBeSent,
+			type : 'POST',
+			beforeSend : function() {
+				enableLoader();
+				console.log("Beginning of update object ");
+			}
+		}).done(function(response) {
+			if(response == "success"){
+				console.log("Update object success");
+				
+			}else{
+				console.log("Update object failed");
+			}
+			
+		}).always(function() {
+			disableLoader();
+			$(".modal").remove();
+			$(".modal-backdrop").remove();
+			getNewView();
+			console.log("End of update object ");
 		});	
 	}else if(actionName == "delete"){
 		var idobj = $(this).attr("idobj");

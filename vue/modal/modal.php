@@ -20,7 +20,13 @@ if(isset($rights[$action])){
                 <h4 class='modal-title'>".$action." ".$objectType."</h4>
               </div>
               <div class='modal-body'>";
-	$base .= getMarkup();
+	if($action == "add"){
+		
+		$base .= getMarkup();
+	}else if($action =="update"){
+		$id = htmlspecialchars($_POST['idobj']);
+		$base .= getMarkup($id);
+	}
 	$base.="</div>
               <div class='modal-footer'>
                 <a id='closeModal' class='btn btn-default pull-left' data-dismiss='modal'>Annuler</a>

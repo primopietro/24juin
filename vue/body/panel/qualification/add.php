@@ -19,7 +19,5 @@ function getMarkup(){
                 </div></form>";
 	
 	return $default;
-	
-	
 }
 
