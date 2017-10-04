@@ -60,17 +60,22 @@ if($aUser->checkPassword()) {
     							foreach($aRight as $tempRight){
     								$newMenuList[$localObj['name']]['rights'][] =  $tempRight;
     								
-    								if($counterObject == 0){
-    									$_SESSION['current_page'] = $localObj['name'];
+    								if($tempRight['name'] == "view"){
     									
-    									$tempActions.= $tempRight['name'].",";
+    									if($counterObject == 0){
+    										$_SESSION['current_action'] = $tempRight['name'] ;
+    										$_SESSION['current_page'] = $localObj['name'];
+    										
+    										$counterObject++;
+    									}
     									
     								}
+    								
     							}
     								
     							
     						}
-    						$counterObject++;
+    						
     						
     					}
     				}
@@ -78,15 +83,8 @@ if($aUser->checkPassword()) {
     		}
     	}
     }
-    if (substr($tempActions, -1, 1) == ',')
-    {
-    	$string = substr($tempActions, 0, -1);
-    }
-    $_SESSION['current_actions'] = $tempActions;
     $_SESSION['rightList'] = $newMenuList;
     $_SESSION['current_user'] = $aUser;
-   
-    //print_r($_SESSION);
     echo "success";
 }else{
     echo "fail";

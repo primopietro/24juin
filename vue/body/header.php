@@ -1,14 +1,9 @@
 <?php
 
-function getHeader($object, $actions){
-	$elementMenu ="add";
-    if ($actions=="add") {
-        $elementMenu="Ajout";
-    }else if ($actions=="view") {
-        $elementMenu="Consultation";
-    } else if ($actions=="add,view") {
-        $elementMenu="Ajout et consultation";
-    }
+function getHeader($object){
+	
+    $elementMenu="Consultation";
+    
 	$default = "
     <!-- Content Header (Page header) -->
     <section class='content-header'>

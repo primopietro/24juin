@@ -28,7 +28,7 @@ $(document).on("click", ".treeview-menu a", function() {
 	var navigation = $(this).closest("ul").attr("navigation");
 	console.log(actionName);
 	console.log(navigation);
-	var actions = "navigation=" + navigation + "&actions=" + actionName;
+	var actions = "navigation=" + navigation + "&action=" + actionName;
 	getNewView(actions);
 
 });

@@ -1,30 +1,33 @@
 <?php
-if(!isset($_SESSION)){session_start();}
+if (! isset ( $_SESSION )) {
+	session_start ();
+}
 require_once 'header.php';
-
 
 $navigation = "";
 $actions = "";
-if(isset($_GET['actions'])){	
-	$navigation = htmlspecialchars($_GET['navigation']);
-	$actions = $_GET['actions'];
-	$_SESSION['current_page'] = $navigation;
-	$_SESSION['current_actions'] = $actions;
-	
-	getVue($navigation,$actions);
+if (isset ( $_GET ['action'] )) {
+	$navigation = htmlspecialchars ( $_GET ['navigation'] );
+	$_SESSION ['current_page'] = $navigation;
+	getVue ( $navigation, $actions );
+} else {
+	if (isset ( $_SESSION ['current_page'] )) {
+		$navigation = htmlspecialchars ( $_SESSION ['current_page'] );
+		$action = htmlspecialchars ( $_SESSION ['current_action'] );
+		getVue ( $navigation, $actions );
+	} else {
+		require_once "login/login.php";
+	}
 }
-else{
-    if(isset($_SESSION['current_page'])){
-        $navigation = htmlspecialchars($_SESSION['current_page']);
-        $actions = htmlspecialchars($_SESSION['current_actions']);
-        getVue($navigation,$actions);
-    }else{
-        require_once "login/login.php";
-    }
+function getVue($navigation) {
 	
+	echo getHeader( $navigation);
+	
+	require_once  $_SERVER["DOCUMENT_ROOT"] .'/24juin/vue/body/panel/'. $navigation .'/view.php';
 }
 
-
+//To be deprecated
+/*
 function getVue($navigation,$actions){
 	//Variables
 	$fixedPath ="panel/";
@@ -42,5 +45,5 @@ function getVue($navigation,$actions){
 		require_once $finalString;
 	}
 }
-
+*/
 ?>

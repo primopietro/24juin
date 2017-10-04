@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `building`;
 CREATE TABLE `building` (
   `id_building` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `adress` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `nb_clasrooms` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -115,25 +115,25 @@ CREATE TABLE `customer_user` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `groupe`
+-- Table structure for table `group`
 --
 
-DROP TABLE IF EXISTS `groupe`;
-CREATE TABLE `groupe` (
-  `id_groupe` int(11) NOT NULL,
-  `annee` date NOT NULL
+DROP TABLE IF EXISTS `group`;
+CREATE TABLE `group` (
+  `id_group` int(11) NOT NULL,
+  `year` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `groupe_qualification`
+-- Table structure for table `group_qualification`
 --
 
-DROP TABLE IF EXISTS `groupe_qualification`;
-CREATE TABLE `groupe_qualification` (
-  `id_groupe_qualification` int(11) NOT NULL,
-  `id_groupe` int(11) NOT NULL,
+DROP TABLE IF EXISTS `group_qualification`;
+CREATE TABLE `group_qualification` (
+  `id_group_qualification` int(11) NOT NULL,
+  `id_group` int(11) NOT NULL,
   `id_qualification` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -157,7 +157,7 @@ INSERT INTO `object` (`id_object`, `name`) VALUES
 (1, 'building'),
 (2, 'classroom'),
 (3, 'customer'),
-(4, 'groupe'),
+(4, 'group'),
 (5, 'program'),
 (6, 'qualification'),
 (7, 'teacher'),
@@ -547,17 +547,17 @@ ALTER TABLE `customer_user`
   ADD KEY `cu_id_user` (`id_user`);
 
 --
--- Indexes for table `groupe`
+-- Indexes for table `group`
 --
-ALTER TABLE `groupe`
-  ADD PRIMARY KEY (`id_groupe`);
+ALTER TABLE `group`
+  ADD PRIMARY KEY (`id_group`);
 
 --
--- Indexes for table `groupe_qualification`
+-- Indexes for table `group_qualification`
 --
-ALTER TABLE `groupe_qualification`
-  ADD PRIMARY KEY (`id_groupe_qualification`),
-  ADD KEY `gq_groupe` (`id_groupe`),
+ALTER TABLE `group_qualification`
+  ADD PRIMARY KEY (`id_group_qualification`),
+  ADD KEY `gq_group` (`id_group`),
   ADD KEY `gq_qualification` (`id_qualification`);
 
 --
@@ -732,10 +732,10 @@ ALTER TABLE `customer_building`
 ALTER TABLE `customer_user`
   MODIFY `id_customer_user` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `groupe`
+-- AUTO_INCREMENT for table `group`
 --
-ALTER TABLE `groupe`
-  MODIFY `id_groupe` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `group`
+  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `object`
 --
@@ -859,16 +859,16 @@ ALTER TABLE `customer_user`
   ADD CONSTRAINT `customer_user_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `groupe`
+-- Constraints for table `group`
 --
-ALTER TABLE `groupe`
-  ADD CONSTRAINT `groupe_ibfk_1` FOREIGN KEY (`id_groupe`) REFERENCES `groupe_qualification` (`id_groupe`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `group`
+  ADD CONSTRAINT `group_ibfk_1` FOREIGN KEY (`id_group`) REFERENCES `group_qualification` (`id_group`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `groupe_qualification`
+-- Constraints for table `group_qualification`
 --
-ALTER TABLE `groupe_qualification`
-  ADD CONSTRAINT `groupe_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `group_qualification`
+  ADD CONSTRAINT `group_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `program_qualification`

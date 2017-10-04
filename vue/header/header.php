@@ -56,8 +56,13 @@ $default = "<div class='wrapper'>
       <ul class='sidebar-menu' data-widget='tree'>
         <li class='header'>Menu</li>";
 if (isset ( $_SESSION ["rightList"] )) {
-	foreach ( $_SESSION ["rightList"] as $localItem ) {
-		$default .= " <li class='treeview'>
+	$tempRights =  $_SESSION ["rightList"] ;
+	foreach ($tempRights as $localItem ) {
+		$default .= " <li class='treeview ";
+		if($localItem ['object'] ['name'] == $_SESSION['current_page'] ){
+			$default .=" active ";
+		}
+		$default .="'>
           <a href='#'>
             <i class='fa fa-calendar'></i> <span>" . $localItem ['object'] ['name'] . "</span>
             <span class='pull-right-container'>
@@ -67,11 +72,11 @@ if (isset ( $_SESSION ["rightList"] )) {
           <ul class='treeview-menu' navigation='" . $localItem ['object'] ['name'] . "'>";
 		//TODO: add ACTIVE page based off session variable
 		foreach ( $localItem ['rights'] as $aLocalRight ) {
-			if($aLocalRight['name'] == "view" || $aLocalRight['name'] == "add" ){
-				$default .= " <li action='" . $aLocalRight['name'] . "'><a action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>" . $aLocalRight['name'] . "</a></li> ";
+			if($aLocalRight['name'] == "view"  ){
+			
+				$default .= " <li ><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>" . $aLocalRight['name'] . "</a></li> ";
 				
 			}
-				
 		}
 		
 		$default .= "   </ul>

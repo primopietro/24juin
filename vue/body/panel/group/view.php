@@ -1,12 +1,12 @@
 <?php
-require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_groupe.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_group.php';
     $default = "
    <section class='content'>
     <div class='row'>
         <div class='col-xs-12'>
           <div class='box'>
             <div class='box-header'>
-              <h3 class='box-title'>Liste Groupes</h3>
+              <h3 class='box-title'>Liste groups</h3>
 
 
              <div class='box-tools'>
@@ -22,16 +22,16 @@ require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_groupe.php';
               <table class='table table-bordered table-hover'>
              <thead>
                 <tr>
-                  <th>Code Groupe</th>
+                  <th>Code group</th>
                   <th>Année</th>
                   <th>Supprimer</th>
                 </tr>
             <thead>
             <tbody>";
     
-    $aGroupe = new Groupe();
-    $aListOfGroupe = $aGroupe->getActiveGroupe();
-    $default .= $aGroupe->printGroupe($aListOfGroupe);
+    $agroup = new Group();
+    $aListOfGroup = $agroup->getActiveGroup();
+    $default .= $agroup->printGroupList($aListOfGroup);
     
     $default .= "</tbody>
               </table>
