@@ -10,7 +10,6 @@ if(isset($_POST)){
 	$idObj =  htmlspecialchars($_POST['idobj']);
 	$rights =checkUserRights($objType, $_SESSION ['rightList']);
 	//If has right to add, proceed
-	print_r($_SESSION ['rightList'][$objType]);
 	if(isset($rights['delete'])){
 		require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_".$objType.".php";
 		$anObject = null;
