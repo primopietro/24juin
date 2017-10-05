@@ -11,6 +11,7 @@ $rights = checkUserRights ( $objName, $_SESSION ['rightList'] );
 
 if (isset ( $rights ['view'] )) {
 	
+	
 	$aQualification = new Qualification ();
 	$aListOfQualifications = $aQualification->getActiveQualifications ();
 	
