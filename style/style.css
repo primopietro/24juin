@@ -4,8 +4,10 @@
 .alignCenter{
 	text-align:center!important;
 }
-.modalBlur{
-	filter:blur(2px) !important;
+.modalBlur {
+    filter: blur(2px) !important;
+    transform: scale(1.002);
+    overflow: hidden;
 }
 li.treeview.menu-open.active ul {
     border-left: 2px solid rgba(60, 141, 188, 0.6);
