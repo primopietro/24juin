@@ -24,7 +24,9 @@ li.treeview.menu-open.active ul {
 .modal{
 	z-index:9001;
 }
-
+.action{
+	cursor:pointer;
+}
 .modal-backdrop.fade.in{
 	z-index:9000;	
 }
