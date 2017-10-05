@@ -36,6 +36,8 @@ if(isset($_POST)){
 		}
 		
 		$anObject->updateDBObject();
+	}else{
+		echo "forbidden";
 	}
 	
 }

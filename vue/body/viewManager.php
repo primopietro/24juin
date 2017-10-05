@@ -6,6 +6,8 @@ require_once 'header.php';
 
 $navigation = "";
 $actions = "";
+
+//TODO : check if user has VIEW right for THIS object (navigation)
 if (isset ( $_GET ['action'] )) {
 	$navigation = htmlspecialchars ( $_GET ['navigation'] );
 	$_SESSION ['current_page'] = $navigation;
@@ -26,24 +28,5 @@ function getVue($navigation) {
 	require_once  $_SERVER["DOCUMENT_ROOT"] .'/24juin/vue/body/panel/'. $navigation .'/view.php';
 }
 
-//To be deprecated
-/*
-function getVue($navigation,$actions){
-	//Variables
-	$fixedPath ="panel/";
-	
-	echo getHeader($navigation,$actions);
-	$actualActions = explode(",", $actions);
-	
-	for($i=0;$i<sizeof($actualActions); $i++){
-		//TODO : REGLER LES ROLES
-		//VERIFY USER ROLES DANS LA SESSION
-		//POUR LA VERSION DE DEVELOPPEMENT
-		
-		$anAction = htmlspecialchars($actualActions[$i]);
-		$finalString = $fixedPath . $navigation . "/". $anAction. ".php";
-		require_once $finalString;
-	}
-}
-*/
+
 ?>

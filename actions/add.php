@@ -28,6 +28,8 @@ if(isset($_POST)){
 			$anObject->$setter($keyValue);
 		}
 		$anObject->addDBObject();
+	}else{
+		echo "forbidden";
 	}
 	
 }
