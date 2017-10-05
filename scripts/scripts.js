@@ -92,6 +92,18 @@ function getBody() {
 	});
 }
 
+$(document).on('DOMNodeInserted', function(e) {
+    if ( $(e.target).hasClass('modal-backdrop') ) {
+    	$(".wrapper").addClass("modalBlur");
+    }
+});
+$(document).on('DOMNodeRemoved', function(e) {
+    if ( $(e.target).hasClass('modal-backdrop') ) {
+    	$(".wrapper").removeClass("modalBlur");
+    }
+});
+
+
 // Action handler
 $(document).on("click", ".action", function() {
 
