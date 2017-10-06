@@ -20,6 +20,8 @@ if(isset($_POST)){
 			
 		}else if ($objType== "group"){
 		    $anObject = new Group();
+		}else if ($objType== "program"){
+		    $anObject = new Program();
 		}//Add other objects here as "else if"
 		
 		

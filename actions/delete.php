@@ -17,6 +17,8 @@ if(isset($_POST)){
 			$anObject = new Qualification();
 		} else if ($objType== "group"){
 		    $anObject = new Group();
+		}else if ($objType== "program"){
+		    $anObject = new Program();
 		}
 	
 		$anObject->deleteFromDB($idObj);

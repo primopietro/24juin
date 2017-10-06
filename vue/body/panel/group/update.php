@@ -8,7 +8,7 @@ function getMarkup($idObj){
                   <div class='row'>
                     <div class='col-xs-4'>
                         <h4>Code Unique</h4>
-                      <input name='code' value='" .$aGroup['code']."' type='text' class='form-control' placeholder='Code Unique'>
+                      <input name='code' value='" .$aGroup['code']."' type='text' class='form-control' placeholder='ex: AUT1J16SE'>
                     </div>
 			
                     <div class='col-xs-4'>

@@ -54,7 +54,8 @@ class BaseModel{
         $definition = "UPDATE `" . $this->table_name . "` ";
         
         $sets = "SET ";
-        
+        $sizeOfObject = sizeof($internalAttributes);
+        $compterAttribute = 1;
         $lastElement = end ( $internalAttributes );
         foreach ( $internalAttributes as $rowName => $value ) {
             
@@ -62,10 +63,11 @@ class BaseModel{
                 
                 $sets .= "  `" . $rowName . "` = " . "'" . $value . "'";
                 
-                if ($value != $lastElement) {
+                if (  $compterAttribute < $sizeOfObject) {
                     $sets .= ", ";
                 }
             }
+            $compterAttribute++;
         }
         
         $condition = " WHERE  `" . $this->table_name . "`.`" . $this->primary_key . "` = " . $internalAttributes [$this->primary_key];

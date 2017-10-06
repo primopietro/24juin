@@ -5,11 +5,11 @@ function getMarkup(){
                   <div class='row'>
                     <div class='col-xs-4'>
                       <h4>Code unique</h4>
-                      <input name='code' type='text' class='form-control' placeholder='Code unique'>
+                      <input name='code' type='text' class='form-control' placeholder='ex: AUT1J16SE'>
                     </div>
 					<div class='col-xs-4'>
                       <h4>Année</h4>
-                      <input name='year' type='date' class='form-control' placeholder='Année'>
+                      <input name='year' type='date' class='form-control'>
                     </div>
                 </div></form>";
     

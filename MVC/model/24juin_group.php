@@ -8,16 +8,6 @@ class Group extends BaseModel {
 	protected $year = "";
 
     /**
-     * table_name
-     * @param unkown $table_name
-     * @return 24juin_group
-     */
-    public function setTable_name($table_name){
-        $this->table_name = $table_name;
-        return $this;
-    }
-
-    /**
      * id_group
      * @return int
      */
@@ -80,7 +70,7 @@ class Group extends BaseModel {
         $content = '';
         if($aListOfGroup != null){
             foreach($aListOfGroup as $aGroup){
-                $content .= $this->getEachgroupComponentList($aGroup,$canBeUpdated,$canBeDeleted);
+                $content .= $this->getEachGroupComponentList($aGroup,$canBeUpdated,$canBeDeleted);
             }
         }
         
