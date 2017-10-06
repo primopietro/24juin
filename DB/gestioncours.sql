@@ -439,6 +439,7 @@ CREATE TABLE IF NOT EXISTS `schedule_timeslot` (
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE IF NOT EXISTS `teacher` (
   `id_teacher` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `family_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id_teacher`)
