@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `building` (
   `id_building` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `nb_clasrooms` int(11) NOT NULL,
+  `nb_classrooms` int(11) NOT NULL,
   PRIMARY KEY (`id_building`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -58,16 +58,16 @@ CREATE TABLE IF NOT EXISTS `building_classroom` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `clasroom_qualification`
+-- Structure de la table `classroom_qualification`
 --
 
-DROP TABLE IF EXISTS `clasroom_qualification`;
-CREATE TABLE IF NOT EXISTS `clasroom_qualification` (
+DROP TABLE IF EXISTS `classroom_qualification`;
+CREATE TABLE IF NOT EXISTS `classroom_qualification` (
   `id_classroom_qualification` int(11) NOT NULL AUTO_INCREMENT,
   `id_classroom` int(11) NOT NULL,
   `id_qualification` int(11) NOT NULL,
   PRIMARY KEY (`id_classroom_qualification`),
-  KEY `cq_id_clasroom` (`id_classroom`),
+  KEY `cq_id_classroom` (`id_classroom`),
   KEY `cq_id_qualification` (`id_qualification`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -587,11 +587,11 @@ ALTER TABLE `building_classroom`
   ADD CONSTRAINT `building_classroom_ibfk_2` FOREIGN KEY (`id_classroom`) REFERENCES `classroom` (`id_classroom`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `clasroom_qualification`
+-- Contraintes pour la table `classroom_qualification`
 --
-ALTER TABLE `clasroom_qualification`
-  ADD CONSTRAINT `clasroom_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `clasroom_qualification_ibfk_2` FOREIGN KEY (`id_classroom`) REFERENCES `classroom` (`id_classroom`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `classroom_qualification`
+  ADD CONSTRAINT `classroom_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `classroom_qualification_ibfk_2` FOREIGN KEY (`id_classroom`) REFERENCES `classroom` (`id_classroom`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `customer_building`
