@@ -1,9 +1,10 @@
 <?php
-
+require_once '/../translator.php';
 function getHeader($object){
 	
-    $elementMenu="Consultation";
-    
+    $elementMenu="view";
+    $elementMenu=frenchTranslator ($elementMenu);
+    $object=frenchTranslator ($object);
 	$default = "
     <!-- Content Header (Page header) -->
     <section class='content-header'>
