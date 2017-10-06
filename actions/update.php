@@ -18,11 +18,13 @@ if(isset($_POST)){
 		if($objType== "qualification"){
 			$anObject = new Qualification();
 			
+		}else if ($objType== "group"){
+		    $anObject = new Group();
 		}//Add other objects here as "else if"
 		
 		
 		$tempSetId = "setId_";
-		$tempSetId .=$objType;
+		$tempSetId .= $objType;
 		$anObject->$tempSetId($idobj);
 		
 		

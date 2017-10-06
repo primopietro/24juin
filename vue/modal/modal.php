@@ -8,7 +8,7 @@ $objectType = htmlspecialchars($_POST['objType']);
 
 require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/vue/rightHelper.php';
 
-$rights =checkUserRights($objectType, $_SESSION ['rightList']);
+$rights = checkUserRights($objectType, $_SESSION ['rightList']);
 
 if(isset($rights[$action])){
 	require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/vue/body/panel/".$objectType."/".$action.".php";

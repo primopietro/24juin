@@ -79,6 +79,7 @@ class BaseModel{
         if ($conn->query ( $sql ) === TRUE) {
             echo "success";
         } else {
+            echo $sql . "<br>";
             echo "fail";
         }
         

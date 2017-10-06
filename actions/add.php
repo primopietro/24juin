@@ -15,7 +15,8 @@ if(isset($_POST)){
 		$anObject = null;
 		if($objType== "qualification"){
 			$anObject = new Qualification();
-			
+		} else if ($objType== "group"){
+		    $anObject = new Group();
 		}
 		//Add other objects here
 		
