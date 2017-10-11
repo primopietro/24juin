@@ -38,7 +38,7 @@ function Frenchtranslator($word){
     {
         return "Programme";
         
-    }else if($word=="qulification")
+    }else if($word=="qualification")
     {
         return "Compétence";
         
