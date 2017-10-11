@@ -8,15 +8,15 @@ function getMarkup($idObj){
                   <div class='row'>
                     <div class='col-xs-3'>
                         <h4>Nom</h4>
-                      <input name='name' value='" .$aBuilding['name']."' type='text' class='form-control' placeholder='Nom'>
+                      <input name='name' value='" .$aBuilding['name']."' type='text' class='form-control' placeholder='ex: Pavillon 2'>
                     </div>
                     <div class='col-xs-3'>
                       <h4>Adresse</h4>
-                      <input value='" .$aBuilding['address']."'  name='address' type='text' class='form-control' placeholder='Adresse'>
+                      <input value='" .$aBuilding['address']."'  name='address' type='text' class='form-control' placeholder='ex: 1838 rue dunant'>
                     </div>
 					<div class='col-xs-4'>
                       <h4>Nombre de locaux</h4>
-                      <input value='" .$aBuilding['nb_classrooms']."' name='nb_classrooms' type='number' class='form-control' placeholder='Nombre de locaux'>
+                      <input value='" .$aBuilding['nb_classrooms']."' name='nb_classrooms' type='number' class='form-control' placeholder='ex: 4'>
                     </div>
                 </div></form>";
 	

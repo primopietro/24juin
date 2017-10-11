@@ -5,15 +5,15 @@ function getMarkup(){
                   <div class='row'>
                     <div class='col-xs-3'>
                         <h4>Nom</h4>
-                      <input name='name' type='text' class='form-control' placeholder='Nom'>
+                      <input name='name' type='text' class='form-control' placeholder='ex: Pavillon 2'>
                     </div>
                     <div class='col-xs-3'>
                       <h4>Adresse</h4>
-                      <input name='address' type='text' class='form-control' placeholder='Adresse'>
+                      <input name='address' type='text' class='form-control' placeholder='ex: 1838 rue dunant'>
                     </div>
 					<div class='col-xs-4'>
                       <h4>Nombre de locaux</h4>
-                      <input name='nb_classrooms' type='number' class='form-control' placeholder='Nombre de locaux'>
+                      <input name='nb_classrooms' type='number' class='form-control' placeholder='ex: 4'>
                     </div>
                 </div></form>";
 	
