@@ -16,7 +16,7 @@ function getMarkup($idObj){
                     </div>
 					<div class='col-xs-4'>
                       <h4>Nombre de locaux</h4>
-                      <input value='" .$aBuilding['nb_classrooms']."' name='nb_classrooms' type='text' class='form-control' placeholder='Nombre de locaux'>
+                      <input value='" .$aBuilding['nb_classrooms']."' name='nb_classrooms' type='number' class='form-control' placeholder='Nombre de locaux'>
                     </div>
                 </div></form>";
 	
