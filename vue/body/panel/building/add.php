@@ -9,7 +9,7 @@ function getMarkup(){
                     </div>
                     <div class='col-xs-3'>
                       <h4>Adresse</h4>
-                      <input name='adress' type='text' class='form-control' placeholder='Adresse'>
+                      <input name='address' type='text' class='form-control' placeholder='Adresse'>
                     </div>
 					<div class='col-xs-4'>
                       <h4>Nombre de locaux</h4>
