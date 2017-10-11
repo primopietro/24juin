@@ -14,7 +14,7 @@ function getMarkup(){
                     </div>
 					<div class='col-xs-4'>
                       <h4>Quantité d'heures</h4>
-                      <input name='nb_hours' type='text' class='form-control' placeholder='Quantite d'heures'>
+                      <input name='nb_hours' type='number' class='form-control' placeholder='Quantite d'heures'>
                     </div>
                 </div></form>";
 	
