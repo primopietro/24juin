@@ -40,6 +40,8 @@ delete window.exports; delete window.module;
 <script src=' bower_components/jquery-slimscroll/jquery.slimscroll.min.js'></script>
 <!-- FastClick -->
 <script src=' bower_components/fastclick/lib/fastclick.js'></script>
+<!-- Toastr -->
+<script src=' bower_components/toastr/toastr.js'></script>
 <!-- AdminLTE App -->
 <script src=' dist/js/adminlte.min.js'></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

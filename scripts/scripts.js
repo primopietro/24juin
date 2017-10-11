@@ -178,32 +178,51 @@ $(document).on("click", ".action", function() {
 		});		
 	}else if(actionName == "addObj"){
 		var form = $(this).closest(".modal-footer").prev();
-		var dataToBeSent = form.serialize();
-		console.log(dataToBeSent);
-		dataToBeSent+="&objType="+ $(this).attr("objtype");
-		$.ajax({
-			url : ajaxPath + "actions/add.php",
-			data : dataToBeSent,
-			type : 'POST',
-			beforeSend : function() {
-				enableLoader();
-				console.log("Beginning of add object ");
+		
+		var noBlanks = true;
+		form.find('input').each(function(index, el)
+		  {
+		
+			if(noBlanks == true){
+				if ($(el).val().length == 0) noBlanks = false; 
 			}
-		}).done(function(response) {
-			if(response == "success"){
-				console.log("Add object success");
+		 
+		});
+		if(noBlanks){
+			console.log(noBlanks);
+			var dataToBeSent = form.serialize();
+			console.log(dataToBeSent);
+			dataToBeSent+="&objType="+ $(this).attr("objtype");
+			$.ajax({
+				url : ajaxPath + "actions/add.php",
+				data : dataToBeSent,
+				type : 'POST',
+				beforeSend : function() {
+					enableLoader();
+					console.log("Beginning of add object ");
+				}
+			}).done(function(response) {
+				if(response == "success"){
+					toastr.success('Création d\élélment a reussi', 'Succès');
+					console.log("Add object success");
+					
+				}else{
+					toastr.error('Création d\'élélment n\'a pas reussi', 'Erreur!');
+					console.log("Add object failed");
+				}
 				
-			}else{
-				console.log("Add object failed");
-			}
-			
-		}).always(function() {
-			disableLoader();
-			$(".modal").remove();
-			$(".modal-backdrop").remove();
-			getNewView();
-			console.log("End of add object ");
-		});	
+			}).always(function() {
+				disableLoader();
+				$(".modal").remove();
+				$(".modal-backdrop").remove();
+				getNewView();
+				console.log("End of add object ");
+			});	
+		}else{
+			toastr.error('Champ(s) vide(s) dans le formulaire', 'Erreur!');
+		}
+		
+		
 	}else if(actionName == "updateObj"){
 		var form = $(this).closest(".modal-footer").prev();
 		var idobj = form.attr('idobj');
@@ -220,10 +239,12 @@ $(document).on("click", ".action", function() {
 			}
 		}).done(function(response) {
 			if(response == "success"){
+				toastr.success('Élément mis à jour avec succès', 'Succès');
 				console.log("Update object success");
 				
 			}else{
 				console.log("Update object failed");
+				toastr.error('Echec de la mise à jour', 'Erreur!');
 			}
 			
 		}).always(function() {
@@ -248,8 +269,10 @@ $(document).on("click", ".action", function() {
 		}).done(function(response) {
 			if(response == "success"){
 				console.log("Delete object success");
+				toastr.success('Suppresion d\'élélment a reussi', 'Succès');
 				
 			}else{
+				toastr.error('Suppresion d\'élélment n\'a pas reussi', 'Erreur!');
 				console.log("Delete object failed");
 			}
 			

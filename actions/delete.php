@@ -35,7 +35,7 @@ if(isset($_POST)){
 		    $anObject = new Building();
 		}
 	
-		$anObject->deleteFromDB($idObj);
+		echo $anObject->deleteFromDB($idObj);
 	}else{
 		echo "Right forbidden";
 	}
