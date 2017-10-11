@@ -86,5 +86,38 @@ class User extends BaseModel {
         $conn->close ();
         return "fail";
     }
+    
+    function getActiveUser(){
+        $aListOfUser = $this->getListOfAllDBObjects();
+        return $aListOfUser;
+    }
+    
+    function printUserList($aListOfUser,$canBeUpdated,$canBeDeleted){
+        $content = '';
+        if($aListOfUser != null){
+            foreach($aListOfUser as $aUser){
+                $content .= $this->getEachUserComponentList($aUser,$canBeUpdated,$canBeDeleted);
+            }
+        }
+        
+        return $content;
+    }
+    
+    function getEachUserComponentList($aUser,$canBeUpdated,$canBeDeleted){
+        
+        $line = '';
+        $line .= "<tr>";
+        $line .= "<td>" . $aUser['name'] . "</td>";
+        $line .= "<td>" . $aUser['password'] . "</td>";
+        if($canBeUpdated){
+            $line .= "<td><a objtype='".$aUser['table_name']."' action='update' class='action' idobj='".  $aUser['id_user']."'><i class='fa fa-pencil text-green'></i></a></td>";
+        }
+        if($canBeDeleted){
+            $line .= "<td><a objtype='".$aUser['table_name']."' action='delete' class='action' idobj='".$aUser['id_user']."'><i class='fa fa-times text-red'></i></a></td>";
+        }
+        $line .= "</tr>";
+        
+        return $line;
+    }
 
 }

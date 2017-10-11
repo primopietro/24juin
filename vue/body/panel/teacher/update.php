@@ -12,11 +12,11 @@ function getMarkup($idObj){
                     </div>
 			
                     <div class='col-xs-3'>
-                      <h4>firt_name</h4>
+                      <h4>Prénom</h4>
                       <input value='" .$aTeacher['first_name']."'  name='first_name' type='text' class='form-control' placeholder='ex: Maxime '>
                     </div>
 					<div class='col-xs-3'>
-                      <h4>family_name</h4>
+                      <h4>Nom</h4>
                       <input value='" .$aTeacher['family_name']."' name='family_name' type='text' class='form-control' placeholder='ex: Proulx'>
                     </div>
                 </div></form>";

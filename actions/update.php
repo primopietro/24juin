@@ -17,14 +17,26 @@ if(isset($_POST)){
 		$anObject = null;
 		if($objType== "qualification"){
 			$anObject = new Qualification();
-			
 		}else if ($objType== "group"){
 		    $anObject = new Group();
 		}else if ($objType== "program"){
 		    $anObject = new Program();
 		} else if ($objType== "teacher"){
 		    $anObject = new Teacher();
-		}//Add other objects here as "else if"
+		} else if ($objType== "classroom"){
+		    $anObject = new Classroom();
+		} else if ($objType== "customer"){
+		    $anObject = new Customer();
+		} else if ($objType== "user"){
+		    $anObject = new User();
+		} else if ($objType== "right"){
+		    $anObject = new Right();
+		} else if ($objType== "role"){
+		    $anObject = new Role();
+		} else if ($objType== "building"){
+		    $anObject = new Building();
+		}
+		//Add other objects here as "else if"
 		
 		
 		$tempSetId = "setId_";

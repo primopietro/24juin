@@ -2,18 +2,18 @@
 if (! isset ( $_SESSION )) {
 	session_start ();
 }
-require_once $_SERVER ["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_qualification.php';
+require_once $_SERVER ["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_building.php';
 require_once $_SERVER ["DOCUMENT_ROOT"] . '/24juin/vue/rightHelper.php';
 
-$objName = "qualification";
+$objName = "building";
 $rights = checkUserRights ( $objName, $_SESSION ['rightList'] );
 // Check if user has the right to VIEW
 
 if (isset ( $rights ['view'] )) {
 	
 	
-	$aQualification = new Qualification ();
-	$aListOfQualifications = $aQualification->getActiveQualifications ();
+    $aBuilding = new Building ();
+    $aListOfBuilding = $aBuilding->getActiveBuilding ();
 	
 	$default = "
    <section class='content'>
@@ -21,7 +21,7 @@ if (isset ( $rights ['view'] )) {
         <div class='col-xs-12'>
           <div class='box'>
             <div class='box-header'>
-              <h3 class='box-title'>Liste " . $objName . "</h3>";
+              <h3 class='box-title'>Liste des bâtiments</h3>";
 	
 	if (isset ( $rights ['add'] )) {
 		$default .= "<br>  <a class='action' action='add' objtype='" . $objName . "'>Ajouter </a>";
@@ -36,14 +36,14 @@ if (isset ( $rights ['view'] )) {
                             </div>
             <!-- /.box-header -->
             <div class='box-body'>";
-	if ($aListOfQualifications != null) {
-		if (sizeof ( $aListOfQualifications ) > 0) {
+	if ($aListOfBuilding != null) {
+	    if (sizeof ( $aListOfBuilding ) > 0) {
 			$default .= "<table class='table table-bordered table-hover'>
 			<thead>
 			<tr>
-			<th>Code </th>
 			<th>Nom</th>
-			<th>Quantite d'heures</th>";
+			<th>Adresse</th>
+			<th>Nombre de locaux</th>";
 			if (isset ( $rights ['update'] )) {
 				$default .= "  <th>Modifier</th>";
 			}
@@ -55,7 +55,7 @@ if (isset ( $rights ['view'] )) {
             <thead>
             <tbody>";
 			
-			$default .= $aQualification->printQualificationsList ( $aListOfQualifications, isset ( $rights ['update'] ), isset ( $rights ['delete'] ) );
+			$default .= $aBuilding->printBuildingList ( $aListOfBuilding, isset ( $rights ['update'] ), isset ( $rights ['delete'] ) );
 			
 			$default .= "</tbody>
               </table>";

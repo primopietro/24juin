@@ -46,4 +46,36 @@ class Role extends BaseModel {
         return $this;
     }
 
+    function getActiveRole(){
+        $aListOfRole = $this->getListOfAllDBObjects();
+        return $aListOfRole;
+    }
+    
+    function printRoleList($aListOfRole,$canBeUpdated,$canBeDeleted){
+        $content = '';
+        if($aListOfRole != null){
+            foreach($aListOfRole as $aRole){
+                $content .= $this->getEachRoleComponentList($aRole,$canBeUpdated,$canBeDeleted);
+            }
+        }
+        
+        return $content;
+    }
+    
+    function getEachRoleComponentList($aRole,$canBeUpdated,$canBeDeleted){
+        
+        $line = '';
+        $line .= "<tr>";
+        $line .= "<td>" . $aRole['name'] . "</td>";
+        if($canBeUpdated){
+            $line .= "<td><a objtype='".$aRole['table_name']."' action='update' class='action' idobj='".  $aRole['id_role']."'><i class='fa fa-pencil text-green'></i></a></td>";
+        }
+        if($canBeDeleted){
+            $line .= "<td><a objtype='".$aRole['table_name']."' action='delete' class='action' idobj='".$aRole['id_role']."'><i class='fa fa-times text-red'></i></a></td>";
+        }
+        $line .= "</tr>";
+        
+        return $line;
+    }
+    
 }

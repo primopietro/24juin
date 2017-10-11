@@ -44,5 +44,37 @@ class Right extends BaseModel {
         $this->name = $name;
         return $this;
     }
+    
+    function getActiveRight(){
+        $aListOfRight = $this->getListOfAllDBObjects();
+        return $aListOfRight;
+    }
+    
+    function printRightList($aListOfRight,$canBeUpdated,$canBeDeleted){
+        $content = '';
+        if($aListOfRight != null){
+            foreach($aListOfRight as $aRight){
+                $content .= $this->getEachRightComponentList($aRight,$canBeUpdated,$canBeDeleted);
+            }
+        }
+        
+        return $content;
+    }
+    
+    function getEachRightComponentList($aRight,$canBeUpdated,$canBeDeleted){
+        
+        $line = '';
+        $line .= "<tr>";
+        $line .= "<td>" . $aRight['name'] . "</td>";
+        if($canBeUpdated){
+            $line .= "<td><a objtype='".$aRight['table_name']."' action='update' class='action' idobj='".  $aRight['id_right']."'><i class='fa fa-pencil text-green'></i></a></td>";
+        }
+        if($canBeDeleted){
+            $line .= "<td><a objtype='".$aRight['table_name']."' action='delete' class='action' idobj='".$aRight['id_right']."'><i class='fa fa-times text-red'></i></a></td>";
+        }
+        $line .= "</tr>";
+        
+        return $line;
+    }
 
 }

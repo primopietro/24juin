@@ -3,16 +3,16 @@ if (! isset ( $_SESSION )) {
     session_start ();
 }
 
-require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_group.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_classroom.php';
 require_once $_SERVER ["DOCUMENT_ROOT"] . '/24juin/vue/rightHelper.php';
 
-$objName = "group";
+$objName = "classroom";
 $rights = checkUserRights ( $objName, $_SESSION ['rightList'] );
 
 if (isset ( $rights ['view'] )) {
     
-    $agroup = new Group();
-    $aListOfGroup = $agroup->getActiveGroup();
+    $aClassroom = new Classroom();
+    $aListOfClassroom = $aClassroom->getActiveClassroom();
     
     $default = "
    <section class='content'>
@@ -20,7 +20,7 @@ if (isset ( $rights ['view'] )) {
         <div class='col-xs-12'>
           <div class='box'>
             <div class='box-header'>
-              <h3 class='box-title'>Liste des groupes</h3>";
+              <h3 class='box-title'>Liste des locaux</h3>";
     
     if (isset ( $rights ['add'] )) {
         $default .= "<br>  <a class='action' action='add' objtype='" . $objName . "'>Ajouter </a>";
@@ -37,13 +37,12 @@ if (isset ( $rights ['view'] )) {
                             </div>
             <!-- /.box-header -->
             <div class='box-body'>";
-    if ($aListOfGroup != null) {
-        if (sizeof ( $aListOfGroup ) > 0) {
+    if ($aListOfClassroom != null) {
+        if (sizeof ( $aListOfClassroom ) > 0) {
 		    $default .= "<table class='table table-bordered table-hover'>
              <thead>
                 <tr>
-                  <th>Code group</th>
-                  <th>Année</th>";
+                  <th>Code</th>";
                 if (isset ( $rights ['update'] )) {
 				    $default .= "<th>Modifier</th>";
 			    }
@@ -53,7 +52,7 @@ if (isset ( $rights ['view'] )) {
 			    $default .= "</tr>
             <thead>
             <tbody>";
-			$default .= $agroup->printGroupList($aListOfGroup, isset ( $rights ['update'] ), isset ( $rights ['delete'] ));
+			    $default .= $aClassroom->printClassroomList($aListOfClassroom, isset ( $rights ['update'] ), isset ( $rights ['delete'] ));
             
 			$default .= "</tbody>
               </table>";

@@ -4,17 +4,16 @@ function getMarkup(){
 	$default = "<form id='formAdd'><div class='box-body'>
                   <div class='row'>
                     <div class='col-xs-3'>
-                        <h4>Code Unique</h4>
-                      <input name='code' type='text' class='form-control' placeholder='Code Unique'>
-                    </div>
-			
-                    <div class='col-xs-3'>
-                      <h4>Nom</h4>
+                        <h4>Nom</h4>
                       <input name='name' type='text' class='form-control' placeholder='Nom'>
                     </div>
-					<div class='col-xs-3'>
-                      <h4>Quantite d'heures</h4>
-                      <input name='nb_hours' type='text' class='form-control' placeholder='Quantite d'heures'>
+                    <div class='col-xs-3'>
+                      <h4>Adresse</h4>
+                      <input name='adress' type='text' class='form-control' placeholder='Adresse'>
+                    </div>
+					<div class='col-xs-4'>
+                      <h4>Nombre de locaux</h4>
+                      <input name='nb_classrooms' type='text' class='form-control' placeholder='Nombre de locaux'>
                     </div>
                 </div></form>";
 	

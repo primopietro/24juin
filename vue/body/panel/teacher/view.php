@@ -21,7 +21,7 @@ if (isset ( $rights ['view'] )) {
         <div class='col-xs-12'>
           <div class='box'>
             <div class='box-header'>
-              <h3 class='box-title'>Liste " . $objName . "</h3>";
+              <h3 class='box-title'>Liste des professeurs</h3>";
 	
 	if (isset ( $rights ['add'] )) {
 		$default .= "<br>  <a class='action' action='add' objtype='" . $objName . "'>Ajouter </a>";
@@ -42,8 +42,8 @@ if (isset ( $rights ['view'] )) {
 			<thead>
 			<tr>
 			<th>Code </th>
-			<th>first_name</th>
-			<th>family_name</th>";
+			<th>Prénom</th>
+			<th>Nom</th>";
 			if (isset ( $rights ['update'] )) {
 				$default .= "  <th>Modifier</th>";
 			}

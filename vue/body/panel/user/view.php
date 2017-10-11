@@ -3,16 +3,16 @@ if (! isset ( $_SESSION )) {
     session_start ();
 }
 
-require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_group.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_user.php';
 require_once $_SERVER ["DOCUMENT_ROOT"] . '/24juin/vue/rightHelper.php';
 
-$objName = "group";
+$objName = "user";
 $rights = checkUserRights ( $objName, $_SESSION ['rightList'] );
 
 if (isset ( $rights ['view'] )) {
     
-    $agroup = new Group();
-    $aListOfGroup = $agroup->getActiveGroup();
+    $aUser = new User();
+    $aListOfUser = $aUser->getActiveUser();
     
     $default = "
    <section class='content'>
@@ -20,7 +20,7 @@ if (isset ( $rights ['view'] )) {
         <div class='col-xs-12'>
           <div class='box'>
             <div class='box-header'>
-              <h3 class='box-title'>Liste des groupes</h3>";
+              <h3 class='box-title'>Liste des utilisateurs</h3>";
     
     if (isset ( $rights ['add'] )) {
         $default .= "<br>  <a class='action' action='add' objtype='" . $objName . "'>Ajouter </a>";
@@ -37,13 +37,13 @@ if (isset ( $rights ['view'] )) {
                             </div>
             <!-- /.box-header -->
             <div class='box-body'>";
-    if ($aListOfGroup != null) {
-        if (sizeof ( $aListOfGroup ) > 0) {
+    if ($aListOfUser != null) {
+        if (sizeof ( $aListOfUser ) > 0) {
 		    $default .= "<table class='table table-bordered table-hover'>
              <thead>
                 <tr>
-                  <th>Code group</th>
-                  <th>Année</th>";
+                  <th>Nom</th>
+		          <th>Mot de passe</th>";
                 if (isset ( $rights ['update'] )) {
 				    $default .= "<th>Modifier</th>";
 			    }
@@ -53,7 +53,7 @@ if (isset ( $rights ['view'] )) {
 			    $default .= "</tr>
             <thead>
             <tbody>";
-			$default .= $agroup->printGroupList($aListOfGroup, isset ( $rights ['update'] ), isset ( $rights ['delete'] ));
+			    $default .= $aUser->printUserList($aListOfUser, isset ( $rights ['update'] ), isset ( $rights ['delete'] ));
             
 			$default .= "</tbody>
               </table>";

@@ -12,8 +12,8 @@ function getMarkup(){
                       <h4>Nom</h4>
                       <input name='name' type='text' class='form-control' placeholder='Nom'>
                     </div>
-					<div class='col-xs-3'>
-                      <h4>Quantite d'heures</h4>
+					<div class='col-xs-4'>
+                      <h4>Quantité d'heures</h4>
                       <input name='nb_hours' type='text' class='form-control' placeholder='Quantite d'heures'>
                     </div>
                 </div></form>";

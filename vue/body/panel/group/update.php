@@ -12,7 +12,7 @@ function getMarkup($idObj){
                     </div>
 			
                     <div class='col-xs-4'>
-                      <h4>Nom</h4>
+                      <h4>Année</h4>
                       <input value='" .$aGroup['year']."'  name='year' type='date' class='form-control'>
                     </div>
                 </div></form>";

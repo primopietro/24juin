@@ -15,10 +15,10 @@ if(isset($_GET['actions']) ||isset( $_SESSION['current_page'])){
 //Default routing when get in the index
 /*
 if(!isset($_SESSION['current_page'] ) || $_SESSION['current_page']  == ""){
-	$_SESSION['current_page'] = "Professeur";
+	$_SESSION['current_page'] = "teacher";
 	$_SESSION['current_actions'] = "add,view";
-}
-*/
+}*/
+
 
 require_once "vue/body/viewManager.php";
 ?>
