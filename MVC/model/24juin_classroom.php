@@ -5,6 +5,7 @@ class Classroom extends BaseModel {
 	protected $primary_key = "id_classroom";
 	protected $id_classroom = 0;
 	protected $code = "";
+	protected $nb_zone = 1;
 
 	/**
 	 * id_classroom
@@ -42,6 +43,24 @@ class Classroom extends BaseModel {
 	    return $this;
 	}
 	
+	/**
+	 * nb_zone
+	 * @return int
+	 */
+	public function getNb_zone(){
+		return $this->nb_zone;
+	}
+	
+	/**
+	 * nb_zone
+	 * @param int $nb_zone
+	 * @return 24juin_classroom
+	 */
+	public function setNb_zone($nb_zone){
+		$this->nb_zone = $nb_zone;
+		return $this;
+	}
+	
 	
     function getActiveClassroom(){
         $aListOfClassroom = $this->getListOfAllDBObjects();
@@ -64,6 +83,7 @@ class Classroom extends BaseModel {
         $line = '';
         $line .= "<tr>";
         $line .= "<td>" . $aClassroom['code'] . "</td>";
+        $line .= "<td>" . $aClassroom['nb_zone'] . "</td>";
         if($canBeUpdated){
             $line .= "<td><a objtype='".$aClassroom['table_name']."' action='update' class='action' idobj='".  $aClassroom['id_classroom']."'><i class='fa fa-pencil text-green'></i></a></td>";
         }
