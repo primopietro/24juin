@@ -104,6 +104,7 @@ $(document).on('DOMNodeRemoved', function(e) {
 });
 
 
+
 // Action handler
 $(document).on("click", ".action", function() {
 
@@ -272,32 +273,36 @@ $(document).on("click", ".action", function() {
 		
 	
 	}else if(actionName == "delete"){
-		var idobj = $(this).attr("idobj");
-		var objType = $(this).attr("objtype");
-		var dataToBeSent ="&idobj="+ idobj+"&objtype="+objType;
-		$.ajax({
-			url : ajaxPath + "actions/delete.php",
-			data : dataToBeSent,
-			type : 'POST',
-			beforeSend : function() {
-				enableLoader();
-				console.log("Beginning of delete object ");
-			}
-		}).done(function(response) {
-			if(response == "success"){
-				console.log("Delete object success");
-				toastr.success('Suppresion d\'élélment a reussi', 'Succès');
+		var r = confirm("Confirmer suppresion");
+	    if (r == true) {
+	    	var idobj = $(this).attr("idobj");
+			var objType = $(this).attr("objtype");
+			var dataToBeSent ="&idobj="+ idobj+"&objtype="+objType;
+			$.ajax({
+				url : ajaxPath + "actions/delete.php",
+				data : dataToBeSent,
+				type : 'POST',
+				beforeSend : function() {
+					enableLoader();
+					console.log("Beginning of delete object ");
+				}
+			}).done(function(response) {
+				if(response == "success"){
+					console.log("Delete object success");
+					toastr.success('Suppresion d\'élélment a reussi', 'Succès');
+					
+				}else{
+					toastr.error('Suppresion d\'élélment n\'a pas reussi', 'Erreur!');
+					console.log("Delete object failed");
+				}
 				
-			}else{
-				toastr.error('Suppresion d\'élélment n\'a pas reussi', 'Erreur!');
-				console.log("Delete object failed");
-			}
-			
-		}).always(function() {
-			disableLoader();
-			getNewView();
-			console.log("End of delete object ");
-		});	
+			}).always(function() {
+				disableLoader();
+				getNewView();
+				console.log("End of delete object ");
+			});	
+	    } 
+	
 	}
 
 });
@@ -317,6 +322,7 @@ function getHeader() {
 		console.log(" getting new header finished");
 	});
 }
+
 
 // Enable loader
 function enableLoader() {
