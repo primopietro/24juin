@@ -225,35 +225,52 @@ $(document).on("click", ".action", function() {
 		
 	}else if(actionName == "updateObj"){
 		var form = $(this).closest(".modal-footer").prev();
-		var idobj = form.attr('idobj');
-		var dataToBeSent = form.serialize();
-		console.log(dataToBeSent);
-		dataToBeSent+="&objType="+ $(this).attr("objtype")+"&idobj="+idobj;
-		$.ajax({
-			url : ajaxPath + "actions/update.php",
-			data : dataToBeSent,
-			type : 'POST',
-			beforeSend : function() {
-				enableLoader();
-				console.log("Beginning of update object ");
+		var noBlanks = true;
+		form.find('input').each(function(index, el)
+		  {
+		
+			if(noBlanks == true){
+				if ($(el).val().length == 0) noBlanks = false; 
 			}
-		}).done(function(response) {
-			if(response == "success"){
-				toastr.success('Élément mis à jour avec succès', 'Succès');
-				console.log("Update object success");
+		 
+		});
+		if(noBlanks){
+			var idobj = form.attr('idobj');
+			var dataToBeSent = form.serialize();
+			console.log(dataToBeSent);
+			dataToBeSent+="&objType="+ $(this).attr("objtype")+"&idobj="+idobj;
+			$.ajax({
+				url : ajaxPath + "actions/update.php",
+				data : dataToBeSent,
+				type : 'POST',
+				beforeSend : function() {
+					enableLoader();
+					console.log("Beginning of update object ");
+				}
+			}).done(function(response) {
+				if(response == "success"){
+					toastr.success('Élément mis à jour avec succès', 'Succès');
+					console.log("Update object success");
+					
+				}else{
+					console.log("Update object failed");
+					toastr.error('Echec de la mise à jour', 'Erreur!');
+				}
 				
-			}else{
-				console.log("Update object failed");
-				toastr.error('Echec de la mise à jour', 'Erreur!');
-			}
-			
-		}).always(function() {
-			disableLoader();
-			$(".modal").remove();
-			$(".modal-backdrop").remove();
-			getNewView();
-			console.log("End of update object ");
-		});	
+			}).always(function() {
+				disableLoader();
+				$(".modal").remove();
+				$(".modal-backdrop").remove();
+				getNewView();
+				console.log("End of update object ");
+			});	
+		}
+		else{
+			toastr.error('Champ(s) vide(s) dans le formulaire', 'Erreur!');
+		}
+		
+		
+	
 	}else if(actionName == "delete"){
 		var idobj = $(this).attr("idobj");
 		var objType = $(this).attr("objtype");
