@@ -67,7 +67,7 @@ if (isset ( $_SESSION ["rightList"] )) {
 		
 		$default .="'>
           <a href='#'>
-            <i class='fa fa-calendar'></i> <span>" . $objectName . "</span>
+            <i class='fa fa-edit'></i> <span>" . $objectName . "</span>
             <span class='pull-right-container'>
               <i class='fa fa-angle-left pull-right'></i>
             </span>
