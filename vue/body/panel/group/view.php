@@ -42,7 +42,7 @@ if (isset ( $rights ['view'] )) {
 		    $default .= "<table class='table table-bordered table-hover'>
              <thead>
                 <tr>
-                  <th>Code group</th>
+                  <th>Code groupe</th>
                   <th>Année</th>";
                 if (isset ( $rights ['update'] )) {
 				    $default .= "<th>Modifier</th>";

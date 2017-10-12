@@ -1,6 +1,6 @@
 <?php
 
-function Frenchtranslator($word){
+function frenchtranslator($word){
 	
     if($word=="view")
     {
@@ -20,45 +20,107 @@ function Frenchtranslator($word){
         
     }else if($word=="group")
     {
-        return "Groupe";
+        return "Groupes";
         
     }else if($word=="building")
     {
-        return "Bâtiment";
+        return "Bâtiments";
         
     }else if($word=="classroom")
     {
-        return "Local";
+        return "Locaux";
         
     }else if($word=="customer")
     {
-        return "Client";
+        return "Clients";
         
     }else if($word=="program")
     {
-        return "Programme";
+        return "Programmes";
         
     }else if($word=="qualification")
     {
-        return "Compétence";
+        return "Compétences";
         
     }else if($word=="teacher")
     {
-        return "Professeur";
+        return "Professeurs";
         
     }
     else if($word=="user")
     {
-        return "Utilisateur";
+        return "Utilisateurs";
         
     }else if($word=="right")
     {
-        return "Droit";
+        return "Droits";
         
     }else if($word=="role")
     {
-        return "Rôle";
+        return "Rôles";
         
     }
+  
     
+}
+function englishtranslator($word){
+    
+    if($word=="view")
+    {
+        return "View";
+        
+    } else if($word=="add")
+    {
+        return "Add";
+        
+    }else if($word=="update")
+    {
+        return "Update";
+        
+    }else if($word=="delete")
+    {
+        return "Delete";
+        
+    }else if($word=="group")
+    {
+        return "Group";
+        
+    }else if($word=="building")
+    {
+        return "Building";
+        
+    }else if($word=="classroom")
+    {
+        return "Classroom";
+        
+    }else if($word=="customer")
+    {
+        return "Customer";
+        
+    }else if($word=="program")
+    {
+        return "Program";
+        
+    }else if($word=="qualification")
+    {
+        return "Qualification";
+        
+    }else if($word=="teacher")
+    {
+        return "Teacher";
+        
+    }
+    else if($word=="user")
+    {
+        return "User";
+        
+    }else if($word=="right")
+    {
+        return "Right";
+        
+    }else if($word=="role")
+    {
+        return "Role";
+        
+    }
 }

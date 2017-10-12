@@ -1,4 +1,5 @@
 <?php
+require_once '/../translator.php';
 if (! isset ( $_SESSION )) {
 	session_start ();
 }
@@ -62,9 +63,11 @@ if (isset ( $_SESSION ["rightList"] )) {
 		if($localItem ['object'] ['name'] == $_SESSION['current_page'] ){
 			$default .=" active ";
 		}
+		$objectName=frenchTranslator ($localItem ['object'] ['name']);
+		
 		$default .="'>
           <a href='#'>
-            <i class='fa fa-calendar'></i> <span>" . $localItem ['object'] ['name'] . "</span>
+            <i class='fa fa-calendar'></i> <span>" . $objectName . "</span>
             <span class='pull-right-container'>
               <i class='fa fa-angle-left pull-right'></i>
             </span>
@@ -72,9 +75,10 @@ if (isset ( $_SESSION ["rightList"] )) {
           <ul class='treeview-menu' navigation='" . $localItem ['object'] ['name'] . "'>";
 		//TODO: add ACTIVE page based off session variable
 		foreach ( $localItem ['rights'] as $aLocalRight ) {
+		    $right=frenchTranslator ($aLocalRight['name']);
 			if($aLocalRight['name'] == "view"  ){
 			
-				$default .= " <li ><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>" . $aLocalRight['name'] . "</a></li> ";
+			    $default .= " <li ><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>" .$right . "</a></li> ";
 				
 			}
 		}
