@@ -30,7 +30,7 @@ $(document).on("click", ".treeview ", function() {
 $(document).on("click", ".treeview-menu a", function() {
 	// Variables
 	var actionName = $(this).attr("action");
-	var navigation = $(this).closest("ul").attr("navigation");
+	var navigation = $(this).closest("li").attr("navigation");
 	console.log(actionName);
 	console.log(navigation);
 	var actions = "navigation=" + navigation + "&action=" + actionName;

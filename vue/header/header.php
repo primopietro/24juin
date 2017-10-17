@@ -66,34 +66,59 @@ $default = "<div class='wrapper'>
       <ul class='sidebar-menu' data-widget='tree'>
         <li class='header'>Menu</li>";
 if (isset ( $_SESSION ["rightList"] )) {
+    
+    
 	$tempRights =  $_SESSION ["rightList"] ;
 	foreach ($tempRights as $localItem ) {
-		$default .= " <li class='treeview ";
-		if($localItem ['object'] ['name'] == $_SESSION['current_page'] ){
-			$default .=" active ";
-		}
-		$objectName=frenchTranslator ($localItem ['object'] ['name']);
-		
-		$default .="'>
+	    
+	    if($localItem ['object'] ['name'] != "teacher_qualification" && $localItem ['object'] ['isMenu'] != 0){
+	        $default .= " <li class='treeview ";
+	        if($localItem ['object'] ['name'] == $_SESSION['current_page'] ){
+	            $default .=" active ";
+	        }
+	        $objectName=frenchTranslator ($localItem ['object'] ['name']);
+	        
+	        $default .="'>
           <a href='#'>
             <i class='fa fa-edit'></i> <span>" . $objectName . "</span>
             <span class='pull-right-container'>
               <i class='fa fa-angle-left pull-right'></i>
             </span>
           </a>
-          <ul class='treeview-menu' navigation='" . $localItem ['object'] ['name'] . "'>";
-		//TODO: add ACTIVE page based off session variable
-		foreach ( $localItem ['rights'] as $aLocalRight ) {
-		    $right=frenchTranslator ($aLocalRight['name']);
-			if($aLocalRight['name'] == "view"  ){
-			
-			    $default .= " <li ><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>" .$right . "</a></li> ";
-				
-			}
-		}
-		
-		$default .= "   </ul>
+          <ul class='treeview-menu' >";
+	        //TODO: add ACTIVE page based off session variable
+	        foreach ( $localItem ['rights'] as $aLocalRight ) {
+	            $right=frenchTranslator ($aLocalRight['name']);
+	            if($aLocalRight['name'] == "view"  ){
+	                
+	                $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>" .$right . "</a></li> ";
+	                  
+	             
+	            }
+	        }
+	        
+	        if($localItem ['object'] ['name'] == "teacher"){
+	            foreach ($tempRights as $localItem ) {
+	                
+	                if($localItem ['object'] ['name'] == "teacher_qualification"){
+	                    foreach ( $localItem ['rights'] as $aLocalRight ) {
+	                        $right=frenchTranslator ($aLocalRight['name']);
+	                        if($aLocalRight['name'] == "view"  ){
+	                            
+	                            $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner</a></li> ";
+	                            
+	                            
+	                        }
+	                    }
+	                }
+	             }
+	        }
+	        
+	        $default .= "   </ul>
         </li>";
+	    }
+	    
+		
 	}
 }
 

@@ -5,6 +5,7 @@ class Role extends BaseModel {
 	protected $primary_key = "id_role";
 	protected $id_role;
 	protected $name;
+	protected $isMenu;
 
 
 
@@ -78,4 +79,23 @@ class Role extends BaseModel {
         return $line;
     }
     
+
+    /**
+     * isMenu
+     * @return unkown
+     */
+    public function getIsMenu(){
+        return $this->isMenu;
+    }
+
+    /**
+     * isMenu
+     * @param unkown $isMenu
+     * @return Role
+     */
+    public function setIsMenu($isMenu){
+        $this->isMenu = $isMenu;
+        return $this;
+    }
+
 }
