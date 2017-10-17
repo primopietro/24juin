@@ -80,7 +80,7 @@ if (isset ( $_SESSION ["rightList"] )) {
 	        
 	        $default .="'>
           <a href='#'>
-            <i class='fa fa-edit'></i> <span>" . $objectName . "</span>
+         ".   $localItem ['object'] ['icon']."<span>" . $objectName . "</span>
             <span class='pull-right-container'>
               <i class='fa fa-angle-left pull-right'></i>
             </span>
@@ -105,7 +105,7 @@ if (isset ( $_SESSION ["rightList"] )) {
 	                        $right=frenchTranslator ($aLocalRight['name']);
 	                        if($aLocalRight['name'] == "view"  ){
 	                            
-	                            $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner</a></li> ";
+	                            $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compétence</a></li> ";
 	                            
 	                            
 	                        }

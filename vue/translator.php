@@ -59,6 +59,10 @@ function frenchtranslator($word){
     {
         return "Rôles";
         
+    }else if($word=="teacher_qualification")
+    {
+        return "Compétences des professeurs";
+        
     }
     else{
         return $word;

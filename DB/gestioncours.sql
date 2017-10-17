@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 17 Octobre 2017 à 14:01
+-- Généré le :  Mar 17 Octobre 2017 à 15:47
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -38,7 +38,8 @@ CREATE TABLE `building` (
 --
 
 INSERT INTO `building` (`id_building`, `name`, `address`, `nb_classrooms`) VALUES
-(1, 'Pavillon 2', '1050 rue lo', 30);
+(1, 'Pavillon 2', '1050 rue lo', 30),
+(4, 'Palais a Jay', 'SUCK IT', 666);
 
 -- --------------------------------------------------------
 
@@ -215,25 +216,26 @@ CREATE TABLE `nature_time` (
 CREATE TABLE `object` (
   `id_object` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `isMenu` tinyint(1) NOT NULL DEFAULT '0'
+  `isMenu` tinyint(1) NOT NULL DEFAULT '0',
+  `icon` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `object`
 --
 
-INSERT INTO `object` (`id_object`, `name`, `isMenu`) VALUES
-(1, 'building', 1),
-(2, 'classroom', 1),
-(3, 'customer', 1),
-(4, 'group', 1),
-(5, 'program', 1),
-(6, 'qualification', 1),
-(7, 'teacher', 1),
-(8, 'user', 1),
-(9, 'right', 0),
-(10, 'role', 0),
-(12, 'teacher_qualification', 0);
+INSERT INTO `object` (`id_object`, `name`, `isMenu`, `icon`) VALUES
+(1, 'building', 1, '<i class="fa fa-building"></i>'),
+(2, 'classroom', 1, '<i class="fa fa-th"></i>'),
+(3, 'customer', 0, '<i class="fa fa-user"></i>'),
+(4, 'group', 1, '<i class="fa fa-users"></i>'),
+(5, 'program', 1, '<i class="fa fa-book"></i>'),
+(6, 'qualification', 1, '<i class="fa fa-graduation-cap"></i>'),
+(7, 'teacher', 1, '<i class="fa fa-user"></i>'),
+(8, 'user', 1, '<i class="fa fa-address-book"></i>'),
+(9, 'right', 0, '<i class="fa fa-edit"></i>'),
+(10, 'role', 0, '<i class="fa fa-edit"></i>'),
+(12, 'teacher_qualification', 0, '<i class="fa fa-edit"></i>');
 
 -- --------------------------------------------------------
 
@@ -535,10 +537,8 @@ CREATE TABLE `teacher_qualification` (
 INSERT INTO `teacher_qualification` (`id_teacher_qualification`, `id_teacher`, `id_qualification`) VALUES
 (2, 2, 10),
 (3, 2, 11),
-(7, 1, 9),
-(8, 1, 10),
-(9, 1, 11),
-(10, 3, 11);
+(10, 3, 11),
+(14, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -919,7 +919,7 @@ ALTER TABLE `year_fixed_day`
 -- AUTO_INCREMENT pour la table `building`
 --
 ALTER TABLE `building`
-  MODIFY `id_building` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_building` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `building_classroom`
 --
@@ -1049,7 +1049,7 @@ ALTER TABLE `teacher_nature_time`
 -- AUTO_INCREMENT pour la table `teacher_qualification`
 --
 ALTER TABLE `teacher_qualification`
-  MODIFY `id_teacher_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_teacher_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT pour la table `teacher_qualification_teached`
 --

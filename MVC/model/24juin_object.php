@@ -5,7 +5,7 @@ class Object extends BaseModel {
 	protected $primary_key = "id_object";
 	protected $id_object;
 	protected $name;
-
+	protected $icon;
 
 
 
@@ -42,6 +42,25 @@ class Object extends BaseModel {
      */
     public function setName($name){
         $this->name = $name;
+        return $this;
+    }
+
+
+    /**
+     * icon
+     * @return unkown
+     */
+    public function getIcon(){
+        return $this->icon;
+    }
+
+    /**
+     * icon
+     * @param unkown $icon
+     * @return Object
+     */
+    public function setIcon($icon){
+        $this->icon = $icon;
         return $this;
     }
 

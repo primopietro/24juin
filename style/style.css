@@ -34,3 +34,11 @@ li.treeview.menu-open.active ul {
 .modal-backdrop.fade.in{
 	z-index:9000;	
 }
+
+.active >a >i:before {
+    color: #3c8dbc;
+}
+
+*{
+	transition:0.3s color linear !important;
+}
