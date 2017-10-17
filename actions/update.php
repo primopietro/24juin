@@ -36,6 +36,24 @@ if(isset($_POST)){
 		} else if ($objType== "building"){
 		    $anObject = new Building();
 		}
+		else if ($objType== "teacher_qualification"){
+		    
+		    $qualifications = $_POST['qualifications'];
+		    $anObject = new TeacherQualification();
+		    //Delete old values
+		    $anObject->deleteFromDBWhere("id_teacher"," = ", $idobj); 
+		    
+		 
+		    //Re-insert new ones
+		    foreach($qualifications as $aQualification){
+		        $anObject->setId_teacher($idobj);
+		        $anObject->setId_qualification($aQualification);
+		        $anObject->addDBObject();
+		    }
+		
+		    exit();
+		}
+		
 		//Add other objects here as "else if"
 		
 		

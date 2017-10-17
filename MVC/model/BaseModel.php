@@ -136,6 +136,21 @@ class BaseModel{
         
         $conn->close ();
     }
+  
+    //Delete from database
+    function deleteFromDBWhere($argument,$operation, $value) {
+        $sql = "DELETE FROM `" . $this->table_name . "`
+ 		WHERE " . $argument . " ".$operation. "  $value  ";
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        if ($conn->query ( $sql ) === TRUE) {
+            return "success";
+        } else {
+            return  "fail";
+        }
+        
+        $conn->close ();
+    }
     public function getListOfAllDBObjectsWhere($argument,$operation, $value) {
     	include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
     	

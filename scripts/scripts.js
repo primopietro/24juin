@@ -249,7 +249,7 @@ $(document).on("click", ".action", function() {
 					console.log("Beginning of update object ");
 				}
 			}).done(function(response) {
-				if(response == "success"){
+				if( response.includes("success")){
 					toastr.success('Élément mis à jour avec succès', 'Succès');
 					console.log("Update object success");
 					

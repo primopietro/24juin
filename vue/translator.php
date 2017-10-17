@@ -60,6 +60,9 @@ function frenchtranslator($word){
         return "Rôles";
         
     }
+    else{
+        return $word;
+    }
   
     
 }
@@ -122,5 +125,7 @@ function englishtranslator($word){
     {
         return "Role";
         
+    }else{
+        return $word;
     }
 }
