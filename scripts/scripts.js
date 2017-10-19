@@ -333,3 +333,12 @@ function enableLoader() {
 function disableLoader() {
 	$("#loader-3").css("display", "none");
 }
+
+//press enter to login
+document.getElementById("passwordNew","usernameNew")
+.addEventListener("keyup", function(event) {
+event.preventDefault();
+if (event.keyCode == 13) {
+    document.getElementById("loginButton").click();
+}
+});

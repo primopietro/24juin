@@ -22,7 +22,7 @@ $login="
       <div class='row'>
         <!-- /.col -->
         <div class='col-xs-12'>
-          <a action='login' class='action btn btn-primary btn-block btn-flat'>Sign In</a>
+          <a action='login' type'submit' id='loginButton'  class='action btn btn-primary btn-block btn-flat'>Sign In</a>
         </div>
         <!-- /.col -->
       </div>

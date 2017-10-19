@@ -63,6 +63,10 @@ function frenchtranslator($word){
     {
         return "Compétences des professeurs";
         
+    }else if($word=="building_classroom")
+    {
+        return "Locaux des batiments";
+        
     }
     else{
         return $word;

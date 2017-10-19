@@ -111,7 +111,25 @@ if (isset ( $_SESSION ["rightList"] )) {
 	                        }
 	                    }
 	                }
+	                
 	             }
+	        }
+	        if($localItem ['object'] ['name'] == "building"){
+	            foreach ($tempRights as $localItem ) {
+	                
+	                if($localItem ['object'] ['name'] == "building_classroom"){
+	                    foreach ( $localItem ['rights'] as $aLocalRight ) {
+	                        $right=frenchTranslator ($aLocalRight['name']);
+	                        if($aLocalRight['name'] == "view"  ){
+	                            
+	                            $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à des locaux</a></li> ";
+	                            
+	                            
+	                        }
+	                    }
+	                }
+	                
+	            }
 	        }
 	        
 	        $default .= "   </ul>

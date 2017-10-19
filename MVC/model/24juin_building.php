@@ -8,6 +8,11 @@ class Building extends BaseModel {
     protected $address = "";
     protected $nb_classrooms = 0;
     
+    
+    function getBuilding(){
+        $aListOfBuilding= $this->getListOfAllDBObjects();
+        return $aListOfBuilding;
+    }
     /**
      * id_building
      * @return int
