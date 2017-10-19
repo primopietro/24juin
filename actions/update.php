@@ -52,6 +52,38 @@ if(isset($_POST)){
 		    }
 		
 		    exit();
+		}else if ($objType== "building_classroom"){
+		    
+		    $classrooms = $_POST['classrooms'];
+		    $anObject = new BuildingClassroom();
+		    //Delete old values
+		    $anObject->deleteFromDBWhere("id_building"," = ", $idobj);
+		    
+		    
+		    //Re-insert new ones
+		    foreach($classrooms as $aClassroom){
+		        $anObject->setId_building($idobj);
+		        $anObject->setId_classroom($aClassroom);
+		        $anObject->addDBObject();
+		    }
+		    
+		    exit();
+		}else if ($objType== "program_qualification"){
+		    
+		    $qualifications = $_POST['qualifications'];
+		    $anObject = new ProgramQualification();
+		    //Delete old values
+		    $anObject->deleteFromDBWhere("id_program"," = ", $idobj);
+		    
+		    
+		    //Re-insert new ones
+		    foreach($qualifications as $aQualification){
+		        $anObject->setId_program($idobj);
+		        $anObject->setId_qualification($aQualification);
+		        $anObject->addDBObject();
+		    }
+		    
+		    exit();
 		}
 		
 		//Add other objects here as "else if"

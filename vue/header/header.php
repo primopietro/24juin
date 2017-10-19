@@ -131,6 +131,23 @@ if (isset ( $_SESSION ["rightList"] )) {
 	                
 	            }
 	        }
+	        if($localItem ['object'] ['name'] == "program"){
+	            foreach ($tempRights as $localItem ) {
+	                
+	                if($localItem ['object'] ['name'] == "program_qualification"){
+	                    foreach ( $localItem ['rights'] as $aLocalRight ) {
+	                        $right=frenchTranslator ($aLocalRight['name']);
+	                        if($aLocalRight['name'] == "view"  ){
+	                            
+	                            $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des compétences</a></li> ";
+	                            
+	                            
+	                        }
+	                    }
+	                }
+	                
+	            }
+	        }
 	        
 	        $default .= "   </ul>
         </li>";

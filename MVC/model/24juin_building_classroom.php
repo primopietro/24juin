@@ -109,14 +109,14 @@ class BuildingClassroom extends BaseModel {
         $line = '';
         
         $line .= "<tr>";
-        $line .= "<td>" . $aBuildingClassroom['building']['name'] . " - " . $aBuildingClassroom['building']['address'] . "  " . $aBuildingClassroom['building']['nb_classrooms'] . "</td>";
+        $line .= "<td>" . $aBuildingClassroom['building']['name'] . " - " . $aBuildingClassroom['building']['address'] .  "</td>";
         $line .= "<td>";
         
         if(isset($aBuildingClassroom['classrooms'])){
             if($aBuildingClassroom['classrooms'] != null){
                 if(sizeof($aBuildingClassroom['classrooms'])>0){
                     foreach($aBuildingClassroom['classrooms'] as $aClassroom){
-                        $line .= $aClassroom['code']  . " - " . $aClassroom['nb_zone'] ."<br>";
+                        $line .= $aClassroom['code']  ."<br>";
                     }
                     
                 }

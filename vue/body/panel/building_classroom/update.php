@@ -3,25 +3,25 @@
 function getMarkup($idObj){
 	require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_building_classroom.php';
 	require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_classroom.php';
-	$aTeacherQualification = new TeacherQualification();
-	$aQualification = new Qualification();
-	$aTeacherQualificationList  = $aTeacherQualification ->getListOfAllDBObjectsWhere("id_teacher"," = ",$idObj);
-	$aQualificationList = $aQualification->getListOfAllDBObjects();
+	$aBuildingClassroom = new BuildingClassroom();
+	$aClassroom = new Classroom();
+	$aBuildingClassroomList  = $aBuildingClassroom ->getListOfAllDBObjectsWhere("id_building"," = ",$idObj);
+	$aClassroomList = $aClassroom->getListOfAllDBObjects();
 	$default = "<form id='formUpdate' idobj='".$idObj."'><div class='box-body'>
                   <div class='row'>
                     <div class='col-xs-6'>
-                        <h4>Qualifications</h4>";
-	if($aQualificationList != null){
-	    if(sizeof($aQualificationList)>0){
-	        $default .= "  <select multiple='multiple' name='qualifications[]'  > ";
-	        foreach($aQualificationList as $aQualification){
-	            $default .= "   <option   value='".$aQualification['id_qualification']."' ";
+                        <h4>Locaux</h4>";
+	if($aClassroomList != null){
+	    if(sizeof($aClassroomList)>0){
+	        $default .= "  <select multiple='multiple' name='classrooms[]'  > ";
+	        foreach($aClassroomList as $aClassroom){
+	            $default .= "   <option   value='".$aClassroom['id_classroom']."' ";
 	            
 	            
-	            if($aTeacherQualificationList!=null){
-	                if(sizeof($aTeacherQualificationList)>0){
-	                    foreach($aTeacherQualificationList as $aQT){
-	                        if($aQT['id_qualification'] == $aQualification['id_qualification'] ){
+	            if($aBuildingClassroomList!=null){
+	                if(sizeof($aBuildingClassroomList)>0){
+	                    foreach($aBuildingClassroomList as $aQT){
+	                        if($aQT['id_classroom'] == $aClassroom['id_classroom'] ){
 	                            $default .= " selected ";
 	                        }
 	                    }
@@ -32,7 +32,7 @@ function getMarkup($idObj){
 	            $default .= " > ";
 	            
 	        
-	            $default .= $aQualification['code'] ." - " . $aQualification['name'] ;
+	            $default .= $aClassroom['code'] ;
 	            $default .= "   </option> ";
 	        }
 	        

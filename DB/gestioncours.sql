@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 17 Octobre 2017 à 15:47
+-- Généré le :  Jeu 19 Octobre 2017 à 23:54
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -39,7 +39,8 @@ CREATE TABLE `building` (
 
 INSERT INTO `building` (`id_building`, `name`, `address`, `nb_classrooms`) VALUES
 (1, 'Pavillon 2', '1050 rue lo', 30),
-(4, 'Palais a Jay', 'SUCK IT', 666);
+(2, 'Pav2', '1122', 6),
+(3, 'pav4', '15', 6);
 
 -- --------------------------------------------------------
 
@@ -52,6 +53,15 @@ CREATE TABLE `building_classroom` (
   `id_building` int(11) NOT NULL,
   `id_classroom` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `building_classroom`
+--
+
+INSERT INTO `building_classroom` (`id_building_classroom`, `id_building`, `id_classroom`) VALUES
+(1, 1, 2),
+(2, 1, 1),
+(3, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -235,7 +245,9 @@ INSERT INTO `object` (`id_object`, `name`, `isMenu`, `icon`) VALUES
 (8, 'user', 1, '<i class="fa fa-address-book"></i>'),
 (9, 'right', 0, '<i class="fa fa-edit"></i>'),
 (10, 'role', 0, '<i class="fa fa-edit"></i>'),
-(12, 'teacher_qualification', 0, '<i class="fa fa-edit"></i>');
+(12, 'teacher_qualification', 0, '<i class="fa fa-edit"></i>'),
+(13, 'building_classroom', 0, '<i class="fa fa-edit"></i>'),
+(14, 'program_qualification', 0, '<i class="fa fa-edit"></i>');
 
 -- --------------------------------------------------------
 
@@ -255,9 +267,9 @@ CREATE TABLE `program` (
 --
 
 INSERT INTO `program` (`id_program`, `name`, `duration`, `nb_of_qualifications`) VALUES
-(1, 'rwq3', 10, 10),
-(2, 'wef', 2, 2),
-(3, 'wef', 1, 1);
+(1, 'ProgMec', 10, 10),
+(2, 'progCui', 2, 2),
+(3, 'progChar', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -426,7 +438,11 @@ INSERT INTO `right_object_role` (`id_right_object_role`, `id_right`, `id_object`
 (86, 2, 8, 3),
 (87, 4, 8, 3),
 (89, 2, 12, 1),
-(90, 3, 12, 1);
+(90, 3, 12, 1),
+(92, 3, 13, 1),
+(93, 2, 13, 1),
+(94, 2, 14, 1),
+(95, 3, 14, 1);
 
 -- --------------------------------------------------------
 
@@ -535,10 +551,11 @@ CREATE TABLE `teacher_qualification` (
 --
 
 INSERT INTO `teacher_qualification` (`id_teacher_qualification`, `id_teacher`, `id_qualification`) VALUES
-(2, 2, 10),
-(3, 2, 11),
 (10, 3, 11),
-(14, 1, 9);
+(15, 1, 9),
+(16, 1, 10),
+(17, 1, 11),
+(19, 2, 11);
 
 -- --------------------------------------------------------
 
@@ -919,12 +936,12 @@ ALTER TABLE `year_fixed_day`
 -- AUTO_INCREMENT pour la table `building`
 --
 ALTER TABLE `building`
-  MODIFY `id_building` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_building` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `building_classroom`
 --
 ALTER TABLE `building_classroom`
-  MODIFY `id_building_classroom` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_building_classroom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `classroom`
 --
@@ -979,7 +996,7 @@ ALTER TABLE `nature_time`
 -- AUTO_INCREMENT pour la table `object`
 --
 ALTER TABLE `object`
-  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT pour la table `program`
 --
@@ -989,7 +1006,7 @@ ALTER TABLE `program`
 -- AUTO_INCREMENT pour la table `program_qualification`
 --
 ALTER TABLE `program_qualification`
-  MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `qualification`
 --
@@ -1014,7 +1031,7 @@ ALTER TABLE `right`
 -- AUTO_INCREMENT pour la table `right_object_role`
 --
 ALTER TABLE `right_object_role`
-  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 --
 -- AUTO_INCREMENT pour la table `role`
 --
@@ -1049,7 +1066,7 @@ ALTER TABLE `teacher_nature_time`
 -- AUTO_INCREMENT pour la table `teacher_qualification`
 --
 ALTER TABLE `teacher_qualification`
-  MODIFY `id_teacher_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_teacher_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT pour la table `teacher_qualification_teached`
 --

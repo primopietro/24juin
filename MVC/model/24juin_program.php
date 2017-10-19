@@ -8,6 +8,11 @@ class Program extends BaseModel {
 	protected $duration = 0;
 	protected $nb_of_qualifications = 0;
 
+	
+	function getProgram(){
+	    $aListOfProgram= $this->getListOfAllDBObjects();
+	    return $aListOfProgram;
+	}
 	/**
 	 * id_program
 	 * @return int

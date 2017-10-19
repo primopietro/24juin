@@ -67,6 +67,10 @@ function frenchtranslator($word){
     {
         return "Locaux des batiments";
         
+    }else if($word=="program_qualification")
+    {
+        return "Compétences des programmes";
+        
     }
     else{
         return $word;
