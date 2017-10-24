@@ -97,57 +97,9 @@ if (isset ( $_SESSION ["rightList"] )) {
 	            }
 	        }
 	        
-	        if($localItem ['object'] ['name'] == "teacher"){
-	            foreach ($tempRights as $localItem ) {
-	                
-	                if($localItem ['object'] ['name'] == "teacher_qualification"){
-	                    foreach ( $localItem ['rights'] as $aLocalRight ) {
-	                        $right=frenchTranslator ($aLocalRight['name']);
-	                        if($aLocalRight['name'] == "view"  ){
-	                            
-	                            $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compétence</a></li> ";
-	                            
-	                            
-	                        }
-	                    }
-	                }
-	                
-	             }
-	        }
-	        if($localItem ['object'] ['name'] == "building"){
-	            foreach ($tempRights as $localItem ) {
-	                
-	                if($localItem ['object'] ['name'] == "building_classroom"){
-	                    foreach ( $localItem ['rights'] as $aLocalRight ) {
-	                        $right=frenchTranslator ($aLocalRight['name']);
-	                        if($aLocalRight['name'] == "view"  ){
-	                            
-	                            $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à des locaux</a></li> ";
-	                            
-	                            
-	                        }
-	                    }
-	                }
-	                
-	            }
-	        }
-	        if($localItem ['object'] ['name'] == "program"){
-	            foreach ($tempRights as $localItem ) {
-	                
-	                if($localItem ['object'] ['name'] == "program_qualification"){
-	                    foreach ( $localItem ['rights'] as $aLocalRight ) {
-	                        $right=frenchTranslator ($aLocalRight['name']);
-	                        if($aLocalRight['name'] == "view"  ){
-	                            
-	                            $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des compétences</a></li> ";
-	                            
-	                            
-	                        }
-	                    }
-	                }
-	                
-	            }
-	        }
+	        
+	        $default .= getSubMenuItem($localItem,$tempRights);
+	      
 	        
 	        $default .= "   </ul>
         </li>";
@@ -164,4 +116,71 @@ $default .= "
   </aside>";
 
 echo $default;
+
+function getSubMenuItem($localItem,$tempRights){
+    $default ="";
+    if($localItem ['object'] ['name'] == "teacher"){
+        foreach ($tempRights as $localItem ) {
+            
+            if($localItem ['object'] ['name'] == "teacher_qualification"){
+                foreach ( $localItem ['rights'] as $aLocalRight ) {
+                    $right=frenchTranslator ($aLocalRight['name']);
+                    if($aLocalRight['name'] == "view"  ){
+                        
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compétence</a></li> ";
+                        
+                        
+                    }
+                }
+            }
+            if($localItem ['object'] ['name'] == "teacher_qualification"){
+                foreach ( $localItem ['rights'] as $aLocalRight ) {
+                    $right=frenchTranslator ($aLocalRight['name']);
+                    if($aLocalRight['name'] == "view"  ){
+                        
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compétence</a></li> ";
+                        
+                        
+                    }
+                }
+            }
+            
+        }
+    }
+    if($localItem ['object'] ['name'] == "building"){
+        foreach ($tempRights as $localItem ) {
+            
+            if($localItem ['object'] ['name'] == "building_classroom"){
+                foreach ( $localItem ['rights'] as $aLocalRight ) {
+                    $right=frenchTranslator ($aLocalRight['name']);
+                    if($aLocalRight['name'] == "view"  ){
+                        
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à des locaux</a></li> ";
+                        
+                        
+                    }
+                }
+            }
+            
+        }
+    }
+    if($localItem ['object'] ['name'] == "program"){
+        foreach ($tempRights as $localItem ) {
+            
+            if($localItem ['object'] ['name'] == "program_qualification"){
+                foreach ( $localItem ['rights'] as $aLocalRight ) {
+                    $right=frenchTranslator ($aLocalRight['name']);
+                    if($aLocalRight['name'] == "view"  ){
+                        
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des compétences</a></li> ";
+                        
+                        
+                    }
+                }
+            }
+            
+        }
+    }
+    return $default;
+}
 
