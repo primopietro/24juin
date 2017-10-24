@@ -61,6 +61,10 @@ class Group extends BaseModel {
         return $this;
     }
     
+    function getGroup(){
+        return $this->getActiveGroup();
+    }
+    
     function getActiveGroup(){
         $aListOfGroup = $this->getListOfAllDBObjects();
         return $aListOfGroup;

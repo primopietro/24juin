@@ -133,12 +133,12 @@ function getSubMenuItem($localItem,$tempRights){
                     }
                 }
             }
-            if($localItem ['object'] ['name'] == "teacher_qualification"){
+            if($localItem ['object'] ['name'] == "group_teacher"){
                 foreach ( $localItem ['rights'] as $aLocalRight ) {
                     $right=frenchTranslator ($aLocalRight['name']);
                     if($aLocalRight['name'] == "view"  ){
                         
-                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compétence</a></li> ";
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à un groupe</a></li> ";
                         
                         
                     }
