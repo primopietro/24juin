@@ -38,15 +38,20 @@ class BaseModel{
         
         $sql = $definition . $attributes . $values;
     
+        $id = 0;
+        
         if (! $result = $conn->query ( $sql )) {
         	echo $sql;
             echo " fail";
             exit ();
         } else {
             echo "success";
+            $id = mysqli_insert_id($conn);
         }
         
         $conn->close ();
+        
+        return $id;
     }
     function updateDBObject() {
         $internalAttributes = get_object_vars ( $this );

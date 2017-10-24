@@ -71,6 +71,8 @@ function frenchtranslator($word){
     {
         return "Compétences des programmes";
         
+    } else if($word == "nature_time"){
+    	return "Temps de nature";
     }
     else{
         return $word;

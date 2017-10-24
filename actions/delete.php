@@ -33,6 +33,8 @@ if(isset($_POST)){
 		    $anObject = new Role();
 		} else if ($objType== "building"){
 		    $anObject = new Building();
+		} else if ($objType== "nature_time"){
+			$anObject = new NatureTime();
 		}
 	
 		echo $anObject->deleteFromDB($idObj);

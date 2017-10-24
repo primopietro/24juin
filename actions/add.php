@@ -33,8 +33,11 @@ if(isset($_POST)){
 		    $anObject = new Role();
 		} else if ($objType== "building"){
 		    $anObject = new Building();
+		} else if ($objType== "nature_time"){
+			$anObject = new NatureTime();
 		}
 		//Add other objects here
+		
 		
 		//for each value in POST
 		foreach($_POST as $keyName => $keyValue){
@@ -44,7 +47,17 @@ if(isset($_POST)){
 			$setter .= $temp;
 			$anObject->$setter($keyValue);
 		}
-		$anObject->addDBObject();
+		
+		$id = 0;
+		$id = $anObject->addDBObject();
+		
+		if($objType== "nature_time"){
+			require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_teacher_nature_time.php";
+			$aTeacherNatureTime = new TeacherNatureTime();
+			$aTeacherNatureTime->setId_nature_time($id);
+			$aTeacherNatureTime->setId_teacher(1);
+			$aTeacherNatureTime->addDBObject();
+		}
 	}else{
 		echo "forbidden";
 	}

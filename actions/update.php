@@ -37,7 +37,9 @@ if (isset($_POST)) {
             $anObject = new Role();
         } else if ($objType == "building") {
             $anObject = new Building();
-        } else if ($objType == "teacher_qualification") {
+        } else if ($objType == "nature_time") {
+        	$anObject = new NatureTime();
+        }else if ($objType == "teacher_qualification") {
             
             $anObject = new TeacherQualification();
             // Delete old values
