@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2017 at 03:25 PM
+-- Generation Time: Oct 24, 2017 at 04:04 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -178,10 +178,10 @@ CREATE TABLE `group` (
 --
 
 INSERT INTO `group` (`id_group`, `code`, `year`) VALUES
-(12, 'ew', '2017-10-03'),
-(13, 'wqd', '2017-10-06'),
-(14, 'trh', '2017-10-04'),
-(15, 'fdasdfsa', '2017-10-03');
+(12, 'G1', '2017-10-03'),
+(13, 'G2', '2017-10-06'),
+(14, 'G3', '2017-10-04'),
+(15, 'G4', '2017-10-03');
 
 -- --------------------------------------------------------
 
@@ -259,7 +259,8 @@ INSERT INTO `object` (`id_object`, `name`, `isMenu`, `icon`) VALUES
 (10, 'role', 0, '<i class="fa fa-edit"></i>'),
 (12, 'teacher_qualification', 0, '<i class="fa fa-edit"></i>'),
 (13, 'building_classroom', 0, '<i class="fa fa-edit"></i>'),
-(14, 'program_qualification', 0, '<i class="fa fa-edit"></i>');
+(14, 'program_qualification', 0, '<i class="fa fa-edit"></i>'),
+(15, 'group_teacher', 0, '	\r\n<i class="fa fa-edit"></i>');
 
 -- --------------------------------------------------------
 
@@ -454,7 +455,9 @@ INSERT INTO `right_object_role` (`id_right_object_role`, `id_right`, `id_object`
 (92, 3, 13, 1),
 (93, 2, 13, 1),
 (94, 2, 14, 1),
-(95, 3, 14, 1);
+(95, 3, 14, 1),
+(96, 2, 15, 1),
+(97, 3, 15, 1);
 
 -- --------------------------------------------------------
 
@@ -557,17 +560,6 @@ CREATE TABLE `teacher_qualification` (
   `id_teacher` int(11) NOT NULL,
   `id_qualification` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `teacher_qualification`
---
-
-INSERT INTO `teacher_qualification` (`id_teacher_qualification`, `id_teacher`, `id_qualification`) VALUES
-(10, 3, 11),
-(15, 1, 9),
-(16, 1, 10),
-(17, 1, 11),
-(19, 2, 11);
 
 -- --------------------------------------------------------
 
@@ -1006,7 +998,7 @@ ALTER TABLE `group`
 -- AUTO_INCREMENT for table `group_teacher`
 --
 ALTER TABLE `group_teacher`
-  MODIFY `id_group_teacher` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_group_teacher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `holiday`
 --
@@ -1021,7 +1013,7 @@ ALTER TABLE `nature_time`
 -- AUTO_INCREMENT for table `object`
 --
 ALTER TABLE `object`
-  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `program`
 --
@@ -1056,7 +1048,7 @@ ALTER TABLE `right`
 -- AUTO_INCREMENT for table `right_object_role`
 --
 ALTER TABLE `right_object_role`
-  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 --
 -- AUTO_INCREMENT for table `role`
 --
@@ -1260,7 +1252,6 @@ ALTER TABLE `timeslot_week`
   ADD CONSTRAINT `timeslot_week_ibfk_1` FOREIGN KEY (`idt_week`) REFERENCES `week` (`id_week`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `timeslot_week_ibfk_2` FOREIGN KEY (`id_timeslot`) REFERENCES `timeslot` (`id_timeslot`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-  
 --
 -- Constraints for table `user_role`
 --
