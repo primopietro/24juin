@@ -2,10 +2,10 @@
 -- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Client :  127.0.0.1
--- Généré le :  Jeu 19 Octobre 2017 à 23:54
--- Version du serveur :  5.7.14
--- Version de PHP :  5.6.25
+-- Host: 127.0.0.1
+-- Generation Time: Oct 24, 2017 at 03:25 PM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `gestioncours`
+-- Database: `gestioncours`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `building`
+-- Table structure for table `building`
 --
 
 CREATE TABLE `building` (
@@ -34,7 +34,7 @@ CREATE TABLE `building` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `building`
+-- Dumping data for table `building`
 --
 
 INSERT INTO `building` (`id_building`, `name`, `address`, `nb_classrooms`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `building` (`id_building`, `name`, `address`, `nb_classrooms`) VALUE
 -- --------------------------------------------------------
 
 --
--- Structure de la table `building_classroom`
+-- Table structure for table `building_classroom`
 --
 
 CREATE TABLE `building_classroom` (
@@ -55,7 +55,7 @@ CREATE TABLE `building_classroom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `building_classroom`
+-- Dumping data for table `building_classroom`
 --
 
 INSERT INTO `building_classroom` (`id_building_classroom`, `id_building`, `id_classroom`) VALUES
@@ -66,7 +66,7 @@ INSERT INTO `building_classroom` (`id_building_classroom`, `id_building`, `id_cl
 -- --------------------------------------------------------
 
 --
--- Structure de la table `classroom`
+-- Table structure for table `classroom`
 --
 
 CREATE TABLE `classroom` (
@@ -76,7 +76,7 @@ CREATE TABLE `classroom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `classroom`
+-- Dumping data for table `classroom`
 --
 
 INSERT INTO `classroom` (`id_classroom`, `code`, `nb_zone`) VALUES
@@ -86,7 +86,7 @@ INSERT INTO `classroom` (`id_classroom`, `code`, `nb_zone`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `classroom_qualification`
+-- Table structure for table `classroom_qualification`
 --
 
 CREATE TABLE `classroom_qualification` (
@@ -98,7 +98,7 @@ CREATE TABLE `classroom_qualification` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `customer`
+-- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
@@ -107,7 +107,7 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`id_customer`, `name`) VALUES
@@ -117,7 +117,7 @@ INSERT INTO `customer` (`id_customer`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `customer_building`
+-- Table structure for table `customer_building`
 --
 
 CREATE TABLE `customer_building` (
@@ -129,7 +129,7 @@ CREATE TABLE `customer_building` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `customer_user`
+-- Table structure for table `customer_user`
 --
 
 CREATE TABLE `customer_user` (
@@ -141,7 +141,7 @@ CREATE TABLE `customer_user` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `custormer_year`
+-- Table structure for table `custormer_year`
 --
 
 CREATE TABLE `custormer_year` (
@@ -153,7 +153,7 @@ CREATE TABLE `custormer_year` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `fixed_day`
+-- Table structure for table `fixed_day`
 --
 
 CREATE TABLE `fixed_day` (
@@ -164,7 +164,7 @@ CREATE TABLE `fixed_day` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `group`
+-- Table structure for table `group`
 --
 
 CREATE TABLE `group` (
@@ -174,7 +174,7 @@ CREATE TABLE `group` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `group`
+-- Dumping data for table `group`
 --
 
 INSERT INTO `group` (`id_group`, `code`, `year`) VALUES
@@ -186,7 +186,7 @@ INSERT INTO `group` (`id_group`, `code`, `year`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `group_qualification`
+-- Table structure for table `group_qualification`
 --
 
 CREATE TABLE `group_qualification` (
@@ -198,7 +198,19 @@ CREATE TABLE `group_qualification` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `holiday`
+-- Table structure for table `group_teacher`
+--
+
+CREATE TABLE `group_teacher` (
+  `id_group_teacher` int(11) NOT NULL,
+  `id_group` int(11) NOT NULL,
+  `id_teacher` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `holiday`
 --
 
 CREATE TABLE `holiday` (
@@ -209,7 +221,7 @@ CREATE TABLE `holiday` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `nature_time`
+-- Table structure for table `nature_time`
 --
 
 CREATE TABLE `nature_time` (
@@ -220,7 +232,7 @@ CREATE TABLE `nature_time` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `object`
+-- Table structure for table `object`
 --
 
 CREATE TABLE `object` (
@@ -231,7 +243,7 @@ CREATE TABLE `object` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `object`
+-- Dumping data for table `object`
 --
 
 INSERT INTO `object` (`id_object`, `name`, `isMenu`, `icon`) VALUES
@@ -252,7 +264,7 @@ INSERT INTO `object` (`id_object`, `name`, `isMenu`, `icon`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `program`
+-- Table structure for table `program`
 --
 
 CREATE TABLE `program` (
@@ -263,7 +275,7 @@ CREATE TABLE `program` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `program`
+-- Dumping data for table `program`
 --
 
 INSERT INTO `program` (`id_program`, `name`, `duration`, `nb_of_qualifications`) VALUES
@@ -274,7 +286,7 @@ INSERT INTO `program` (`id_program`, `name`, `duration`, `nb_of_qualifications`)
 -- --------------------------------------------------------
 
 --
--- Structure de la table `program_qualification`
+-- Table structure for table `program_qualification`
 --
 
 CREATE TABLE `program_qualification` (
@@ -286,7 +298,7 @@ CREATE TABLE `program_qualification` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `qualification`
+-- Table structure for table `qualification`
 --
 
 CREATE TABLE `qualification` (
@@ -297,7 +309,7 @@ CREATE TABLE `qualification` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `qualification`
+-- Dumping data for table `qualification`
 --
 
 INSERT INTO `qualification` (`id_qualification`, `code`, `name`, `nb_hours`) VALUES
@@ -308,7 +320,7 @@ INSERT INTO `qualification` (`id_qualification`, `code`, `name`, `nb_hours`) VAL
 -- --------------------------------------------------------
 
 --
--- Structure de la table `qualificationteached_timeslot`
+-- Table structure for table `qualificationteached_timeslot`
 --
 
 CREATE TABLE `qualificationteached_timeslot` (
@@ -320,7 +332,7 @@ CREATE TABLE `qualificationteached_timeslot` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `qualification_teached`
+-- Table structure for table `qualification_teached`
 --
 
 CREATE TABLE `qualification_teached` (
@@ -332,7 +344,7 @@ CREATE TABLE `qualification_teached` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `right`
+-- Table structure for table `right`
 --
 
 CREATE TABLE `right` (
@@ -341,7 +353,7 @@ CREATE TABLE `right` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `right`
+-- Dumping data for table `right`
 --
 
 INSERT INTO `right` (`id_right`, `name`) VALUES
@@ -353,7 +365,7 @@ INSERT INTO `right` (`id_right`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `right_object_role`
+-- Table structure for table `right_object_role`
 --
 
 CREATE TABLE `right_object_role` (
@@ -364,7 +376,7 @@ CREATE TABLE `right_object_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `right_object_role`
+-- Dumping data for table `right_object_role`
 --
 
 INSERT INTO `right_object_role` (`id_right_object_role`, `id_right`, `id_object`, `id_role`) VALUES
@@ -447,7 +459,7 @@ INSERT INTO `right_object_role` (`id_right_object_role`, `id_right`, `id_object`
 -- --------------------------------------------------------
 
 --
--- Structure de la table `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -456,7 +468,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id_role`, `name`) VALUES
@@ -467,7 +479,7 @@ INSERT INTO `role` (`id_role`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `schedule`
+-- Table structure for table `schedule`
 --
 
 CREATE TABLE `schedule` (
@@ -479,7 +491,7 @@ CREATE TABLE `schedule` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `schedule_timeslot`
+-- Table structure for table `schedule_timeslot`
 --
 
 CREATE TABLE `schedule_timeslot` (
@@ -491,7 +503,7 @@ CREATE TABLE `schedule_timeslot` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `teacher`
+-- Table structure for table `teacher`
 --
 
 CREATE TABLE `teacher` (
@@ -502,7 +514,7 @@ CREATE TABLE `teacher` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `teacher`
+-- Dumping data for table `teacher`
 --
 
 INSERT INTO `teacher` (`id_teacher`, `code`, `first_name`, `family_name`) VALUES
@@ -513,7 +525,7 @@ INSERT INTO `teacher` (`id_teacher`, `code`, `first_name`, `family_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `teacher_holiday`
+-- Table structure for table `teacher_holiday`
 --
 
 CREATE TABLE `teacher_holiday` (
@@ -525,7 +537,7 @@ CREATE TABLE `teacher_holiday` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `teacher_nature_time`
+-- Table structure for table `teacher_nature_time`
 --
 
 CREATE TABLE `teacher_nature_time` (
@@ -537,7 +549,7 @@ CREATE TABLE `teacher_nature_time` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `teacher_qualification`
+-- Table structure for table `teacher_qualification`
 --
 
 CREATE TABLE `teacher_qualification` (
@@ -547,7 +559,7 @@ CREATE TABLE `teacher_qualification` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `teacher_qualification`
+-- Dumping data for table `teacher_qualification`
 --
 
 INSERT INTO `teacher_qualification` (`id_teacher_qualification`, `id_teacher`, `id_qualification`) VALUES
@@ -560,7 +572,7 @@ INSERT INTO `teacher_qualification` (`id_teacher_qualification`, `id_teacher`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `teacher_qualification_teached`
+-- Table structure for table `teacher_qualification_teached`
 --
 
 CREATE TABLE `teacher_qualification_teached` (
@@ -572,7 +584,7 @@ CREATE TABLE `teacher_qualification_teached` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `timeslot`
+-- Table structure for table `timeslot`
 --
 
 CREATE TABLE `timeslot` (
@@ -584,7 +596,7 @@ CREATE TABLE `timeslot` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `timeslot_week`
+-- Table structure for table `timeslot_week`
 --
 
 CREATE TABLE `timeslot_week` (
@@ -596,7 +608,7 @@ CREATE TABLE `timeslot_week` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -606,7 +618,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `name`, `password`) VALUES
@@ -617,7 +629,7 @@ INSERT INTO `user` (`id_user`, `name`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user_role`
+-- Table structure for table `user_role`
 --
 
 CREATE TABLE `user_role` (
@@ -627,7 +639,7 @@ CREATE TABLE `user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `user_role`
+-- Dumping data for table `user_role`
 --
 
 INSERT INTO `user_role` (`id_user_role`, `id_user`, `id_role`) VALUES
@@ -638,7 +650,7 @@ INSERT INTO `user_role` (`id_user_role`, `id_user`, `id_role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `week`
+-- Table structure for table `week`
 --
 
 CREATE TABLE `week` (
@@ -652,7 +664,7 @@ CREATE TABLE `week` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `year`
+-- Table structure for table `year`
 --
 
 CREATE TABLE `year` (
@@ -663,7 +675,7 @@ CREATE TABLE `year` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `year_fixed_day`
+-- Table structure for table `year_fixed_day`
 --
 
 CREATE TABLE `year_fixed_day` (
@@ -673,17 +685,17 @@ CREATE TABLE `year_fixed_day` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Index pour les tables exportées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `building`
+-- Indexes for table `building`
 --
 ALTER TABLE `building`
   ADD PRIMARY KEY (`id_building`);
 
 --
--- Index pour la table `building_classroom`
+-- Indexes for table `building_classroom`
 --
 ALTER TABLE `building_classroom`
   ADD PRIMARY KEY (`id_building_classroom`),
@@ -691,13 +703,13 @@ ALTER TABLE `building_classroom`
   ADD KEY `bc_id_classroom` (`id_classroom`);
 
 --
--- Index pour la table `classroom`
+-- Indexes for table `classroom`
 --
 ALTER TABLE `classroom`
   ADD PRIMARY KEY (`id_classroom`);
 
 --
--- Index pour la table `classroom_qualification`
+-- Indexes for table `classroom_qualification`
 --
 ALTER TABLE `classroom_qualification`
   ADD PRIMARY KEY (`id_classroom_qualification`),
@@ -705,13 +717,13 @@ ALTER TABLE `classroom_qualification`
   ADD KEY `cq_id_qualification` (`id_qualification`);
 
 --
--- Index pour la table `customer`
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id_customer`);
 
 --
--- Index pour la table `customer_building`
+-- Indexes for table `customer_building`
 --
 ALTER TABLE `customer_building`
   ADD PRIMARY KEY (`id_customer_building`),
@@ -719,7 +731,7 @@ ALTER TABLE `customer_building`
   ADD KEY `cb_id_building` (`id_building`);
 
 --
--- Index pour la table `customer_user`
+-- Indexes for table `customer_user`
 --
 ALTER TABLE `customer_user`
   ADD PRIMARY KEY (`id_customer_user`),
@@ -727,7 +739,7 @@ ALTER TABLE `customer_user`
   ADD KEY `cu_id_user` (`id_user`);
 
 --
--- Index pour la table `custormer_year`
+-- Indexes for table `custormer_year`
 --
 ALTER TABLE `custormer_year`
   ADD PRIMARY KEY (`id_customer_year`),
@@ -735,19 +747,19 @@ ALTER TABLE `custormer_year`
   ADD KEY `cy_year` (`id_year`);
 
 --
--- Index pour la table `fixed_day`
+-- Indexes for table `fixed_day`
 --
 ALTER TABLE `fixed_day`
   ADD PRIMARY KEY (`id_fixed_day`);
 
 --
--- Index pour la table `group`
+-- Indexes for table `group`
 --
 ALTER TABLE `group`
   ADD PRIMARY KEY (`id_group`);
 
 --
--- Index pour la table `group_qualification`
+-- Indexes for table `group_qualification`
 --
 ALTER TABLE `group_qualification`
   ADD PRIMARY KEY (`id_group_qualification`),
@@ -755,31 +767,39 @@ ALTER TABLE `group_qualification`
   ADD KEY `gq_qualification` (`id_qualification`);
 
 --
--- Index pour la table `holiday`
+-- Indexes for table `group_teacher`
+--
+ALTER TABLE `group_teacher`
+  ADD PRIMARY KEY (`id_group_teacher`),
+  ADD KEY `gt_id_group` (`id_group`),
+  ADD KEY `gt_id_teacher` (`id_teacher`);
+
+--
+-- Indexes for table `holiday`
 --
 ALTER TABLE `holiday`
   ADD PRIMARY KEY (`id_holiday`);
 
 --
--- Index pour la table `nature_time`
+-- Indexes for table `nature_time`
 --
 ALTER TABLE `nature_time`
   ADD PRIMARY KEY (`id_nature_time`);
 
 --
--- Index pour la table `object`
+-- Indexes for table `object`
 --
 ALTER TABLE `object`
   ADD PRIMARY KEY (`id_object`);
 
 --
--- Index pour la table `program`
+-- Indexes for table `program`
 --
 ALTER TABLE `program`
   ADD PRIMARY KEY (`id_program`);
 
 --
--- Index pour la table `program_qualification`
+-- Indexes for table `program_qualification`
 --
 ALTER TABLE `program_qualification`
   ADD PRIMARY KEY (`id_program_qualification`),
@@ -787,13 +807,13 @@ ALTER TABLE `program_qualification`
   ADD KEY `pq_id_qualification` (`id_qualification`);
 
 --
--- Index pour la table `qualification`
+-- Indexes for table `qualification`
 --
 ALTER TABLE `qualification`
   ADD PRIMARY KEY (`id_qualification`);
 
 --
--- Index pour la table `qualificationteached_timeslot`
+-- Indexes for table `qualificationteached_timeslot`
 --
 ALTER TABLE `qualificationteached_timeslot`
   ADD PRIMARY KEY (`id_qualificationteached_timeslot`),
@@ -801,20 +821,20 @@ ALTER TABLE `qualificationteached_timeslot`
   ADD KEY `qtt_id_qualificationteached` (`id_qualificationteached`);
 
 --
--- Index pour la table `qualification_teached`
+-- Indexes for table `qualification_teached`
 --
 ALTER TABLE `qualification_teached`
   ADD PRIMARY KEY (`id_qualification_teached`),
   ADD KEY `qt_qualification` (`id_qualification`);
 
 --
--- Index pour la table `right`
+-- Indexes for table `right`
 --
 ALTER TABLE `right`
   ADD PRIMARY KEY (`id_right`);
 
 --
--- Index pour la table `right_object_role`
+-- Indexes for table `right_object_role`
 --
 ALTER TABLE `right_object_role`
   ADD PRIMARY KEY (`id_right_object_role`),
@@ -823,19 +843,19 @@ ALTER TABLE `right_object_role`
   ADD KEY `ror_id_role` (`id_role`);
 
 --
--- Index pour la table `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id_role`);
 
 --
--- Index pour la table `schedule`
+-- Indexes for table `schedule`
 --
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`id_schedule`);
 
 --
--- Index pour la table `schedule_timeslot`
+-- Indexes for table `schedule_timeslot`
 --
 ALTER TABLE `schedule_timeslot`
   ADD PRIMARY KEY (`id_schedule_timeslot`),
@@ -843,13 +863,13 @@ ALTER TABLE `schedule_timeslot`
   ADD KEY `st_id_timeslot` (`id_timeslot`);
 
 --
--- Index pour la table `teacher`
+-- Indexes for table `teacher`
 --
 ALTER TABLE `teacher`
   ADD PRIMARY KEY (`id_teacher`);
 
 --
--- Index pour la table `teacher_holiday`
+-- Indexes for table `teacher_holiday`
 --
 ALTER TABLE `teacher_holiday`
   ADD PRIMARY KEY (`id_teacher_holiday`),
@@ -857,7 +877,7 @@ ALTER TABLE `teacher_holiday`
   ADD KEY `th_holiday` (`id_holiday`);
 
 --
--- Index pour la table `teacher_nature_time`
+-- Indexes for table `teacher_nature_time`
 --
 ALTER TABLE `teacher_nature_time`
   ADD PRIMARY KEY (`id_teacher_nature_time`),
@@ -865,7 +885,7 @@ ALTER TABLE `teacher_nature_time`
   ADD KEY `tnt_nature_time` (`id_nature_time`);
 
 --
--- Index pour la table `teacher_qualification`
+-- Indexes for table `teacher_qualification`
 --
 ALTER TABLE `teacher_qualification`
   ADD PRIMARY KEY (`id_teacher_qualification`),
@@ -873,7 +893,7 @@ ALTER TABLE `teacher_qualification`
   ADD KEY `tq_teacher` (`id_teacher`);
 
 --
--- Index pour la table `teacher_qualification_teached`
+-- Indexes for table `teacher_qualification_teached`
 --
 ALTER TABLE `teacher_qualification_teached`
   ADD PRIMARY KEY (`id_teacher_qualification_teached`),
@@ -881,13 +901,13 @@ ALTER TABLE `teacher_qualification_teached`
   ADD KEY `tq_id_qualification` (`id_qualification_teached`);
 
 --
--- Index pour la table `timeslot`
+-- Indexes for table `timeslot`
 --
 ALTER TABLE `timeslot`
   ADD PRIMARY KEY (`id_timeslot`);
 
 --
--- Index pour la table `timeslot_week`
+-- Indexes for table `timeslot_week`
 --
 ALTER TABLE `timeslot_week`
   ADD PRIMARY KEY (`id_timeslot_week`),
@@ -895,13 +915,13 @@ ALTER TABLE `timeslot_week`
   ADD KEY `tw_id_week` (`idt_week`);
 
 --
--- Index pour la table `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Index pour la table `user_role`
+-- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id_user_role`),
@@ -909,19 +929,19 @@ ALTER TABLE `user_role`
   ADD KEY `ur_id_role` (`id_role`);
 
 --
--- Index pour la table `week`
+-- Indexes for table `week`
 --
 ALTER TABLE `week`
   ADD PRIMARY KEY (`id_week`);
 
 --
--- Index pour la table `year`
+-- Indexes for table `year`
 --
 ALTER TABLE `year`
   ADD PRIMARY KEY (`id_year`);
 
 --
--- Index pour la table `year_fixed_day`
+-- Indexes for table `year_fixed_day`
 --
 ALTER TABLE `year_fixed_day`
   ADD PRIMARY KEY (`id_year_fixed_day`),
@@ -929,246 +949,258 @@ ALTER TABLE `year_fixed_day`
   ADD KEY `yfd_fixed_day` (`id_fixed_day`);
 
 --
--- AUTO_INCREMENT pour les tables exportées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `building`
+-- AUTO_INCREMENT for table `building`
 --
 ALTER TABLE `building`
   MODIFY `id_building` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `building_classroom`
+-- AUTO_INCREMENT for table `building_classroom`
 --
 ALTER TABLE `building_classroom`
   MODIFY `id_building_classroom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `classroom`
+-- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
   MODIFY `id_classroom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT pour la table `classroom_qualification`
+-- AUTO_INCREMENT for table `classroom_qualification`
 --
 ALTER TABLE `classroom_qualification`
   MODIFY `id_classroom_qualification` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `customer`
+-- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT pour la table `customer_building`
+-- AUTO_INCREMENT for table `customer_building`
 --
 ALTER TABLE `customer_building`
   MODIFY `id_customer_building` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `customer_user`
+-- AUTO_INCREMENT for table `customer_user`
 --
 ALTER TABLE `customer_user`
   MODIFY `id_customer_user` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `custormer_year`
+-- AUTO_INCREMENT for table `custormer_year`
 --
 ALTER TABLE `custormer_year`
   MODIFY `id_customer_year` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `fixed_day`
+-- AUTO_INCREMENT for table `fixed_day`
 --
 ALTER TABLE `fixed_day`
   MODIFY `id_fixed_day` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `group`
+-- AUTO_INCREMENT for table `group`
 --
 ALTER TABLE `group`
   MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT pour la table `holiday`
+-- AUTO_INCREMENT for table `group_teacher`
+--
+ALTER TABLE `group_teacher`
+  MODIFY `id_group_teacher` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `holiday`
 --
 ALTER TABLE `holiday`
   MODIFY `id_holiday` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `nature_time`
+-- AUTO_INCREMENT for table `nature_time`
 --
 ALTER TABLE `nature_time`
   MODIFY `id_nature_time` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `object`
+-- AUTO_INCREMENT for table `object`
 --
 ALTER TABLE `object`
   MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
--- AUTO_INCREMENT pour la table `program`
+-- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
   MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `program_qualification`
+-- AUTO_INCREMENT for table `program_qualification`
 --
 ALTER TABLE `program_qualification`
   MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `qualification`
+-- AUTO_INCREMENT for table `qualification`
 --
 ALTER TABLE `qualification`
   MODIFY `id_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT pour la table `qualificationteached_timeslot`
+-- AUTO_INCREMENT for table `qualificationteached_timeslot`
 --
 ALTER TABLE `qualificationteached_timeslot`
   MODIFY `id_qualificationteached_timeslot` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `qualification_teached`
+-- AUTO_INCREMENT for table `qualification_teached`
 --
 ALTER TABLE `qualification_teached`
   MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `right`
+-- AUTO_INCREMENT for table `right`
 --
 ALTER TABLE `right`
   MODIFY `id_right` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT pour la table `right_object_role`
+-- AUTO_INCREMENT for table `right_object_role`
 --
 ALTER TABLE `right_object_role`
   MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 --
--- AUTO_INCREMENT pour la table `role`
+-- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `schedule`
+-- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
   MODIFY `id_schedule` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `schedule_timeslot`
+-- AUTO_INCREMENT for table `schedule_timeslot`
 --
 ALTER TABLE `schedule_timeslot`
   MODIFY `id_schedule_timeslot` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `teacher`
+-- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
   MODIFY `id_teacher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `teacher_holiday`
+-- AUTO_INCREMENT for table `teacher_holiday`
 --
 ALTER TABLE `teacher_holiday`
   MODIFY `id_teacher_holiday` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `teacher_nature_time`
+-- AUTO_INCREMENT for table `teacher_nature_time`
 --
 ALTER TABLE `teacher_nature_time`
   MODIFY `id_teacher_nature_time` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `teacher_qualification`
+-- AUTO_INCREMENT for table `teacher_qualification`
 --
 ALTER TABLE `teacher_qualification`
   MODIFY `id_teacher_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
--- AUTO_INCREMENT pour la table `teacher_qualification_teached`
+-- AUTO_INCREMENT for table `teacher_qualification_teached`
 --
 ALTER TABLE `teacher_qualification_teached`
   MODIFY `id_teacher_qualification_teached` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `timeslot`
+-- AUTO_INCREMENT for table `timeslot`
 --
 ALTER TABLE `timeslot`
   MODIFY `id_timeslot` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `timeslot_week`
+-- AUTO_INCREMENT for table `timeslot_week`
 --
 ALTER TABLE `timeslot_week`
   MODIFY `id_timeslot_week` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `user_role`
+-- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
   MODIFY `id_user_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT pour la table `week`
+-- AUTO_INCREMENT for table `week`
 --
 ALTER TABLE `week`
   MODIFY `id_week` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `year`
+-- AUTO_INCREMENT for table `year`
 --
 ALTER TABLE `year`
   MODIFY `id_year` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `year_fixed_day`
+-- AUTO_INCREMENT for table `year_fixed_day`
 --
 ALTER TABLE `year_fixed_day`
   MODIFY `id_year_fixed_day` int(11) NOT NULL AUTO_INCREMENT;
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `building_classroom`
+-- Constraints for table `building_classroom`
 --
 ALTER TABLE `building_classroom`
   ADD CONSTRAINT `building_classroom_ibfk_1` FOREIGN KEY (`id_building`) REFERENCES `building` (`id_building`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `building_classroom_ibfk_2` FOREIGN KEY (`id_classroom`) REFERENCES `classroom` (`id_classroom`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `classroom_qualification`
+-- Constraints for table `classroom_qualification`
 --
 ALTER TABLE `classroom_qualification`
   ADD CONSTRAINT `classroom_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `classroom_qualification_ibfk_2` FOREIGN KEY (`id_classroom`) REFERENCES `classroom` (`id_classroom`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `customer_building`
+-- Constraints for table `customer_building`
 --
 ALTER TABLE `customer_building`
   ADD CONSTRAINT `customer_building_ibfk_1` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `customer_building_ibfk_2` FOREIGN KEY (`id_building`) REFERENCES `building` (`id_building`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `customer_user`
+-- Constraints for table `customer_user`
 --
 ALTER TABLE `customer_user`
   ADD CONSTRAINT `customer_user_ibfk_1` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `customer_user_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `custormer_year`
+-- Constraints for table `custormer_year`
 --
 ALTER TABLE `custormer_year`
   ADD CONSTRAINT `custormer_year_ibfk_1` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `custormer_year_ibfk_2` FOREIGN KEY (`id_year`) REFERENCES `year` (`id_year`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `group_qualification`
+-- Constraints for table `group_qualification`
 --
 ALTER TABLE `group_qualification`
   ADD CONSTRAINT `group_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `group_qualification_ibfk_2` FOREIGN KEY (`id_group`) REFERENCES `group` (`id_group`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `program_qualification`
+-- Constraints for table `group_teacher`
+--
+ALTER TABLE `group_teacher`
+  ADD CONSTRAINT `gt_id_group_fk` FOREIGN KEY (`id_group`) REFERENCES `group` (`id_group`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `gt_id_teacher_fk` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_teacher`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `program_qualification`
 --
 ALTER TABLE `program_qualification`
   ADD CONSTRAINT `program_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `program_qualification_ibfk_2` FOREIGN KEY (`id_program`) REFERENCES `program` (`id_program`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `qualification_teached`
+-- Constraints for table `qualification_teached`
 --
 ALTER TABLE `qualification_teached`
   ADD CONSTRAINT `qualification_teached_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification` (`id_qualification`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `qualification_teached_ibfk_2` FOREIGN KEY (`id_qualification_teached`) REFERENCES `qualificationteached_timeslot` (`id_qualificationteached`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `right_object_role`
+-- Constraints for table `right_object_role`
 --
 ALTER TABLE `right_object_role`
   ADD CONSTRAINT `right_object_role_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -1176,67 +1208,67 @@ ALTER TABLE `right_object_role`
   ADD CONSTRAINT `right_object_role_ibfk_3` FOREIGN KEY (`id_right`) REFERENCES `right` (`id_right`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `schedule`
+-- Constraints for table `schedule`
 --
 ALTER TABLE `schedule`
   ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`id_schedule`) REFERENCES `schedule_timeslot` (`id_schedule`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `schedule_timeslot`
+-- Constraints for table `schedule_timeslot`
 --
 ALTER TABLE `schedule_timeslot`
   ADD CONSTRAINT `schedule_timeslot_ibfk_1` FOREIGN KEY (`id_timeslot`) REFERENCES `timeslot` (`id_timeslot`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `teacher_holiday`
+-- Constraints for table `teacher_holiday`
 --
 ALTER TABLE `teacher_holiday`
   ADD CONSTRAINT `teacher_holiday_ibfk_1` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_teacher`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `teacher_holiday_ibfk_2` FOREIGN KEY (`id_holiday`) REFERENCES `holiday` (`id_holiday`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `teacher_nature_time`
+-- Constraints for table `teacher_nature_time`
 --
 ALTER TABLE `teacher_nature_time`
   ADD CONSTRAINT `teacher_nature_time_ibfk_1` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_teacher`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `teacher_nature_time_ibfk_2` FOREIGN KEY (`id_nature_time`) REFERENCES `nature_time` (`id_nature_time`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `teacher_qualification`
+-- Constraints for table `teacher_qualification`
 --
 ALTER TABLE `teacher_qualification`
   ADD CONSTRAINT `teacher_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification` (`id_qualification`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `teacher_qualification_ibfk_2` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_teacher`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `teacher_qualification_teached`
+-- Constraints for table `teacher_qualification_teached`
 --
 ALTER TABLE `teacher_qualification_teached`
   ADD CONSTRAINT `teacher_qualification_teached_ibfk_1` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_teacher`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `teacher_qualification_teached_ibfk_2` FOREIGN KEY (`id_qualification_teached`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `timeslot`
+-- Constraints for table `timeslot`
 --
 ALTER TABLE `timeslot`
   ADD CONSTRAINT `timeslot_ibfk_1` FOREIGN KEY (`id_timeslot`) REFERENCES `qualificationteached_timeslot` (`id_timeslot`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `timeslot_week`
+-- Constraints for table `timeslot_week`
 --
 ALTER TABLE `timeslot_week`
   ADD CONSTRAINT `timeslot_week_ibfk_1` FOREIGN KEY (`idt_week`) REFERENCES `week` (`id_week`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `timeslot_week_ibfk_2` FOREIGN KEY (`id_timeslot`) REFERENCES `timeslot` (`id_timeslot`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `user_role`
+-- Constraints for table `user_role`
 --
 ALTER TABLE `user_role`
   ADD CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `year_fixed_day`
+-- Constraints for table `year_fixed_day`
 --
 ALTER TABLE `year_fixed_day`
   ADD CONSTRAINT `year_fixed_day_ibfk_1` FOREIGN KEY (`id_year`) REFERENCES `year` (`id_year`) ON DELETE CASCADE ON UPDATE CASCADE,
