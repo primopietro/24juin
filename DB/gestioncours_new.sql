@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2017 at 09:11 PM
+-- Generation Time: Oct 24, 2017 at 10:01 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -1195,7 +1195,7 @@ ALTER TABLE `program_pedago_day`
 -- AUTO_INCREMENT for table `program_qualification`
 --
 ALTER TABLE `program_qualification`
-  MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `qualification`
 --
@@ -1210,7 +1210,7 @@ ALTER TABLE `qualificationteached_timeslot`
 -- AUTO_INCREMENT for table `qualification_teached`
 --
 ALTER TABLE `qualification_teached`
-  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `right`
 --
@@ -1384,8 +1384,7 @@ ALTER TABLE `program_qualification`
 -- Constraints for table `qualification_teached`
 --
 ALTER TABLE `qualification_teached`
-  ADD CONSTRAINT `qualification_teached_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification` (`id_qualification`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `qualification_teached_ibfk_2` FOREIGN KEY (`id_qualification_teached`) REFERENCES `qualificationteached_timeslot` (`id_qualificationteached`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `qualification_teached_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification` (`id_qualification`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `right_object_role`
