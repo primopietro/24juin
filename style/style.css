@@ -42,3 +42,7 @@ li.treeview.menu-open.active ul {
 *{
 	transition:0.3s color linear !important;
 }
+
+.selectTeacher{
+	height: 34px;
+}

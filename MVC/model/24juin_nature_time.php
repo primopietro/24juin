@@ -9,7 +9,13 @@ class NatureTime extends BaseModel {
 
 	
     function getNatureTime($id_teacher){
-    	$aListOfNatureTime = $this->getListOfAllDBObjectsWhere("id_teacher", "=", $id_teacher);
+    	$aListOfNatureTime = array();
+    	
+    	if($id_teacher != 0){
+    		$aListOfNatureTime = $this->getListOfAllDBObjectsWhere("id_teacher", "=", $id_teacher);
+    	} else{
+    		$aListOfNatureTime = $this->getListOfAllDBObjects();
+    	}
     	return $aListOfNatureTime;
     }
     

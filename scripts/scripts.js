@@ -22,6 +22,23 @@ $(document).on("click","#closeModal",function(){
 	$(".modal-backdrop.fade.in").remove(); }, 300);
 	
 });
+
+//filter teacher nature time
+$(document).on("change", "#teacher_nature_time", function() {
+	$.ajax({
+		url : ajaxPath + "actions/session.php?",
+		data : "fk_teacher=" + $(this).val(),
+		type: "post",
+		beforeSend : function() {
+			enableLoader();
+			console.log("getting new body started");
+		}
+	}).done(function(data) {
+		getNewView();
+
+	})
+});
+
 $(document).on("click", ".treeview ", function() {
 	$(".treeview ").removeClass("active");
 	$(this).addClass("active");

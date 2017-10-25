@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2017 at 04:04 PM
+-- Generation Time: Oct 25, 2017 at 04:36 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `gestioncours`
 --
+CREATE DATABASE IF NOT EXISTS `gestioncours` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `gestioncours`;
 
 -- --------------------------------------------------------
 
@@ -40,7 +42,8 @@ CREATE TABLE `building` (
 INSERT INTO `building` (`id_building`, `name`, `address`, `nb_classrooms`) VALUES
 (1, 'Pavillon 2', '1050 rue lo', 30),
 (2, 'Pav2', '1122', 6),
-(3, 'pav4', '15', 6);
+(3, 'pav4', '15', 6),
+(4, 'r', 'r', 2);
 
 -- --------------------------------------------------------
 
@@ -93,6 +96,18 @@ CREATE TABLE `classroom_qualification` (
   `id_classroom_qualification` int(11) NOT NULL,
   `id_classroom` int(11) NOT NULL,
   `id_qualification` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classroom_zone`
+--
+
+CREATE TABLE `classroom_zone` (
+  `id_classroom_zone` int(11) NOT NULL,
+  `id_classroom` int(11) NOT NULL,
+  `id_zone` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -153,11 +168,11 @@ CREATE TABLE `custormer_year` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fixed_day`
+-- Table structure for table `fixed_holiday`
 --
 
-CREATE TABLE `fixed_day` (
-  `id_fixed_day` int(11) NOT NULL,
+CREATE TABLE `fixed_holiday` (
+  `id_fixed_holiday` int(11) NOT NULL,
   `day` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -207,6 +222,13 @@ CREATE TABLE `group_teacher` (
   `id_teacher` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `group_teacher`
+--
+
+INSERT INTO `group_teacher` (`id_group_teacher`, `id_group`, `id_teacher`) VALUES
+(11, 12, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -226,8 +248,22 @@ CREATE TABLE `holiday` (
 
 CREATE TABLE `nature_time` (
   `id_nature_time` int(11) NOT NULL,
-  `hours` double NOT NULL
+  `hours` double NOT NULL,
+  `day` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `nature_time`
+--
+
+INSERT INTO `nature_time` (`id_nature_time`, `hours`, `day`) VALUES
+(12, 35.5, '2017-10-03'),
+(13, 1, '2017-10-26'),
+(14, 1, '2017-10-28'),
+(15, 1, '2017-10-27'),
+(16, 4, '2017-10-26'),
+(17, 1, '2017-10-26'),
+(18, 5, '2017-10-31');
 
 -- --------------------------------------------------------
 
@@ -260,7 +296,30 @@ INSERT INTO `object` (`id_object`, `name`, `isMenu`, `icon`) VALUES
 (12, 'teacher_qualification', 0, '<i class="fa fa-edit"></i>'),
 (13, 'building_classroom', 0, '<i class="fa fa-edit"></i>'),
 (14, 'program_qualification', 0, '<i class="fa fa-edit"></i>'),
-(15, 'group_teacher', 0, '	\r\n<i class="fa fa-edit"></i>');
+(15, 'group_teacher', 0, '	\r\n<i class="fa fa-edit"></i>'),
+(16, 'nature_time', 1, '<i class="fa fa-clock-o"></i>');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pedago_day`
+--
+
+CREATE TABLE `pedago_day` (
+  `id_pedago_day` int(11) NOT NULL,
+  `day` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pedago_day_all`
+--
+
+CREATE TABLE `pedago_day_all` (
+  `id_pedago_day_all` int(11) NOT NULL,
+  `day` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -283,6 +342,18 @@ INSERT INTO `program` (`id_program`, `name`, `duration`, `nb_of_qualifications`)
 (1, 'ProgMec', 10, 10),
 (2, 'progCui', 2, 2),
 (3, 'progChar', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `program_pedago_day`
+--
+
+CREATE TABLE `program_pedago_day` (
+  `id_program_pedago_day` int(11) NOT NULL,
+  `id_program` int(11) NOT NULL,
+  `id_pedago_day` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -457,7 +528,16 @@ INSERT INTO `right_object_role` (`id_right_object_role`, `id_right`, `id_object`
 (94, 2, 14, 1),
 (95, 3, 14, 1),
 (96, 2, 15, 1),
-(97, 3, 15, 1);
+(97, 3, 15, 1),
+(98, 1, 16, 2),
+(99, 2, 16, 2),
+(100, 3, 16, 2),
+(101, 4, 16, 2),
+(102, 1, 16, 1),
+(103, 2, 16, 1),
+(104, 3, 16, 1),
+(105, 4, 16, 1),
+(106, 3, 16, 3);
 
 -- --------------------------------------------------------
 
@@ -549,6 +629,16 @@ CREATE TABLE `teacher_nature_time` (
   `id_nature_time` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `teacher_nature_time`
+--
+
+INSERT INTO `teacher_nature_time` (`id_teacher_nature_time`, `id_teacher`, `id_nature_time`) VALUES
+(6, 1, 12),
+(7, 2, 16),
+(8, 2, 17),
+(9, 2, 18);
+
 -- --------------------------------------------------------
 
 --
@@ -560,6 +650,13 @@ CREATE TABLE `teacher_qualification` (
   `id_teacher` int(11) NOT NULL,
   `id_qualification` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teacher_qualification`
+--
+
+INSERT INTO `teacher_qualification` (`id_teacher_qualification`, `id_teacher`, `id_qualification`) VALUES
+(20, 1, 11);
 
 -- --------------------------------------------------------
 
@@ -582,7 +679,11 @@ CREATE TABLE `teacher_qualification_teached` (
 CREATE TABLE `timeslot` (
   `id_timeslot` int(11) NOT NULL,
   `day` int(11) NOT NULL,
-  `AM` tinyint(1) NOT NULL
+  `AM` tinyint(1) NOT NULL,
+  `isExam` tinyint(4) NOT NULL,
+  `isStageIndividual` tinyint(4) NOT NULL,
+  `isStageAccompanied` tinyint(4) NOT NULL,
+  `isSpecialEvent` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -606,17 +707,20 @@ CREATE TABLE `timeslot_week` (
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `fk_teacher` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `name`, `password`) VALUES
-(1, 'admin', 'password'),
-(2, 'client', 'password'),
-(3, 'gestion', 'password');
+INSERT INTO `user` (`id_user`, `name`, `password`, `fk_teacher`) VALUES
+(1, 'admin', 'password', 0),
+(2, 'client', 'password', 1),
+(3, 'gestion', 'password', 0),
+(4, 'ZoretiBo', '12345', 2),
+(5, 'primoPi', 'test', 3);
 
 -- --------------------------------------------------------
 
@@ -637,7 +741,8 @@ CREATE TABLE `user_role` (
 INSERT INTO `user_role` (`id_user_role`, `id_user`, `id_role`) VALUES
 (1, 1, 1),
 (2, 2, 2),
-(3, 3, 3);
+(3, 3, 3),
+(4, 4, 2);
 
 -- --------------------------------------------------------
 
@@ -667,13 +772,37 @@ CREATE TABLE `year` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `year_fixed_day`
+-- Table structure for table `year_fixed_holiday`
 --
 
-CREATE TABLE `year_fixed_day` (
+CREATE TABLE `year_fixed_holiday` (
   `id_year_fixed_day` int(11) NOT NULL,
   `id_year` int(11) NOT NULL,
-  `id_fixed_day` int(11) NOT NULL
+  `id_fixed_holiday` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `year_pedago_day_all`
+--
+
+CREATE TABLE `year_pedago_day_all` (
+  `id_year_pedago_day_all` int(11) NOT NULL,
+  `id_year` int(11) NOT NULL,
+  `id_pedago_day_all` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zone`
+--
+
+CREATE TABLE `zone` (
+  `id_zone` int(11) NOT NULL,
+  `code` varchar(25) NOT NULL,
+  `comment` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -709,6 +838,14 @@ ALTER TABLE `classroom_qualification`
   ADD KEY `cq_id_qualification` (`id_qualification`);
 
 --
+-- Indexes for table `classroom_zone`
+--
+ALTER TABLE `classroom_zone`
+  ADD PRIMARY KEY (`id_classroom_zone`),
+  ADD KEY `cz_classroom` (`id_classroom`),
+  ADD KEY `cz_zone` (`id_zone`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -739,10 +876,10 @@ ALTER TABLE `custormer_year`
   ADD KEY `cy_year` (`id_year`);
 
 --
--- Indexes for table `fixed_day`
+-- Indexes for table `fixed_holiday`
 --
-ALTER TABLE `fixed_day`
-  ADD PRIMARY KEY (`id_fixed_day`);
+ALTER TABLE `fixed_holiday`
+  ADD PRIMARY KEY (`id_fixed_holiday`);
 
 --
 -- Indexes for table `group`
@@ -785,10 +922,30 @@ ALTER TABLE `object`
   ADD PRIMARY KEY (`id_object`);
 
 --
+-- Indexes for table `pedago_day`
+--
+ALTER TABLE `pedago_day`
+  ADD PRIMARY KEY (`id_pedago_day`);
+
+--
+-- Indexes for table `pedago_day_all`
+--
+ALTER TABLE `pedago_day_all`
+  ADD PRIMARY KEY (`id_pedago_day_all`);
+
+--
 -- Indexes for table `program`
 --
 ALTER TABLE `program`
   ADD PRIMARY KEY (`id_program`);
+
+--
+-- Indexes for table `program_pedago_day`
+--
+ALTER TABLE `program_pedago_day`
+  ADD PRIMARY KEY (`id_program_pedago_day`),
+  ADD KEY `ppd_program` (`id_program`),
+  ADD KEY `ppd_pedago_day` (`id_pedago_day`);
 
 --
 -- Indexes for table `program_qualification`
@@ -933,12 +1090,26 @@ ALTER TABLE `year`
   ADD PRIMARY KEY (`id_year`);
 
 --
--- Indexes for table `year_fixed_day`
+-- Indexes for table `year_fixed_holiday`
 --
-ALTER TABLE `year_fixed_day`
+ALTER TABLE `year_fixed_holiday`
   ADD PRIMARY KEY (`id_year_fixed_day`),
   ADD KEY `yfd_year` (`id_year`),
-  ADD KEY `yfd_fixed_day` (`id_fixed_day`);
+  ADD KEY `yfd_fixed_day` (`id_fixed_holiday`);
+
+--
+-- Indexes for table `year_pedago_day_all`
+--
+ALTER TABLE `year_pedago_day_all`
+  ADD PRIMARY KEY (`id_year_pedago_day_all`),
+  ADD KEY `ypda_year` (`id_year`),
+  ADD KEY `ypda_pedago_day_all` (`id_pedago_day_all`);
+
+--
+-- Indexes for table `zone`
+--
+ALTER TABLE `zone`
+  ADD PRIMARY KEY (`id_zone`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -948,7 +1119,7 @@ ALTER TABLE `year_fixed_day`
 -- AUTO_INCREMENT for table `building`
 --
 ALTER TABLE `building`
-  MODIFY `id_building` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_building` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `building_classroom`
 --
@@ -964,6 +1135,11 @@ ALTER TABLE `classroom`
 --
 ALTER TABLE `classroom_qualification`
   MODIFY `id_classroom_qualification` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `classroom_zone`
+--
+ALTER TABLE `classroom_zone`
+  MODIFY `id_classroom_zone` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `customer`
 --
@@ -985,10 +1161,10 @@ ALTER TABLE `customer_user`
 ALTER TABLE `custormer_year`
   MODIFY `id_customer_year` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `fixed_day`
+-- AUTO_INCREMENT for table `fixed_holiday`
 --
-ALTER TABLE `fixed_day`
-  MODIFY `id_fixed_day` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `fixed_holiday`
+  MODIFY `id_fixed_holiday` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `group`
 --
@@ -998,7 +1174,7 @@ ALTER TABLE `group`
 -- AUTO_INCREMENT for table `group_teacher`
 --
 ALTER TABLE `group_teacher`
-  MODIFY `id_group_teacher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_group_teacher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `holiday`
 --
@@ -1008,22 +1184,37 @@ ALTER TABLE `holiday`
 -- AUTO_INCREMENT for table `nature_time`
 --
 ALTER TABLE `nature_time`
-  MODIFY `id_nature_time` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nature_time` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `object`
 --
 ALTER TABLE `object`
-  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `pedago_day`
+--
+ALTER TABLE `pedago_day`
+  MODIFY `id_pedago_day` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `pedago_day_all`
+--
+ALTER TABLE `pedago_day_all`
+  MODIFY `id_pedago_day_all` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
   MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `program_pedago_day`
+--
+ALTER TABLE `program_pedago_day`
+  MODIFY `id_program_pedago_day` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `program_qualification`
 --
 ALTER TABLE `program_qualification`
-  MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `qualification`
 --
@@ -1048,7 +1239,7 @@ ALTER TABLE `right`
 -- AUTO_INCREMENT for table `right_object_role`
 --
 ALTER TABLE `right_object_role`
-  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 --
 -- AUTO_INCREMENT for table `role`
 --
@@ -1078,12 +1269,12 @@ ALTER TABLE `teacher_holiday`
 -- AUTO_INCREMENT for table `teacher_nature_time`
 --
 ALTER TABLE `teacher_nature_time`
-  MODIFY `id_teacher_nature_time` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_teacher_nature_time` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `teacher_qualification`
 --
 ALTER TABLE `teacher_qualification`
-  MODIFY `id_teacher_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_teacher_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `teacher_qualification_teached`
 --
@@ -1103,12 +1294,12 @@ ALTER TABLE `timeslot_week`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id_user_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `week`
 --
@@ -1120,10 +1311,20 @@ ALTER TABLE `week`
 ALTER TABLE `year`
   MODIFY `id_year` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `year_fixed_day`
+-- AUTO_INCREMENT for table `year_fixed_holiday`
 --
-ALTER TABLE `year_fixed_day`
+ALTER TABLE `year_fixed_holiday`
   MODIFY `id_year_fixed_day` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `year_pedago_day_all`
+--
+ALTER TABLE `year_pedago_day_all`
+  MODIFY `id_year_pedago_day_all` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `zone`
+--
+ALTER TABLE `zone`
+  MODIFY `id_zone` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -1141,6 +1342,13 @@ ALTER TABLE `building_classroom`
 ALTER TABLE `classroom_qualification`
   ADD CONSTRAINT `classroom_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `classroom_qualification_ibfk_2` FOREIGN KEY (`id_classroom`) REFERENCES `classroom` (`id_classroom`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `classroom_zone`
+--
+ALTER TABLE `classroom_zone`
+  ADD CONSTRAINT `classroom_zone_ibfk_1` FOREIGN KEY (`id_zone`) REFERENCES `zone` (`id_zone`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `classroom_zone_ibfk_2` FOREIGN KEY (`id_classroom`) REFERENCES `classroom` (`id_classroom`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `customer_building`
@@ -1178,6 +1386,13 @@ ALTER TABLE `group_teacher`
   ADD CONSTRAINT `gt_id_teacher_fk` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_teacher`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `program_pedago_day`
+--
+ALTER TABLE `program_pedago_day`
+  ADD CONSTRAINT `program_pedago_day_ibfk_1` FOREIGN KEY (`id_pedago_day`) REFERENCES `pedago_day` (`id_pedago_day`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `program_pedago_day_ibfk_2` FOREIGN KEY (`id_program`) REFERENCES `program` (`id_program`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `program_qualification`
 --
 ALTER TABLE `program_qualification`
@@ -1188,8 +1403,7 @@ ALTER TABLE `program_qualification`
 -- Constraints for table `qualification_teached`
 --
 ALTER TABLE `qualification_teached`
-  ADD CONSTRAINT `qualification_teached_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification` (`id_qualification`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `qualification_teached_ibfk_2` FOREIGN KEY (`id_qualification_teached`) REFERENCES `qualificationteached_timeslot` (`id_qualificationteached`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `qualification_teached_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification` (`id_qualification`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `right_object_role`
@@ -1260,11 +1474,18 @@ ALTER TABLE `user_role`
   ADD CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `year_fixed_day`
+-- Constraints for table `year_fixed_holiday`
 --
-ALTER TABLE `year_fixed_day`
-  ADD CONSTRAINT `year_fixed_day_ibfk_1` FOREIGN KEY (`id_year`) REFERENCES `year` (`id_year`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `year_fixed_day_ibfk_2` FOREIGN KEY (`id_fixed_day`) REFERENCES `fixed_day` (`id_fixed_day`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `year_fixed_holiday`
+  ADD CONSTRAINT `year_fixed_holiday_ibfk_1` FOREIGN KEY (`id_year`) REFERENCES `year` (`id_year`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `year_fixed_holiday_ibfk_2` FOREIGN KEY (`id_fixed_holiday`) REFERENCES `fixed_holiday` (`id_fixed_holiday`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `year_pedago_day_all`
+--
+ALTER TABLE `year_pedago_day_all`
+  ADD CONSTRAINT `year_pedago_day_all_ibfk_1` FOREIGN KEY (`id_year`) REFERENCES `year` (`id_year`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `year_pedago_day_all_ibfk_2` FOREIGN KEY (`id_pedago_day_all`) REFERENCES `pedago_day_all` (`id_pedago_day_all`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

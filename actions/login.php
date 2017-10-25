@@ -84,7 +84,9 @@ if($aUser->checkPassword()) {
     	}
     }
     $_SESSION['rightList'] = $newMenuList;
-    $_SESSION['current_user'] = $aUser;
+    $_SESSION['current_user'] = serialize($aUser);
+    $_SESSION['current_user_role'] = serialize($userRoles);
+    $_SESSION['filter'] = 0;
     echo "success";
 }else{
     echo "fail";

@@ -5,13 +5,15 @@ if (! isset ( $_SESSION )) {
 	session_start ();
 }
 
-function fixObject (&$object)
+/*function fixObject (&$object)
 {
     if (!is_object ($object) && gettype ($object) == 'object')
         return ($object = unserialize (serialize ($object)));
         return $object;
-}
-fixObject($_SESSION['current_user']);
+}*/
+
+$user = new User();
+$user = unserialize($_SESSION['current_user']);
 
 $default = "<div class='wrapper'>
 
@@ -53,7 +55,7 @@ $default = "<div class='wrapper'>
           <img src='dist/img/user2-160x160.jpg' class='img-circle' alt='User Image'>
         </div>
         <div class='pull-left info'>
-          <p>".$_SESSION['current_user']->getName()."</p>
+          <p>".$user->getName()."</p>
        
         </div>
       </div>

@@ -53,9 +53,14 @@ if(isset($_POST)){
 		
 		if($objType== "nature_time"){
 			require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_teacher_nature_time.php";
+			require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_user.php";
 			$aTeacherNatureTime = new TeacherNatureTime();
 			$aTeacherNatureTime->setId_nature_time($id);
-			$aTeacherNatureTime->setId_teacher(1);
+			
+			$user = new User();
+			$user = unserialize($_SESSION['current_user']);
+			
+			$aTeacherNatureTime->setId_teacher($user->getFk_teacher());
 			$aTeacherNatureTime->addDBObject();
 		}
 	}else{

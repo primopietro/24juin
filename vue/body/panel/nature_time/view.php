@@ -3,6 +3,9 @@ if (! isset ( $_SESSION )) {
 	session_start ();
 }
 require_once $_SERVER ["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_nature_time.php';
+require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_user.php";
+require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_user_role.php";
+require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_teacher.php';
 require_once $_SERVER ["DOCUMENT_ROOT"] . '/24juin/vue/rightHelper.php';
 
 $objName = "nature_time";
@@ -13,7 +16,16 @@ if (isset ( $rights ['view'] )) {
 	
 	
 	$aNatureTime = new NatureTime ();
-	$aListOfNatureTime = $aNatureTime->getNatureTime(1);
+	
+	$user = new User();
+	$user = unserialize($_SESSION['current_user']);
+	
+	$userRoles = array();
+	$userRoles = unserialize($_SESSION['current_user_role']);
+	
+	$aTeacher = new Teacher();
+	$aTeacherList = $aTeacher->getListOfAllDBObjects();
+	
 	
 	$default = "
    <section class='content'>
@@ -26,6 +38,7 @@ if (isset ( $rights ['view'] )) {
 	if (isset ( $rights ['add'] )) {
 		$default .= "<br>  <a class='action' action='add' objtype='" . $objName . "'>Ajouter </a>";
 	}
+	if($user)
 	$default .= "<div class='box-tools'>
 			
                                <button type='button' class='btn btn-box-tool'
@@ -36,6 +49,44 @@ if (isset ( $rights ['view'] )) {
                             </div>
             <!-- /.box-header -->
             <div class='box-body'>";
+	
+	$role = 2;
+	foreach($userRoles as $localUserRole){
+		if($localUserRole['id_role'] == 1 || $localUserRole['id_role'] == 3){
+			$default .= "<select class='selectTeacher' name='fk_teacher' id='teacher_nature_time'><option";
+			if($_SESSION['filter'] == 0){
+				$default .= " selected ";
+			}
+			$default .= " value='0'>Tous</option>";
+			if($aTeacherList!= null){
+				if(sizeof($aTeacherList)>0){
+					foreach($aTeacherList as $theTeacher){
+						$default .= "   <option   value='". $theTeacher['id_teacher'] ."'";
+						
+						if($_SESSION['filter'] == $theTeacher['id_teacher']){
+							$default .= " selected ";
+						}
+						
+						$default .= ">" . $theTeacher['code'] ." - " . $theTeacher['first_name'] . " " . $theTeacher['family_name'];
+						$default .= "   </option> ";
+					}
+					
+				}
+			}
+			$default .= "</select>";
+			$role = $localUserRole['id_role'];
+			break;
+		}
+	}
+	
+	$aListOfNatureTime = array();
+	
+	if($role == 2){
+		$aListOfNatureTime = $aNatureTime->getNatureTime($user->getFk_teacher());
+	} else{
+		$aListOfNatureTime = $aNatureTime->getNatureTime($_SESSION['filter']);
+	}
+	
 	if ($aListOfNatureTime != null) {
 		if (sizeof ( $aListOfNatureTime ) > 0) {
 			$default .= "<table class='table table-bordered table-hover'>

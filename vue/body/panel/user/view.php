@@ -42,8 +42,9 @@ if (isset ( $rights ['view'] )) {
 		    $default .= "<table class='table table-bordered table-hover'>
              <thead>
                 <tr>
-                  <th>Nom</th>
-		          <th>Mot de passe</th>";
+                  <th>Nom d'utilisateur</th>
+		          <th>Mot de passe</th>
+		    	  <th>Professeurs</th>";
                 if (isset ( $rights ['update'] )) {
 				    $default .= "<th>Modifier</th>";
 			    }

@@ -6,6 +6,7 @@ class User extends BaseModel {
 	protected $id_user;
 	protected $name;
 	protected $password;
+	protected $fk_teacher;
 
 
 
@@ -63,6 +64,24 @@ class User extends BaseModel {
         return $this;
     }
     
+    /**
+     * fk_teacher
+     * @return int
+     */
+    public function getFk_teacher(){
+    	return $this->fk_teacher;
+    }
+    
+    /**
+     * fk_teacher
+     * @param int $fk_teacher
+     * @return User
+     */
+    public function setFk_teacher($fk_teacher){
+    	$this->fk_teacher = $fk_teacher;
+    	return $this;
+    }
+    
     public function checkPassword(){
         
         include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
@@ -109,6 +128,15 @@ class User extends BaseModel {
         $line .= "<tr>";
         $line .= "<td>" . $aUser['name'] . "</td>";
         $line .= "<td>" . $aUser['password'] . "</td>";
+        if($aUser['fk_teacher'] != 0){
+        	require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_teacher.php';
+        	$aTeacher = new Teacher();
+        	$theTeacher = $aTeacher->getObjectFromDB($aUser['fk_teacher']);
+        	
+        	$line .= "<td>" . $theTeacher['code'] ." - " . $theTeacher['first_name'] . " " . $theTeacher['family_name'] . "</td>";
+        }else{
+        	$line .= "<td></td>";
+        }
         if($canBeUpdated){
             $line .= "<td><a objtype='".$aUser['table_name']."' action='update' class='action' idobj='".  $aUser['id_user']."'><i class='fa fa-pencil text-green'></i></a></td>";
         }
