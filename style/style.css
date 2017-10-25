@@ -45,4 +45,9 @@ li.treeview.menu-open.active ul {
 
 .selectTeacher{
 	height: 34px;
+    margin-bottom: 10px;
+}
+
+.none{
+	display: none;
 }

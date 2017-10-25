@@ -60,7 +60,11 @@ if(isset($_POST)){
 			$user = new User();
 			$user = unserialize($_SESSION['current_user']);
 			
-			$aTeacherNatureTime->setId_teacher($user->getFk_teacher());
+			if($_SESSION['filter'] == 0){
+				$aTeacherNatureTime->setId_teacher($user->getFk_teacher());
+			} else{
+				$aTeacherNatureTime->setId_teacher($_SESSION['filter']);
+			}
 			$aTeacherNatureTime->addDBObject();
 		}
 	}else{

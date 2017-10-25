@@ -35,7 +35,7 @@ if (isset ( $rights ['view'] )) {
             <div class='box-header'>
               <h3 class='box-title'>Liste des temps de nature</h3>";
 	
-	if (isset ( $rights ['add'] )) {
+	if (isset ( $rights ['add'] ) && $_SESSION['filter'] != 0) {
 		$default .= "<br>  <a class='action' action='add' objtype='" . $objName . "'>Ajouter </a>";
 	}
 	if($user)
@@ -91,9 +91,13 @@ if (isset ( $rights ['view'] )) {
 		if (sizeof ( $aListOfNatureTime ) > 0) {
 			$default .= "<table class='table table-bordered table-hover'>
 			<thead>
-			<tr>
-			<th>Heure(s)</th>
+			<tr>";
+			if($role != 2 && $_SESSION['filter'] == 0){
+				$default .= "<th>Professeur</th>";
+			}
+			$default .= "<th>Heure(s)</th>
 			<th>Jour</th>";
+			
 			if (isset ( $rights ['update'] )) {
 				$default .= "  <th>Modifier</th>";
 			}
@@ -105,7 +109,7 @@ if (isset ( $rights ['view'] )) {
             <thead>
             <tbody>";
 			
-			$default .= $aNatureTime->printNatureTimeList ( $aListOfNatureTime, isset ( $rights ['update'] ), isset ( $rights ['delete'] ) );
+			$default .= $aNatureTime->printNatureTimeList ( $aListOfNatureTime, isset ( $rights ['update'] ), isset ( $rights ['delete'] ), $_SESSION['filter'], $role);
 			
 			$default .= "</tbody>
               </table>";

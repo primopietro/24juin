@@ -14,26 +14,29 @@ class NatureTime extends BaseModel {
     	if($id_teacher != 0){
     		$aListOfNatureTime = $this->getListOfAllDBObjectsWhere("id_teacher", "=", $id_teacher);
     	} else{
-    		$aListOfNatureTime = $this->getListOfAllDBObjects();
+    		$aListOfNatureTime = $this->getListOfAllDBObjectsWithTeacher();
     	}
     	return $aListOfNatureTime;
     }
     
-    function printNatureTimeList($aListOfNatureTime,$canBeUpdated,$canBeDeleted){
+    function printNatureTimeList($aListOfNatureTime,$canBeUpdated,$canBeDeleted, $filter, $role){
         $content = '';
         if($aListOfNatureTime != null){
         	foreach($aListOfNatureTime as $aNatureTime){
-        		$content .= $this->getEachNatureTimeComponentList($aNatureTime,$canBeUpdated,$canBeDeleted);
+        		$content .= $this->getEachNatureTimeComponentList($aNatureTime,$canBeUpdated,$canBeDeleted, $filter, $role);
             }
         }
         
         return $content;
     }
     
-    function getEachNatureTimeComponentList($aNatureTime,$canBeUpdated,$canBeDeleted){
+    function getEachNatureTimeComponentList($aNatureTime,$canBeUpdated,$canBeDeleted, $filter, $role){
         
         $line = '';
         $line .= "<tr>";
+        if($filter == 0 && $role != 2){
+        	$line .= "<td>" . $aNatureTime['code'] ." - " . $aNatureTime['first_name'] . " " . $aNatureTime['family_name'] . "</td>";
+        }
         $line .= "<td>" . $aNatureTime['hours']. "</td>";
         $line .= "<td>" . $aNatureTime['day'] . "</td>";
         if($canBeUpdated){
@@ -60,6 +63,38 @@ class NatureTime extends BaseModel {
     	
     	$result = $conn->query ( $sql );
     	
+    	if ($result->num_rows > 0) {
+    		$localObjects = array ();
+    		while ( $row = $result->fetch_assoc () ) {
+    			$anObject = Array ();
+    			$anObject ["primary_key"] = $this->primary_key;
+    			$anObject ["table_name"] = $this->table_name;
+    			foreach ( $row as $aRowName => $aValue ) {
+    				$anObject [$aRowName] = $aValue;
+    			}
+    			
+    			$localObjects [$row [$this->primary_key]] = $anObject;
+    		}
+    		
+    		$conn->close ();
+    		return $localObjects;
+    	}
+    	$conn->close ();
+    	return null;
+    }
+    
+    function getListOfAllDBObjectsWithTeacher() {
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+    	
+    	$internalAttributes = get_object_vars ( $this);
+    	
+    	$sql = "SELECT * FROM `" . $this->table_name . "` nt
+		JOIN teacher_nature_time tnt ON tnt.id_nature_time = nt.id_nature_time
+		JOIN teacher t ON tnt.id_teacher = t.id_teacher
+		ORDER BY t.code, nt.day DESC";
+    	
+    	$result = $conn->query ( $sql );
+    	//echo $sql;
     	if ($result->num_rows > 0) {
     		$localObjects = array ();
     		while ( $row = $result->fetch_assoc () ) {
