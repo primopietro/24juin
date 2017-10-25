@@ -85,7 +85,7 @@ if (isset ( $rights ['view'] )) {
 		$aListOfNatureTime = $aNatureTime->getNatureTime($user->getFk_teacher());
 	} else{
 		$aListOfNatureTime = $aNatureTime->getNatureTime($_SESSION['filter']);
-		$default .= "<script id='thisScript'>$('#tempAdd').remove();$('#thisScript').remove();<script>";
+		$default .= "<script id='thisScript'>$('#tempAdd').remove();$('#thisScript').remove();</script>";
 	}
 	
 	if ($aListOfNatureTime != null) {
