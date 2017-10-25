@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2017 at 08:14 PM
+-- Generation Time: Oct 24, 2017 at 10:01 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -42,8 +42,7 @@ CREATE TABLE `building` (
 INSERT INTO `building` (`id_building`, `name`, `address`, `nb_classrooms`) VALUES
 (1, 'Pavillon 2', '1050 rue lo', 30),
 (2, 'Pav2', '1122', 6),
-(3, 'pav4', '15', 6),
-(4, 'r', 'r', 2);
+(3, 'pav4', '15', 6);
 
 -- --------------------------------------------------------
 
@@ -257,15 +256,7 @@ CREATE TABLE `nature_time` (
 --
 
 INSERT INTO `nature_time` (`id_nature_time`, `hours`, `day`) VALUES
-(12, 35.5, '2017-10-03'),
-(13, 1, '2017-10-26'),
-(14, 1, '2017-10-28'),
-(15, 1, '2017-10-27'),
-(16, 4, '2017-10-26'),
-(17, 1, '2017-10-26'),
-(18, 7, '2017-10-30'),
-(20, 1, '2017-10-06'),
-(21, 1, '2017-10-04');
+(12, 35.5, '2017-10-03');
 
 -- --------------------------------------------------------
 
@@ -534,12 +525,7 @@ INSERT INTO `right_object_role` (`id_right_object_role`, `id_right`, `id_object`
 (98, 1, 16, 2),
 (99, 2, 16, 2),
 (100, 3, 16, 2),
-(101, 4, 16, 2),
-(102, 1, 16, 1),
-(103, 2, 16, 1),
-(104, 3, 16, 1),
-(105, 4, 16, 1),
-(106, 3, 16, 3);
+(101, 4, 16, 2);
 
 -- --------------------------------------------------------
 
@@ -636,12 +622,7 @@ CREATE TABLE `teacher_nature_time` (
 --
 
 INSERT INTO `teacher_nature_time` (`id_teacher_nature_time`, `id_teacher`, `id_nature_time`) VALUES
-(6, 1, 12),
-(7, 2, 16),
-(8, 2, 17),
-(9, 2, 18),
-(11, 1, 20),
-(12, 3, 21);
+(6, 1, 12);
 
 -- --------------------------------------------------------
 
@@ -711,20 +692,17 @@ CREATE TABLE `timeslot_week` (
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `fk_teacher` int(11) NOT NULL
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `name`, `password`, `fk_teacher`) VALUES
-(1, 'admin', 'password', 0),
-(2, 'client', 'password', 1),
-(3, 'gestion', 'password', 0),
-(4, 'ZoretiBo', '12345', 2),
-(5, 'primoPi', 'test', 3);
+INSERT INTO `user` (`id_user`, `name`, `password`) VALUES
+(1, 'admin', 'password'),
+(2, 'client', 'password'),
+(3, 'gestion', 'password');
 
 -- --------------------------------------------------------
 
@@ -745,8 +723,7 @@ CREATE TABLE `user_role` (
 INSERT INTO `user_role` (`id_user_role`, `id_user`, `id_role`) VALUES
 (1, 1, 1),
 (2, 2, 2),
-(3, 3, 3),
-(4, 4, 2);
+(3, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -1123,7 +1100,7 @@ ALTER TABLE `zone`
 -- AUTO_INCREMENT for table `building`
 --
 ALTER TABLE `building`
-  MODIFY `id_building` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_building` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `building_classroom`
 --
@@ -1188,7 +1165,7 @@ ALTER TABLE `holiday`
 -- AUTO_INCREMENT for table `nature_time`
 --
 ALTER TABLE `nature_time`
-  MODIFY `id_nature_time` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_nature_time` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `object`
 --
@@ -1218,7 +1195,7 @@ ALTER TABLE `program_pedago_day`
 -- AUTO_INCREMENT for table `program_qualification`
 --
 ALTER TABLE `program_qualification`
-  MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `qualification`
 --
@@ -1233,7 +1210,7 @@ ALTER TABLE `qualificationteached_timeslot`
 -- AUTO_INCREMENT for table `qualification_teached`
 --
 ALTER TABLE `qualification_teached`
-  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `right`
 --
@@ -1243,7 +1220,7 @@ ALTER TABLE `right`
 -- AUTO_INCREMENT for table `right_object_role`
 --
 ALTER TABLE `right_object_role`
-  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 --
 -- AUTO_INCREMENT for table `role`
 --
@@ -1273,7 +1250,7 @@ ALTER TABLE `teacher_holiday`
 -- AUTO_INCREMENT for table `teacher_nature_time`
 --
 ALTER TABLE `teacher_nature_time`
-  MODIFY `id_teacher_nature_time` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_teacher_nature_time` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `teacher_qualification`
 --
@@ -1298,12 +1275,12 @@ ALTER TABLE `timeslot_week`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id_user_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_user_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `week`
 --
