@@ -142,7 +142,7 @@ $(document).on("click", ".action", function() {
 				console.log("Starting login started");
 			}
 		}).done(function(response) {
-			if (response == "success") {
+			if (response.includes("success") && !response.includes("fail")) {
 				console.log("Login success");
 				location.reload();
 			} else {
@@ -220,7 +220,7 @@ $(document).on("click", ".action", function() {
 					console.log("Beginning of add object ");
 				}
 			}).done(function(response) {
-				if(response == "success"){
+				if(response.includes("success") && !response.includes("fail")){
 					toastr.success('Création d\élélment a reussi', 'Succès');
 					console.log("Add object success");
 					
@@ -266,7 +266,7 @@ $(document).on("click", ".action", function() {
 					console.log("Beginning of update object ");
 				}
 			}).done(function(response) {
-				if( response.includes("success")){
+				if(response.includes("success") && !response.includes("fail")){
 					toastr.success('Élément mis à jour avec succès', 'Succès');
 					console.log("Update object success");
 					
@@ -304,7 +304,7 @@ $(document).on("click", ".action", function() {
 					console.log("Beginning of delete object ");
 				}
 			}).done(function(response) {
-				if(response == "success"){
+				if(response.includes("success") && !response.includes("fail")){
 					console.log("Delete object success");
 					toastr.success('Suppresion d\'élélment a reussi', 'Succès');
 					
