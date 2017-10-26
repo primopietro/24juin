@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2017 at 08:14 PM
+-- Generation Time: Oct 26, 2017 at 08:22 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -185,7 +185,7 @@ CREATE TABLE `fixed_holiday` (
 CREATE TABLE `group` (
   `id_group` int(11) NOT NULL,
   `code` varchar(25) NOT NULL,
-  `year` date NOT NULL
+  `year` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -193,10 +193,7 @@ CREATE TABLE `group` (
 --
 
 INSERT INTO `group` (`id_group`, `code`, `year`) VALUES
-(12, 'G1', '2017-10-03'),
-(13, 'G2', '2017-10-06'),
-(14, 'G3', '2017-10-04'),
-(15, 'G4', '2017-10-03');
+(18, 'uh', '2017-2018');
 
 -- --------------------------------------------------------
 
@@ -221,13 +218,6 @@ CREATE TABLE `group_teacher` (
   `id_group` int(11) NOT NULL,
   `id_teacher` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `group_teacher`
---
-
-INSERT INTO `group_teacher` (`id_group_teacher`, `id_group`, `id_teacher`) VALUES
-(11, 12, 1);
 
 -- --------------------------------------------------------
 
@@ -265,7 +255,8 @@ INSERT INTO `nature_time` (`id_nature_time`, `hours`, `day`) VALUES
 (17, 1, '2017-10-26'),
 (18, 7, '2017-10-30'),
 (20, 1, '2017-10-06'),
-(21, 1, '2017-10-04');
+(21, 1, '2017-10-04'),
+(22, 1, '2017-10-05');
 
 -- --------------------------------------------------------
 
@@ -299,7 +290,9 @@ INSERT INTO `object` (`id_object`, `name`, `isMenu`, `icon`) VALUES
 (13, 'building_classroom', 0, '<i class="fa fa-edit"></i>'),
 (14, 'program_qualification', 0, '<i class="fa fa-edit"></i>'),
 (15, 'group_teacher', 0, '	\r\n<i class="fa fa-edit"></i>'),
-(16, 'nature_time', 1, '<i class="fa fa-clock-o"></i>');
+(16, 'nature_time', 1, '<i class="fa fa-clock-o"></i>'),
+(17, 'year', 1, '<i class="fa fa-calendar"></i>'),
+(18, 'qualification_teached', 1, '<i class="fa fa-graduation-cap"></i>');
 
 -- --------------------------------------------------------
 
@@ -412,8 +405,16 @@ CREATE TABLE `qualificationteached_timeslot` (
 CREATE TABLE `qualification_teached` (
   `id_qualification_teached` int(11) NOT NULL,
   `id_qualification` int(11) NOT NULL,
-  `year` date NOT NULL
+  `year` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `qualification_teached`
+--
+
+INSERT INTO `qualification_teached` (`id_qualification_teached`, `id_qualification`, `year`) VALUES
+(7, 9, '2017-2018'),
+(8, 11, '2017-2018');
 
 -- --------------------------------------------------------
 
@@ -539,7 +540,20 @@ INSERT INTO `right_object_role` (`id_right_object_role`, `id_right`, `id_object`
 (103, 2, 16, 1),
 (104, 3, 16, 1),
 (105, 4, 16, 1),
-(106, 3, 16, 3);
+(106, 3, 16, 3),
+(107, 1, 17, 1),
+(108, 2, 17, 1),
+(109, 3, 17, 1),
+(114, 1, 18, 1),
+(115, 3, 18, 1),
+(116, 4, 18, 1),
+(118, 1, 17, 3),
+(119, 2, 17, 3),
+(120, 3, 17, 3),
+(121, 1, 18, 3),
+(122, 3, 18, 3),
+(123, 4, 18, 3),
+(124, 3, 17, 2);
 
 -- --------------------------------------------------------
 
@@ -604,8 +618,7 @@ CREATE TABLE `teacher` (
 
 INSERT INTO `teacher` (`id_teacher`, `code`, `first_name`, `family_name`) VALUES
 (1, 'proulxMa', 'Maxime', 'Proulx'),
-(2, 'zoretibo', 'Boris', 'Zoretic'),
-(3, 'primoPi', 'Pietro', 'Primo');
+(2, 'zoretibo', 'Boris', 'Zoretic');
 
 -- --------------------------------------------------------
 
@@ -641,7 +654,7 @@ INSERT INTO `teacher_nature_time` (`id_teacher_nature_time`, `id_teacher`, `id_n
 (8, 2, 17),
 (9, 2, 18),
 (11, 1, 20),
-(12, 3, 21);
+(13, 2, 22);
 
 -- --------------------------------------------------------
 
@@ -723,8 +736,7 @@ INSERT INTO `user` (`id_user`, `name`, `password`, `fk_teacher`) VALUES
 (1, 'admin', 'password', 0),
 (2, 'client', 'password', 1),
 (3, 'gestion', 'password', 0),
-(4, 'ZoretiBo', '12345', 2),
-(5, 'primoPi', 'test', 3);
+(4, 'ZoretiBo', '12345', 2);
 
 -- --------------------------------------------------------
 
@@ -770,8 +782,18 @@ CREATE TABLE `week` (
 
 CREATE TABLE `year` (
   `id_year` int(11) NOT NULL,
-  `year` date NOT NULL
+  `year` varchar(25) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `year`
+--
+
+INSERT INTO `year` (`id_year`, `year`, `start_date`, `end_date`) VALUES
+(1, '2017-2018', '2017-08-15', '2018-08-15'),
+(2, '2018-2019', '2018-07-15', '2019-08-15');
 
 -- --------------------------------------------------------
 
@@ -1173,7 +1195,7 @@ ALTER TABLE `fixed_holiday`
 -- AUTO_INCREMENT for table `group`
 --
 ALTER TABLE `group`
-  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `group_teacher`
 --
@@ -1188,12 +1210,12 @@ ALTER TABLE `holiday`
 -- AUTO_INCREMENT for table `nature_time`
 --
 ALTER TABLE `nature_time`
-  MODIFY `id_nature_time` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_nature_time` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `object`
 --
 ALTER TABLE `object`
-  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `pedago_day`
 --
@@ -1233,7 +1255,7 @@ ALTER TABLE `qualificationteached_timeslot`
 -- AUTO_INCREMENT for table `qualification_teached`
 --
 ALTER TABLE `qualification_teached`
-  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `right`
 --
@@ -1243,7 +1265,7 @@ ALTER TABLE `right`
 -- AUTO_INCREMENT for table `right_object_role`
 --
 ALTER TABLE `right_object_role`
-  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 --
 -- AUTO_INCREMENT for table `role`
 --
@@ -1263,7 +1285,7 @@ ALTER TABLE `schedule_timeslot`
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `id_teacher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_teacher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `teacher_holiday`
 --
@@ -1273,7 +1295,7 @@ ALTER TABLE `teacher_holiday`
 -- AUTO_INCREMENT for table `teacher_nature_time`
 --
 ALTER TABLE `teacher_nature_time`
-  MODIFY `id_teacher_nature_time` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_teacher_nature_time` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `teacher_qualification`
 --
@@ -1298,7 +1320,7 @@ ALTER TABLE `timeslot_week`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user_role`
 --
@@ -1313,7 +1335,7 @@ ALTER TABLE `week`
 -- AUTO_INCREMENT for table `year`
 --
 ALTER TABLE `year`
-  MODIFY `id_year` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_year` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `year_fixed_holiday`
 --
