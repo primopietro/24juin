@@ -2,6 +2,10 @@ table{
 	cursor: default;
 }
 
+li #logout { 
+    cursor:pointer;
+}
+
 .content {
      min-height:0px !important;
 }
@@ -22,7 +26,7 @@ li.treeview.menu-open.active ul {
 }
 .login-box, .register-box {
     width: 360px;
-    margin: 7% 17vw;
+    margin: 20% 17vw;
 }
 
 .modal{
