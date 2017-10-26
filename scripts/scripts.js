@@ -418,7 +418,20 @@ $(document).on("click", ".action", function() {
 			}
 			
 		}).always(function() {
-			location.reload();
+			
+			
+			$.ajax({
+				url : ajaxPath + "vue/header/header.php",
+				beforeSend : function() {
+					console.log("getting new header started");
+				}
+			}).done(function(data) {
+				$(".main-header").html(data);
+				console.log(" getting new header success");
+
+			}).always(function() {
+				console.log(" getting new header finished");
+			});
 		});	
 	
 	}
