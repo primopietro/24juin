@@ -124,7 +124,7 @@ $(document).on("click", ".treeview-menu a", function() {
 	console.log(actionName);
 	console.log(navigation);
 	var actions = "navigation=" + navigation + "&action=" + actionName;
-	if(navigation != "year"){
+	if(actionName == "view"){
 		getNewView(actions);
 	}
 	
