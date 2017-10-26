@@ -138,7 +138,9 @@ function getNewView(actions) {
 		}
 	}).done(function(data) {
 		console.log(" getting new body success");
-		$("#mainContent").html(data);
+		$("#mainContent").fadeOut(500, function(data) {
+			  $(this).html(data).fadeIn(500);
+		});
 
 	}).always(function() {
 		disableLoader();

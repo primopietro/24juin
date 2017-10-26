@@ -11,8 +11,6 @@ if(isset($_GET['actions']) ||isset( $_SESSION['current_page'])){
 
 ?>
 
-
-
 <?php 
 
 require_once "vue/body/viewManager.php";
