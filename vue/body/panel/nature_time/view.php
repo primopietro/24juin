@@ -35,7 +35,7 @@ if (isset ( $rights ['view'] )) {
             <div class='box-header'>
               <h3 class='box-title'>Liste des temps de nature</h3>";
 	
-	if (isset ( $rights ['add'] ) && $_SESSION['filter'] != 0) {
+	if (isset ( $rights ['add'] )) {
 		$default .= "<br>  <a class='action' id='tempAdd' action='add' objtype='" . $objName . "'>Ajouter </a>";
 	}
 	if($user)
@@ -85,7 +85,9 @@ if (isset ( $rights ['view'] )) {
 		$aListOfNatureTime = $aNatureTime->getNatureTime($user->getFk_teacher());
 	} else{
 		$aListOfNatureTime = $aNatureTime->getNatureTime($_SESSION['filter']);
-		$default .= "<script id='thisScript'>$('#tempAdd').remove();$('#thisScript').remove();<script>";
+		if($_SESSION['filter'] == 0){
+			$default .= "<script id='thisScript'>$('#tempAdd').remove();$('#thisScript').remove();</script>";
+		}
 	}
 	
 	if ($aListOfNatureTime != null) {

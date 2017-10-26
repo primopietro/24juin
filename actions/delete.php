@@ -20,7 +20,10 @@ if(isset($_POST)){
 		}else if ($objType== "program"){
 		    $anObject = new Program();
 		} else if ($objType== "teacher"){
+			require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_user.php";
 		    $anObject = new Teacher();
+		    $aUser = new User();
+		    $aUser->deleteFromDBWhere("fk_teacher", "=", $idObj);
 		} else if ($objType== "classroom"){
 		    $anObject = new Classroom();
 		} else if ($objType== "customer"){
