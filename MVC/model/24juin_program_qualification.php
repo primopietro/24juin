@@ -69,7 +69,7 @@ class ProgramQualification extends BaseModel {
     public function getProgramQualification()
     {
         require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_program.php';
-        require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_qualification.php';
+        require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_qualification_teached.php';
         
         $program = new Program();
         $aProgramList = $program->getProgram();
@@ -91,9 +91,9 @@ class ProgramQualification extends BaseModel {
                     if($ProgramQualificationList != null){
                         if(sizeof($ProgramQualificationList)>0){
                             foreach($ProgramQualificationList as $localTQ){
-                                $aQualification = new Qualification();
-                                $aQualification = $aQualification->getObjectFromDB($localTQ['id_qualification']);
-                                $finalList[$anObject['id_program']]['qualifications'][] = $aQualification;
+                                $aQualificationTeached = new QualificationTeached();
+                                $aQualificationTeached = $aQualificationTeached->getObjectFromDB($localTQ['id_qualification']);
+                                $finalList[$anObject['id_program']]['qualifications'][] = $aQualificationTeached;
                             }
                         }
                     }
