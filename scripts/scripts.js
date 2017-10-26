@@ -124,7 +124,10 @@ $(document).on("click", ".treeview-menu a", function() {
 	console.log(actionName);
 	console.log(navigation);
 	var actions = "navigation=" + navigation + "&action=" + actionName;
-	getNewView(actions);
+	if(navigation != "year"){
+		getNewView(actions);
+	}
+	
 
 });
 
@@ -419,7 +422,8 @@ $(document).on("click", ".action", function() {
 			
 		}).always(function() {
 			
-			
+			getNewView();
+
 			$.ajax({
 				url : ajaxPath + "vue/header/header.php",
 				beforeSend : function() {
