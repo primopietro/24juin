@@ -138,8 +138,8 @@ function getNewView(actions) {
 		}
 	}).done(function(data) {
 		console.log(" getting new body success");
-		$("#mainContent").fadeOut(500, function() {
-			  $(this).html(data).fadeIn(500);
+		$("#mainContent").fadeOut(200, function() {
+			  $(this).html(data).fadeIn(200);
 		});
 
 	}).always(function() {
