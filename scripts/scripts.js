@@ -39,6 +39,79 @@ $(document).on("change", "#teacher_nature_time", function() {
 	})
 });
 
+//check if qualification teached exist, if it does remove if not add
+$(document).on("click", "#clickQualificationTeached ", function() {
+	var objType = $(this).attr("objtype");
+	var id_qualification = $(this).val();
+	$.ajax({
+		url : ajaxPath + "actions/exist.php?",
+		data : "idobj=" + id_qualification + "&objtype=" + objType,
+		type: "post",
+		beforeSend : function() {
+			enableLoader();
+			console.log("getting new body started");
+		}
+	}).done(function(response) {
+		if (response.includes("success") && !response.includes("fail")) {
+			removeQualificationTeached(objType, id_qualification);
+		} else{
+			addQualificationTeached(objType, id_qualification);
+		}
+
+	})
+});
+
+function addQualificationTeached(objType, id_qualification){
+	dataToBeSent = "objType=" + objType + "&id_qualification=" + id_qualification;
+	$.ajax({
+		url : ajaxPath + "actions/add.php",
+		data : dataToBeSent,
+		type : 'POST',
+		beforeSend : function() {
+			enableLoader();
+			console.log("Beginning of add object ");
+		}
+	}).done(function(response) {
+		if(response.includes("success") && !response.includes("fail")){
+			toastr.success('Création d\élélment a reussi', 'Succès');
+			console.log("Add object success");
+			
+		}else{
+			toastr.error('Création d\'élélment n\'a pas reussi', 'Erreur!');
+			console.log("Add object failed");
+		}
+		
+	})
+}
+
+function removeQualificationTeached(objType, id_qualification){
+	
+	var dataToBeSent ="&idobj="+ id_qualification +"&objtype="+objType;
+	$.ajax({
+		url : ajaxPath + "actions/delete.php",
+		data : dataToBeSent,
+		type : 'POST',
+		beforeSend : function() {
+			enableLoader();
+			console.log("Beginning of delete object ");
+		}
+	}).done(function(response) {
+		if(response.includes("success") && !response.includes("fail")){
+			console.log("Delete object success");
+			toastr.success('Suppresion d\'élélment a reussi', 'Succès');
+			
+		}else{
+			toastr.error('Suppresion d\'élélment n\'a pas reussi', 'Erreur!');
+			console.log("Delete object failed");
+		}
+		
+	}).always(function() {
+		disableLoader();
+		getNewView();
+		console.log("End of delete object ");
+	});	
+}
+
 $(document).on("click", ".treeview ", function() {
 	$(".treeview ").removeClass("active");
 	$(this).addClass("active");
@@ -319,6 +392,32 @@ $(document).on("click", ".action", function() {
 				console.log("End of delete object ");
 			});	
 	    } 
+	
+	}else if(actionName == "session"){
+    	var idobj = $(this).attr("idobj");
+		var objType = $(this).attr("objtype");
+		var dataToBeSent ="&idobj="+ idobj+"&objtype="+objType+"&value=" + $(this).text();
+		$.ajax({
+			url : ajaxPath + "actions/session.php",
+			data : dataToBeSent,
+			type : 'POST',
+			beforeSend : function() {
+				//enableLoader();
+				console.log("Beginning of session change ");
+			}
+		}).done(function(response) {
+			if(response.includes("success") && !response.includes("fail")){
+				console.log("Session change success");
+				toastr.success("Changement d'année réussi", 'Succès');
+				
+			}else{
+				toastr.error("Changement d'année n'a pas réussi", 'Erreur!');
+				console.log("Session change failed");
+			}
+			
+		}).always(function() {
+			location.reload();
+		});	
 	
 	}
 

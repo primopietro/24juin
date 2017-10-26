@@ -8,7 +8,7 @@ if(isset($_POST)){
 	//Get variables
 	$objType = htmlspecialchars($_POST['objtype']);
 	$idObj =  htmlspecialchars($_POST['idobj']);
-	$rights =checkUserRights($objType, $_SESSION ['rightList']);
+	$rights = checkUserRights($objType, $_SESSION ['rightList']);
 	//If has right to add, proceed
 	if(isset($rights['delete'])){
 		require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_".$objType.".php";
@@ -38,6 +38,12 @@ if(isset($_POST)){
 		    $anObject = new Building();
 		} else if ($objType== "nature_time"){
 			$anObject = new NatureTime();
+		} else if ($objType== "qualification_teached"){
+			$anObject = new QualificationTeached();
+			$aQualificationTeached = $anObject->getObjectWhereYearAndIdQualification($_SESSION['year'], $idObj);
+			if($aQualificationTeached != null){
+				$idObj = $aQualificationTeached['id_qualification_teached'];
+			}
 		}
 	
 		echo $anObject->deleteFromDB($idObj);

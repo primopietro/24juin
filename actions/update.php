@@ -39,6 +39,8 @@ if (isset($_POST)) {
             $anObject = new Building();
         } else if ($objType == "nature_time") {
         	$anObject = new NatureTime();
+        } else if ($objType == "year") {
+        	$anObject = new Year();
         }else if ($objType == "teacher_qualification") {
             
             $anObject = new TeacherQualification();
@@ -128,6 +130,7 @@ if (isset($_POST)) {
         $tempSetId .= $objType;
         $anObject->$tempSetId($idobj);
         
+        $year = array();
         // for each value in POST
         foreach ($_POST as $keyName => $keyValue) {
             $setter = "set";
@@ -135,6 +138,16 @@ if (isset($_POST)) {
             $temp = ucfirst($temp);
             $setter .= $temp;
             $anObject->$setter($keyValue);
+            if($objType == "year" && ($keyName == "start_date" || $keyName == "end_date")){
+            	array_push($year, $keyValue);
+            }
+        }
+        
+        if ($objType== "year"){
+        	$start = date("Y", strtotime($year[0]));
+        	$end = date("Y", strtotime($year[1]));
+        	
+        	$anObject->setYear($start . "-" . $end);
         }
         
         $anObject->updateDBObject();

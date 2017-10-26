@@ -1,6 +1,8 @@
 <?php
 require_once '/../translator.php';
 require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_user.php";
+require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_year.php";
+
 if (! isset ( $_SESSION )) {
 	session_start ();
 }
@@ -33,7 +35,7 @@ $default = "<div class='wrapper'>
         <span class='sr-only'>Toggle navigation</span>
       </a>
 <div class='navbar-custom-menu'>
-        <ul class='nav navbar-nav'>
+        <ul class='nav navbar-nav'><li class='yearHeader'>".$_SESSION['year']."</li>
           <li>
             <a id='logout'>
             <i class='fa fa-sign-out'></i> Déconnexion
@@ -93,11 +95,28 @@ if (isset ( $_SESSION ["rightList"] )) {
 	            $right=frenchTranslator ($aLocalRight['name']);
 	            if($aLocalRight['name'] == "view"  ){
 	                
-	                $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>" .$right . "</a></li> ";
+	                $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>" .$right . "</a>";
+	                
+	                if($localItem ['object'] ['name'] == "year"){
+	                	$aYear = new Year();
+	                	$aListOfYear = $aYear->getActiveYear();
+	                	
+	                	if($aListOfYear != null){
+	                		foreach($aListOfYear as $theYear){
+	                			$default .= "<a class='action' action='session' idobj='".$theYear['id_year']."' objtype='year'><i class='fa fa-circle-o'></i>" .$theYear['year']. "</a>";
+	                		}
+	                	}
+	                	
+	                }
+	                
+	                $default .= "</li> ";
+	                
 	                  
 	             
 	            }
 	        }
+	        
+	        
 	        
 	        
 	        $default .= getSubMenuItem($localItem,$tempRights);

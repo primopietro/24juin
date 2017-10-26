@@ -3,6 +3,7 @@ if(!isset($_SESSION)){session_start();}
 
 
 require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_user.php";
+require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_year.php";
 
 require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_user_role.php";
 //Get variables
@@ -87,6 +88,25 @@ if($aUser->checkPassword()) {
     $_SESSION['current_user'] = serialize($aUser);
     $_SESSION['current_user_role'] = serialize($userRoles);
     $_SESSION['filter'] = 0;
+    $_SESSION['id_year'] = 0;
+    $_SESSION['year'] = '';
+    
+    $aYear = new Year();
+    $aListOfYear = $aYear->getActiveYear();
+    
+    date_default_timezone_set('UTC');
+    $todayDate = date('Y-m-d');
+    
+    if($aListOfYear != null){
+    	foreach($aListOfYear as $theYear){
+    		
+    		if($theYear['start_date'] < $todayDate && $theYear['end_date'] > $todayDate){
+    			$_SESSION['id_year'] = $theYear['id_year'];
+    			$_SESSION['year'] = $theYear['year'];
+    		}
+    	}
+    }
+    
     echo "success";
 }else{
     echo "fail";

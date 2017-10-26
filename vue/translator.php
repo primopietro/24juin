@@ -73,6 +73,10 @@ function frenchtranslator($word){
         
     } else if($word == "nature_time"){
     	return "Temps de nature";
+    } else if($word == "year"){
+    	return "Années";
+    } else if($word == "qualification_teached"){
+    	return "Compétences enseignées";
     }
     else{
         return $word;

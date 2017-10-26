@@ -1,5 +1,6 @@
 <?php
 require_once 'BaseModel.php';
+if(!isset($_SESSION)){session_start();}
 class Group extends BaseModel {
 	protected $table_name = 'group';
 	protected $primary_key = "id_group";
@@ -74,7 +75,9 @@ class Group extends BaseModel {
         $content = '';
         if($aListOfGroup != null){
             foreach($aListOfGroup as $aGroup){
-                $content .= $this->getEachGroupComponentList($aGroup,$canBeUpdated,$canBeDeleted);
+            	if($aGroup['year'] == $_SESSION['year']){
+                	$content .= $this->getEachGroupComponentList($aGroup,$canBeUpdated,$canBeDeleted);
+            	}
             }
         }
         
@@ -82,13 +85,10 @@ class Group extends BaseModel {
     }
     
     function getEachGroupComponentList($aGroup,$canBeUpdated,$canBeDeleted){
-        $format = 'Y-m-d';
-        $year = DateTime::createFromFormat($format, $aGroup['year']);
-        
         $line = '';
         $line .= "<tr>";
         $line .= "<td>" . $aGroup['code'] . "</td>";
-        $line .= "<td>" . $year->format('Y') . "</td>";
+        $line .= "<td>" . $aGroup['year'] . "</td>";
         if($canBeUpdated){
             $line .= "<td><a objtype='".$aGroup['table_name']."' action='update' class='action' idobj='".  $aGroup['id_group']."'><i class='fa fa-pencil text-green'></i></a></td>";
         }
