@@ -65,4 +65,43 @@ class RightObjectRole extends BaseModel {
         return $this;
     }
 
+    public function getListOfAllDBObjectsWhere($argument,$operation, $value) {
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars ( $this);
+        
+        $sql = "SELECT * FROM `" . $this->table_name . "`";
+        
+        if($this->table_name == "right_object_role"){
+            $sql .= " JOIN object ON object.id_object = right_object_role.id_object ";
+        }
+        
+        $sql .= "WHERE ".$argument. " ".$operation." ".$value." ";
+        
+        if($this->table_name == "right_object_role"){
+            $sql .= " ORDER BY object.name";
+        }
+        
+        
+        $result = $conn->query ( $sql );
+        
+        if ($result->num_rows > 0) {
+            $localObjects = array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject = Array ();
+                $anObject ["primary_key"] = $this->primary_key;
+                $anObject ["table_name"] = $this->table_name;
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                }
+                
+                $localObjects [$row [$this->primary_key]] = $anObject;
+            }
+            
+            $conn->close ();
+            return $localObjects;
+        }
+        $conn->close ();
+        return null;
+    }
 }
