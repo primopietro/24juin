@@ -80,8 +80,8 @@ if (isset($_POST)) {
         } else if ($objType == "program_qualification") {
             
             $anObject = new ProgramQualification();
-            // Delete old values
-            $anObject->deleteFromDBWhere("id_program", " = ", $idobj);
+            
+            $anObject->deleteFromDBWhereAndProgram($idobj, $_SESSION['year']);
             
             if (isset($_POST['qualifications'])) {
                 $qualifications = $_POST['qualifications'];

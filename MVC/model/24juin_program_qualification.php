@@ -119,7 +119,9 @@ class ProgramQualification extends BaseModel {
             if($aProgramQualification['qualifications'] != null){
                 if(sizeof($aProgramQualification['qualifications'])>0){
                     foreach($aProgramQualification['qualifications'] as $aQualification){
-                        $line .= $aQualification['code']  . " - " . $aQualification['name'] ."<br>";
+                    	if($aQualification['year'] == $_SESSION['year']){
+                        	$line .= $aQualification['code']  . " - " . $aQualification['name'] ."<br>";
+                    	}
                     }
                     
                 }
@@ -147,6 +149,51 @@ class ProgramQualification extends BaseModel {
             }
         }
         return $content;
+    }
+    
+    function getObjectFromDBWithQualification($primary_key) {
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+    	
+    	$internalAttributes = get_object_vars ( $this );
+    	
+    	if($this->primary_key == "order"){
+    		$this->primary_key = "name";
+    	}
+    	
+    	$sql = "SELECT * FROM `" . $this->table_name . "` pq 
+		JOIN qualification_teached qt ON pq.id_qualification = qt.id_qualification_teached WHERE " . $this->primary_key . " = '" .$primary_key ."'";
+    	$result = $conn->query ( $sql );
+    	
+    	if ($result->num_rows > 0) {
+    		$anObject = Array ();
+    		while ( $row = $result->fetch_assoc () ) {
+    			$anObject ["primary_key"] = $this->primary_key;
+    			$anObject ["table_name"] = $this->table_name;
+    			foreach ( $row as $aRowName => $aValue ) {
+    				$anObject [$aRowName] = $aValue;
+    				$this->$aRowName = $aValue;
+    			}
+    		}
+    		$conn->close ();
+    		return $anObject;
+    	}
+    	$conn->close ();
+    	return null;
+    }
+    
+    function deleteFromDBWhereAndProgram($id_program, $year) {
+    	$sql = "DELETE pq FROM `" . $this->table_name . "` pq 
+ 		JOIN qualification_teached qt ON qt.id_qualification_teached = pq.id_qualification
+		WHERE id_program = " . $id_program . " AND qt.year = '" . $year . "'";
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+    	
+    	if ($conn->query ( $sql ) === TRUE) {
+    		return "success";
+    	} else {
+    		return  "fail";
+    	}
+    	
+    	$conn->close ();
     }
 
 }
