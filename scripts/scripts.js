@@ -18,10 +18,11 @@ $(function() {
 })
 $(document).on("click", "#closeModal", function() {
 	$("#objModal").modal("hide");
+	
 	setTimeout(function() {
 		$("#objModal").remove();
 		$(".modal-backdrop.fade.in").remove();
-	}, 300);
+	}, 700);
 
 });
 
@@ -282,6 +283,7 @@ $(document)
 											}
 										}).done(function(response) {
 									$("body").append(response);
+									
 									console.log("Modal obtained successfully");
 
 								}).always(function() {

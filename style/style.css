@@ -43,6 +43,9 @@ li.treeview.menu-open.active ul {
     color: #3c8dbc;
 }
 */
+.modal-backdrop,.modal {
+	transition:0.3s all linear !important;
+}
 *{
 	transition:0.3s color linear !important;
 }
