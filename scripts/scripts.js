@@ -41,6 +41,22 @@ $(document).on("change", "#teacher_nature_time", function() {
 	})
 });
 
+//filter program pedagoDay
+$(document).on("change", "#program_pedago_day", function() {
+	$.ajax({
+		url : ajaxPath + "actions/session.php?",
+		data : "fk_program=" + $(this).val(),
+		type: "post",
+		beforeSend : function() {
+			enableLoader();
+			console.log("getting new body started");
+		}
+	}).done(function(data) {
+		getNewView();
+
+	})
+});
+
 // check if qualification teached exist, if it does remove if not add
 $(document).on("click", "#clickQualificationTeached ", function() {
 	var objType = $(this).attr("objtype");

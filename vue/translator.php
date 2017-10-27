@@ -78,6 +78,15 @@ function frenchtranslator($word){
     } else if($word == "qualification_teached"){
     	return "Compétences enseignées";
     }
+    else if($word=="pedago_day_all")
+    {
+        return "Journée pédagogique";
+        
+    }else if($word=="pedago_day")
+    {
+        return "Journée pédagogique de programme";
+        
+    }
     else{
         return $word;
     }

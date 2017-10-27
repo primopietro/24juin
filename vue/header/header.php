@@ -195,6 +195,23 @@ function getSubMenuItem($localItem,$tempRights){
             
         }
     }
+    if($localItem ['object'] ['name'] == "pedago_day_all"){
+        foreach ($tempRights as $localItem ) {
+            
+            if($localItem ['object'] ['name'] == "pedago_day"){
+                foreach ( $localItem ['rights'] as $aLocalRight ) {
+                    $right=frenchTranslator ($aLocalRight['name']);
+                    if($aLocalRight['name'] == "view"  ){
+                        
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Par programme</a></li> ";
+                        
+                        
+                    }
+                }
+            }
+            
+        }
+    }
     return $default;
 }
 

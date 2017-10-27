@@ -35,6 +35,10 @@ if(isset($_POST)){
 		    $anObject = new Building();
 		} else if ($objType== "nature_time"){
 			$anObject = new NatureTime();
+		} else if ($objType== "pedago_day"){
+		    $anObject = new PedagoDay();
+		}  else if ($objType== "pedago_day_all"){
+		    $anObject = new PedagoDayAll();
 		} else if ($objType== "year"){
 			$anObject = new Year();
 		} else if ($objType== "qualification_teached"){
@@ -82,6 +86,22 @@ if(isset($_POST)){
 				$aTeacherNatureTime->setId_teacher($_SESSION['filter']);
 			}
 			$aTeacherNatureTime->addDBObject();
+		}
+		if($objType== "pedago_day"){
+		    require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_program_pedago_day.php";
+		    require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_user.php";
+		    $aProgramPedagoDay = new ProgramPedagoDay();
+		    $aProgramPedagoDay->setId_pedago_day($id);
+		    
+		    $user = new User();
+		    $user = unserialize($_SESSION['current_user']);
+		    
+		    if($_SESSION['filterPedago'] == 0){
+		        $aProgramPedagoDay->setId_program($user->getFk_program());
+		    } else{
+		        $aProgramPedagoDay->setId_program($_SESSION['filterPedago']);
+		    }
+		    $aProgramPedagoDay->addDBObject();
 		}
 	}else{
 		echo "forbidden";

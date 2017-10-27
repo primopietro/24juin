@@ -38,6 +38,10 @@ if(isset($_POST)){
 		    $anObject = new Building();
 		} else if ($objType== "nature_time"){
 			$anObject = new NatureTime();
+		} else if ($objType== "pedago_day"){
+		    $anObject = new PedagoDay();
+		}  else if ($objType== "pedago_day_all"){
+		    $anObject = new PedagoDayAll();
 		} else if ($objType== "qualification_teached"){
 			$anObject = new QualificationTeached();
 			$aQualificationTeached = $anObject->getObjectWhereYearAndIdQualification($_SESSION['year'], $idObj);
