@@ -94,3 +94,9 @@ li.treeview.menu-open.active ul {
 	background: -webkit-linear-gradient(90deg, rgb(135, 190, 240), rgb(42, 177, 185));
     background: linear-gradient(90deg, rgb(135, 190, 240), rgb(42, 177, 185));
 }
+.text-green {
+    color: #009688 !important;
+}
+.text-red {
+    color: rgba(221, 75, 57, 0.91) !important;
+}
