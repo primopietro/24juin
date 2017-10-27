@@ -81,11 +81,12 @@ if (isset ( $_SESSION ["rightList"] )) {
             <span class='pull-right-container'>
               <i class='fa fa-angle-left pull-right'></i>
             </span>
-          </a>
+      </a>
           <ul class='treeview-menu' >";
 	        //TODO: add ACTIVE page based off session variable
 	        foreach ( $localItem ['rights'] as $aLocalRight ) {
 	            $right=frenchTranslator ($aLocalRight['name']);
+	            
 	            if($aLocalRight['name'] == "view"  ){
 	                
 	                $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>" .$right . "</a>";

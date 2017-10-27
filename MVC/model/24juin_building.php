@@ -109,10 +109,10 @@ class Building extends BaseModel {
         $line .= "<td>" . $aBuilding['address'] . "</td>";
         $line .= "<td>" . $aBuilding['nb_classrooms'] . "</td>";
         if($canBeUpdated){
-            $line .= "<td><a objtype='".$aBuilding['table_name']."' action='update' class='action' idobj='".  $aBuilding['id_building']."'><i class='fa fa-pencil text-green'></i></a></td>";
+            $line .= "<td><a objtype='".$aBuilding['table_name']."' action='update' class='action btn ' idobj='".  $aBuilding['id_building']."'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
         }
         if($canBeDeleted){
-            $line .= "<td><a objtype='".$aBuilding['table_name']."' action='delete' class='action' idobj='".$aBuilding['id_building']."'><i class='fa fa-times text-red'></i></a></td>";
+            $line .= "<td><a objtype='".$aBuilding['table_name']."' action='delete' class='action btn' idobj='".$aBuilding['id_building']."'><i class='fa fa-times text-red'></i><div class='ripple-container'></div></a></td>";
         }
         $line .= "</tr>";
         

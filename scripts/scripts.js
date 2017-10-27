@@ -147,7 +147,7 @@ $(document).on("click", ".treeview-menu a", function() {
 	if (actionName == "view") {
 		getNewView(actions);
 	}
-
+	
 });
 
 function getNewView(actions) {
@@ -175,6 +175,7 @@ function getNewView(actions) {
 	}).always(function() {
 		disableLoader();
 		console.log(" getting new body finished");
+		
 	});
 }
 
@@ -571,7 +572,7 @@ $(document)
 										});
 
 					}
-
+					 $.material.init();
 				});
 function getHeader() {
 	$.ajax({
