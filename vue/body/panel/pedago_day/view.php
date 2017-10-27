@@ -37,8 +37,9 @@ if (isset ( $rights ['view'] )) {
               <h3 class='box-title'>Liste des journées pédagogiques </h3>";
 	
 	if (isset ( $rights ['add'] )) {
-		$default .= "<br>  <a class='action' id='tempAdd' action='add' objtype='" . $objName . "'>Ajouter </a>";
-	}
+	    $default .="<br><a class='btn btn-app action'  action='add' objtype='" . $objName . "'>
+                <i class='fa fa-plus'></i> Ajouter
+              <div class='ripple-container'></div></a>";}
 	if($user)
 	$default .= "<div class='box-tools'>
 			
