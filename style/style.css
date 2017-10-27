@@ -100,3 +100,7 @@ li.treeview.menu-open.active ul {
 .text-red {
     color: rgba(221, 75, 57, 0.91) !important;
 }
+.form-control[readonly]{
+	background-color: rgba(0, 0, 0, 0.03);
+    padding-left: 2px;
+}
