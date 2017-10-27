@@ -105,11 +105,11 @@ class Qualification extends BaseModel {
     	$line .= "<td>" . $aQualification['name'] . "</td>";
     	$line .= "<td>" . $aQualification['nb_hours']. "</td>";
     	if($canBeUpdated){
-    		$line .= "<td><a objtype='".$aQualification['table_name']."' action='update' class='action' idobj='".  $aQualification['id_qualification']."'><i class='fa fa-pencil text-green'></i></a></td>";
+    		$line .= "<td><a objtype='".$aQualification['table_name']."' action='update' class='action btn' idobj='".  $aQualification['id_qualification']."'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
     	}
     	if($canBeDeleted){
     		
-    		$line .= "<td><a objtype='".$aQualification['table_name']."' action='delete' class='action' idobj='".$aQualification['id_qualification']."'><i class='fa fa-times text-red'></i></a></td>";
+    		$line .= "<td><a objtype='".$aQualification['table_name']."' action='delete' class='action btn' idobj='".$aQualification['id_qualification']."'><i class='fa fa-times text-red'></i><div class='ripple-container'></div></a></td>";
     	}
     	$line .= "</tr>";
     	

@@ -86,6 +86,7 @@ if (isset ( $_SESSION ["rightList"] )) {
 	        //TODO: add ACTIVE page based off session variable
 	        foreach ( $localItem ['rights'] as $aLocalRight ) {
 	            $right=frenchTranslator ($aLocalRight['name']);
+	            
 	            if($aLocalRight['name'] == "view"  ){
 	                
 	                $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>" .$right . "</a>";

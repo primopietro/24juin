@@ -126,7 +126,7 @@ class BuildingClassroom extends BaseModel {
         
         $line .="</td>";
         if ($canBeUpdated) {
-            $line .= "<td><a objtype='building_classroom' action='update' class='action' idobj='" . $aBuildingClassroom['building']['id_building'] . "'><i class='fa fa-pencil text-green'></i></a></td>";
+            $line .= "<td><a objtype='building_classroom' action='update' class='action btn' idobj='" . $aBuildingClassroom['building']['id_building'] . "'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
         }
         $line .= "</tr>";
         

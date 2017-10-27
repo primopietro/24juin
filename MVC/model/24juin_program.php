@@ -109,10 +109,10 @@ class Program extends BaseModel {
         $line .= "<td>" . $aProgram['duration'] . "</td>";
         $line .= "<td>" . $aProgram['nb_of_qualifications'] . "</td>";
         if($canBeUpdated){
-            $line .= "<td><a objtype='".$aProgram['table_name']."' action='update' class='action' idobj='".  $aProgram['id_program']."'><i class='fa fa-pencil text-green'></i></a></td>";
+            $line .= "<td><a objtype='".$aProgram['table_name']."' action='update' class='action btn' idobj='".  $aProgram['id_program']."'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
         }
         if($canBeDeleted){
-            $line .= "<td><a objtype='".$aProgram['table_name']."' action='delete' class='action' idobj='".$aProgram['id_program']."'><i class='fa fa-times text-red'></i></a></td>";
+            $line .= "<td><a objtype='".$aProgram['table_name']."' action='delete' class='action btn' idobj='".$aProgram['id_program']."'><i class='fa fa-times text-red'></i><div class='ripple-container'></div></a></td>";
         }
         $line .= "</tr>";
         

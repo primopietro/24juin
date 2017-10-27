@@ -40,11 +40,11 @@ class NatureTime extends BaseModel {
         $line .= "<td>" . $aNatureTime['hours']. "</td>";
         $line .= "<td>" . $aNatureTime['day'] . "</td>";
         if($canBeUpdated){
-        	$line .= "<td><a objtype='".$aNatureTime['table_name']."' action='update' class='action' idobj='".  $aNatureTime['id_nature_time']."'><i class='fa fa-pencil text-green'></i></a></td>";
+        	$line .= "<td><a objtype='".$aNatureTime['table_name']."' action='update' class='action btn' idobj='".  $aNatureTime['id_nature_time']."'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
         }
         if($canBeDeleted){
             
-        	$line .= "<td><a objtype='".$aNatureTime['table_name']."' action='delete' class='action' idobj='".$aNatureTime['id_nature_time']."'><i class='fa fa-times text-red'></i></a></td>";
+        	$line .= "<td><a objtype='".$aNatureTime['table_name']."' action='delete' class='action btn' idobj='".$aNatureTime['id_nature_time']."'><i class='fa fa-times text-red'></i><div class='ripple-container'></div></a></td>";
         }
         $line .= "</tr>";
         

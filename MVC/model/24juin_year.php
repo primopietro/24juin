@@ -33,10 +33,10 @@ class Year extends BaseModel {
         $line .= "<td>" . $aYear['start_date']. "</td>";
         $line .= "<td>" . $aYear['end_date']. "</td>";
         if($canBeUpdated){
-        	$line .= "<td><a objtype='".$aYear['table_name']."' action='update' class='action' idobj='".  $aYear['id_year']."'><i class='fa fa-pencil text-green'></i></a></td>";
+        	$line .= "<td><a objtype='".$aYear['table_name']."' action='update' class='action btn' idobj='".  $aYear['id_year']."'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
         }
         if($canBeDeleted){
-        	$line .= "<td><a objtype='".$aYear['table_name']."' action='delete' class='action' idobj='".$aYear['id_year']."'><i class='fa fa-times text-red'></i></a></td>";
+        	$line .= "<td><a objtype='".$aYear['table_name']."' action='delete' class='action btn' idobj='".$aYear['id_year']."'><i class='fa fa-times text-red'></i><div class='ripple-container'></div></a></td>";
         }
         $line .= "</tr>";
         

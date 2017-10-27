@@ -77,7 +77,7 @@ class TeacherQualification extends BaseModel
    
         $line .="</td>";
         if ($canBeUpdated) {
-            $line .= "<td><a objtype='teacher_qualification' action='update' class='action' idobj='" . $aTeacherQualification['teacher']['id_teacher'] . "'><i class='fa fa-pencil text-green'></i></a></td>";
+            $line .= "<td><a objtype='teacher_qualification' action='update' class='action btn' idobj='" . $aTeacherQualification['teacher']['id_teacher'] . "'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
         }
         $line .= "</tr>";
         
