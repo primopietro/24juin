@@ -68,6 +68,8 @@ li.treeview.menu-open.active ul {
 }
 .skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
 	border-left-color: #00bbd4;
+	background-color: #1f292d;
+	box-shadow: 0 1px 6px 0 rgba(0,0,0,0.14), 0 1px 6px 0 rgba(0,0,0,0.14);
 }
 .none{
 	display: none;
