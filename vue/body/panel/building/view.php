@@ -32,6 +32,7 @@ if (isset ( $rights ['view'] )) {
                                <button type='button' class='btn btn-box-tool'
 								data-widget='collapse'>
 								<i class='fa fa-minus'></i>
+  <div class='ripple-container'></div>
 							</button>
 			
                             </div>

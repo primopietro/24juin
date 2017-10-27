@@ -81,7 +81,7 @@ if (isset ( $_SESSION ["rightList"] )) {
             <span class='pull-right-container'>
               <i class='fa fa-angle-left pull-right'></i>
             </span>
-          </a>
+      </a>
           <ul class='treeview-menu' >";
 	        //TODO: add ACTIVE page based off session variable
 	        foreach ( $localItem ['rights'] as $aLocalRight ) {
