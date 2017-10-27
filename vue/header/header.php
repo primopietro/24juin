@@ -26,14 +26,11 @@ $default = "<div class='wrapper'>
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class='logo-mini'><b>24</b>J</span>
       <!-- logo for regular state and mobile devices -->
-      <span class='logo-lg'><b>24</b>Juin</span>
+      <span class='logo-lg'  style='color:white;'><b>24</b>Juin</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class='navbar navbar-static-top'>
-      <!-- Sidebar toggle button-->
-      <a href='#' class='sidebar-toggle' data-toggle='push-menu' role='button'>
-        <span class='sr-only'>Toggle navigation</span>
-      </a>
+
 <div class='navbar-custom-menu'>
         <ul class='nav navbar-nav'><li class='yearHeader'>".$_SESSION['year']."</li>
           <li>
@@ -57,18 +54,14 @@ $default = "<div class='wrapper'>
           <img src='dist/img/user2-160x160.jpg' class='img-circle' alt='User Image'>
         </div>
         <div class='pull-left info'>
-          <p>".$user->getName()."</p>
+          <p style='    color: white;padding-top: 10px;font-size: 25px;'>".$user->getName()."</p>
        
         </div>
       </div>
-      <!-- search form -->
-      <form action='#' method='get' class='sidebar-form'>
-        
-      </form>
+    
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class='sidebar-menu' data-widget='tree'>
-        <li class='header'>Menu</li>";
+      <ul class='sidebar-menu' data-widget='tree'>";
 if (isset ( $_SESSION ["rightList"] )) {
     
     

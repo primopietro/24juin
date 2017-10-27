@@ -38,20 +38,37 @@ li.treeview.menu-open.active ul {
 .modal-backdrop.fade.in{
 	z-index:9000;	
 }
-
+/*
 .active >a >i:before {
     color: #3c8dbc;
 }
-
+*/
 *{
 	transition:0.3s color linear !important;
 }
+.skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a,.skin-blue .sidebar-menu>li>.treeview-menu  {
+	background: #222d32; 
+}
 
+.skin-blue .sidebar-menu>li>.treeview-menu,.skin-blue .sidebar-menu>li>.treeview-menu   {
+    border-left: 5px solid #00bbd4;
+}
+.skin-blue .sidebar-menu>li>a {
+    border-left: 5px solid transparent;
+}
+.sidebar-menu .action, .treeview > a  {
+    color: white !important;
+}
 .selectTeacher{
 	height: 34px;
     margin-bottom: 10px;
 }
-
+.treeview.active > a>i:before,.treeview:hover > a>i:before{
+	color:#00BCD4;
+}
+.skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
+	border-left-color: #00bbd4;
+}
 .none{
 	display: none;
 }
@@ -60,8 +77,18 @@ li.treeview.menu-open.active ul {
 	cursor: default;
     color: white;
     margin: 15px;
+    padding-top:7px;
 }
-
+.user-panel{
+	background-color:rgba(96, 125, 139, 0.19);
+}
+.content-wrapper, .right-side {
+    background-color: #ECF0F6;
+}
 .main-header > .wrapper{
 	overflow-y:hidden !important;
+}
+.skin-blue .navbar{
+	background: -webkit-linear-gradient(90deg, rgb(135, 190, 240), rgb(42, 177, 185));
+    background: linear-gradient(90deg, rgb(135, 190, 240), rgb(42, 177, 185));
 }

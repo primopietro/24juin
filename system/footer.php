@@ -43,11 +43,21 @@ delete window.exports; delete window.module;
 <!-- Toastr -->
 <script src=' bower_components/toastr/toastr.js'></script>
 <!-- AdminLTE App -->
-<script src=' dist/js/adminlte.min.js'></script>
+<script src='dist/js/material.min.js'></script>
+<script src='dist/js/ripples.min.js'></script>
+<script>
+    $.material.init();
+</script>
+<script src='dist/js/app.min.js'></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src='dist/js/pages/dashboard.js'></script>
+<!-- AdminLTE for demo purposes -->
+<script src='dist/js/demo.js'></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src=' dist/js/pages/dashboard.js'></script>
 <!-- AdminLTE for demo purposes -->
 <script src='scripts/scripts.js'></script>
+<script src='scripts/customSkin.js'></script>
 </body>
 </html>
 ";
