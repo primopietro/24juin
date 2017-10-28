@@ -11,7 +11,7 @@ require_once $_SERVER ["DOCUMENT_ROOT"] . '/24juin/vue/rightHelper.php';
 $objName = "pedago_day";
 $rights = checkUserRights ( $objName, $_SESSION ['rightList'] );
 // Check if user has the right to VIEW
-$_SESSION['filterPedago']=0;
+
 if (isset ( $rights ['view'] )) {
 	
 	

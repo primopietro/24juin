@@ -19,7 +19,6 @@ if($objType == "year"){
 	
 	$_SESSION['filter'] = $fk_teacher;
 }else if(isset($_POST['fk_program'])){
-    
     $fk_program = $_POST['fk_program'];
     
     
