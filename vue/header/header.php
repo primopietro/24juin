@@ -134,6 +134,23 @@ echo $default;
 
 function getSubMenuItem($localItem,$tempRights){
     $default ="";
+    if($localItem ['object'] ['name'] == "classroom"){
+    	
+    	foreach ($tempRights as $localItem ) {
+    		if($localItem ['object'] ['name'] == "classroom_zone"){
+    			foreach ( $localItem ['rights'] as $aLocalRight ) {
+    				$right=frenchTranslator ($aLocalRight['name']);
+    				if($aLocalRight['name'] == "view"  ){
+    					
+    					$default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des  zones</a></li> ";
+    					
+    					
+    				}
+    			}
+    		}
+    		
+    	}
+    }
     if($localItem ['object'] ['name'] == "teacher"){
         foreach ($tempRights as $localItem ) {
             
@@ -179,6 +196,7 @@ function getSubMenuItem($localItem,$tempRights){
             
         }
     }
+   
     if($localItem ['object'] ['name'] == "program"){
         foreach ($tempRights as $localItem ) {
             

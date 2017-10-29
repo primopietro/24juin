@@ -39,12 +39,14 @@ if (isset($_POST)) {
             $anObject = new Building();
         } else if ($objType == "nature_time") {
         	$anObject = new NatureTime();
-        } else if ($objType== "pedago_day"){
-            $anObject = new PedagoDay();
-        }  else if ($objType== "pedago_day_all"){
+        } else if ($objType== "pedago_day_all"){
             $anObject = new PedagoDayAll();
         } else if ($objType == "year") {
         	$anObject = new Year();
+        }else if ($objType == "week") {
+        	$anObject = new Week();
+        }else if ($objType == "zone") {
+        	$anObject = new Zone();
         }else if ($objType == "teacher_qualification") {
             
             $anObject = new TeacherQualification();
@@ -126,6 +128,40 @@ if (isset($_POST)) {
             echo "success";
             
             exit();
+        } else if ($objType == "pedago_day") {
+        	require_once $_SERVER["DOCUMENT_ROOT"] . "/24juin/MVC/model/24juin_program_pedago_day.php";
+        	$anObject = new ProgramPedagoDay();
+        	// Delete old values
+        	$anObject->deleteFromDBWhere("id_pedago_day", " = ", $idobj);
+        	if (isset($_POST['programs'])) {
+        		$programs= $_POST['programs'];
+        		// Re-insert new ones
+        		foreach ($programs as $aProgram) {
+        			$anObject->setId_program($aProgram);
+        			$anObject->setId_pedago_day($idobj);
+        			$anObject->addDBObject();
+        		}
+        	}
+        	
+        	echo "success";
+        	exit();
+        }else if ($objType == "classroom_zone") {
+        	require_once $_SERVER["DOCUMENT_ROOT"] . "/24juin/MVC/model/24juin_classroom_zone.php";
+        	$anObject = new ClassroomZone();
+        	// Delete old values
+        	$anObject->deleteFromDBWhere("id_classroom", " = ", $idobj);
+        	if (isset($_POST['zones'])) {
+        		$zones= $_POST['zones'];
+        		// Re-insert new ones
+        		foreach ($zones as $aZone) {
+        			$anObject->setId_zone($aZone);
+        			$anObject->setId_classroom($idobj);
+        			$anObject->addDBObject();
+        		}
+        	}
+        	
+        	echo "success";
+        	exit();
         }
         
         // Add other objects here as "else if"

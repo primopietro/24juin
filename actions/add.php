@@ -43,6 +43,10 @@ if(isset($_POST)){
 			$anObject = new Year();
 		} else if ($objType== "qualification_teached"){
 			$anObject = new QualificationTeached();
+		} else if ($objType== "week"){
+			$anObject = new Week();
+		}else if ($objType== "zone"){
+			$anObject = new Zone();
 		}
 		//Add other objects here
 		
@@ -66,7 +70,7 @@ if(isset($_POST)){
 			$anObject->setYear($start . "-" . $end);
 		} else if($objType == "qualification_teached"){
 			$anObject->setYear($_SESSION['year']);
-		}
+		} 
 		
 		$id = 0;
 		$id = $anObject->addDBObject();

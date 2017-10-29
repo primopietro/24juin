@@ -82,10 +82,12 @@ function frenchtranslator($word){
     {
         return "Journée pédagogique";
         
-    }else if($word=="pedago_day")
-    {
+    }else if($word=="pedago_day"){
         return "Journée pédagogique de programme";
         
+    }else if($word=="week"){
+    	return "Semaines";
+    	
     }
     else{
         return $word;

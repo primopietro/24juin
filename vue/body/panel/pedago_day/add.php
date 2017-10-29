@@ -7,6 +7,10 @@ function getMarkup(){
                                      <h4>Jour</h4>
                       <input name='day' type='date' class='form-control' placeholder='ex: 2017-10-10'>
                     </div>
+					<div class='col-xs-4'>
+                      <h4>Année</h4>
+                      <input name='year' type='string' class='form-control' value='".$_SESSION['year']."' readonly>
+                    </div>
                 </div></form>";
 	
 	return $default;

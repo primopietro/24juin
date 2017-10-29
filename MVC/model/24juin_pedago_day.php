@@ -5,44 +5,99 @@ class PedagoDay extends BaseModel {
 	protected $primary_key = "id_pedago_day";
 	protected $id_pedago_day = 0;
 	protected $day;
+	protected $year;
 
 	
-    function getPedagoDay($id_program){
-    	$aListOfPedagoDay = array();
+    function getPedagoDay(){
     	
-    	if($id_program != 0){
-    	    $aListOfPedagoDay = $this->getListOfAllDBObjectsWhere("id_program", "=", $id_program);
-    	} else{
-    	    $aListOfPedagoDay = $this->getListOfAllDBObjectsWithProgram();
+    	/*$aListOfPedagoDay = $this->getListOfAllDBObjects();
+    	
+    	return $aListOfPedagoDay;*/
+    	
+    	require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_program_pedago_day.php';
+    	require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_program.php';
+    	
+    	$aPedagoDay = new PedagoDay();
+    	$aPedagoDayList = $this->getListOfAllDBObjects();
+    	
+    	$aProgram = new Program();
+    	$aProgramList = $aProgram->getProgram();
+    	
+    	$aProgramPedagoDay = new ProgramPedagoDay();
+    	$aProgramPedagoDayList = array();
+    	
+    	$finalList = array();
+    	$originalList = $this->getListOfAllDBObjects();
+    	
+    	if ($aPedagoDayList != null) {
+    		if (sizeof($aPedagoDayList) > 0) {
+    			foreach ($aPedagoDayList as $anObject) {
+    				// Get teacher
+    				
+    				$finalList[$anObject['id_pedago_day']]['pedago_day'] = $anObject;
+    				$aProgramPedagoDayList = $aProgramPedagoDay->getListOfAllDBObjectsWhere("id_pedago_day"," = ", $anObject['id_pedago_day']);
+    				
+    				
+    				// Get all groups for this teacher
+    				if($aProgramPedagoDayList != null){
+    					if(sizeof($aProgramPedagoDayList)>0){
+    						foreach($aProgramPedagoDayList as $localPPDL){
+    							$theProgram = new Program();
+    							$theProgram = $theProgram->getObjectFromDB($localPPDL['id_program']);
+    							$finalList[$anObject['id_pedago_day']]['programs'][] = $theProgram;
+    						}
+    					}
+    				}
+    			}
+    		}
     	}
-    	return $aListOfPedagoDay;
+    	
+    	return $finalList;
     }
     
-    function printPedagoDayList($aListOfPedagoDay,$canBeUpdated,$canBeDeleted, $filter, $role){
+    function printPedagoDayList($aListOfPedagoDay,$canBeUpdated,$canBeDeleted){
         $content = '';
         if($aListOfPedagoDay != null){
-            foreach($aListOfPedagoDay as $aPedagoDay){
-                $content .= $this->getEachPedagoDayComponentList($aPedagoDay,$canBeUpdated,$canBeDeleted, $filter, $role);
-            }
+        	if (sizeof($aListOfPedagoDay) > 0) {
+	            foreach($aListOfPedagoDay as $aPedagoDay){
+	            	if($_SESSION['year'] == $aPedagoDay['pedago_day']['year']){
+	                	$content .= $this->getEachPedagoDayComponentList($aPedagoDay,$canBeUpdated,$canBeDeleted);
+	            
+	            	}
+	            }
+        	}
         }
+        
    
         return $content;
     }
     
-    function getEachPedagoDayComponentList($aPedagoDay,$canBeUpdated,$canBeDeleted, $filter, $role){
+    function getEachPedagoDayComponentList($aPedagoDay,$canBeUpdated,$canBeDeleted){
         
         $line = '';
         $line .= "<tr>";
-        if($filter == 0 && $role != 2){
-            $line .= "<td>" . $aPedagoDay['name'] . "</td>";
+        $line .= "<td>" . $aPedagoDay['pedago_day']['day'] . "</td>";
+        $line .= "<td>";
+        
+        if(isset($aPedagoDay['programs'])){
+        	if($aPedagoDay['programs'] != null){
+        		if(sizeof($aPedagoDay['programs'] ) > 0){
+        			foreach($aPedagoDay['programs']  as $aProgram){
+        				$line .= $aProgram['name'] ."<br>";
+        			}
+        			
+        		}
+        	}
+        	
         }
-        $line .= "<td>" . $aPedagoDay['day'] . "</td>";
+        
+        $line .="</td>";
         if($canBeUpdated){
-            $line .= "<td><a objtype='".$aPedagoDay['table_name']."' action='update' class='action' idobj='".  $aPedagoDay['id_pedago_day']."'><i class='fa fa-pencil text-green'></i></a></td>";
+        	$line .= "<td><a objtype='".$aPedagoDay['pedago_day']['table_name']."' action='update' class='action btn' idobj='".  $aPedagoDay['pedago_day']['id_pedago_day']."'><i class='fa fa-pencil text-green'></i></a></td>";
         }
         if($canBeDeleted){
-            
-            $line .= "<td><a objtype='".$aPedagoDay['table_name']."' action='delete' class='action' idobj='".$aPedagoDay['id_pedago_day']."'><i class='fa fa-times text-red'></i></a></td>";
+        	
+        	$line .= "<td><a objtype='".$aPedagoDay['pedago_day']['table_name']."' action='delete' class='action btn' idobj='".$aPedagoDay['pedago_day']['id_pedago_day']."'><i class='fa fa-times text-red'></i><div class='ripple-container'></div></a></td>";
         }
         $line .= "</tr>";
         
@@ -81,7 +136,7 @@ class PedagoDay extends BaseModel {
     	return null;
     }
     
-    function getListOfAllDBObjectsWithProgram() {
+    function getListOfAllDBObjectsWithPedagoDay() {
     	include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
     	
     	$internalAttributes = get_object_vars ( $this);
@@ -127,7 +182,7 @@ class PedagoDay extends BaseModel {
     /**
      * id_nature_time
      * @param unkown $id_nature_time
-     * @return NatureTime
+     * @return PedagoDay
      */
     public function setId_pedago_day($id_pedago_day){
         $this->$id_pedago_day = $id_pedago_day;
@@ -145,11 +200,29 @@ class PedagoDay extends BaseModel {
     /**
      * day
      * @param unkown $day
-     * @return NatureTime
+     * @return PedagoDay
      */
     public function setDay($day){
         $this->day = $day;
         return $this;
+    }
+    
+    /**
+     * year
+     * @return unkown
+     */
+    public function getYear(){
+    	return $this->year;
+    }
+    
+    /**
+     * year
+     * @param unkown $year
+     * @return PedagoDay
+     */
+    public function setYear($year){
+    	$this->year = $year;
+    	return $this;
     }
 
 }

@@ -88,6 +88,7 @@ if($aUser->checkPassword()) {
     $_SESSION['current_user'] = serialize($aUser);
     $_SESSION['current_user_role'] = serialize($userRoles);
     $_SESSION['filter'] = 0;
+    $_SESSION['filterPedago'] = 0;
     $_SESSION['id_year'] = 0;
     $_SESSION['year'] = '';
     
