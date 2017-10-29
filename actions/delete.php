@@ -46,8 +46,8 @@ if(isset($_POST)){
 		    $anObject = new PedagoDayAll();
 		} else if ($objType== "zone"){
 			$anObject = new Zone();
-		}else if ($objType== "holiday"){
-			    $anObject = new Holiday();
+		}else if ($objType== "fixed_holiday"){
+		    $anObject = new FixedHoliday();
 			
 		} else if ($objType== "qualification_teached"){
 			$anObject = new QualificationTeached();

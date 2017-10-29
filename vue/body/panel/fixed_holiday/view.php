@@ -3,16 +3,16 @@ if (! isset ( $_SESSION )) {
     session_start ();
 }
 
-require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_holiday.php';
+require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_fixed_holiday.php';
 require_once $_SERVER ["DOCUMENT_ROOT"] . '/24juin/vue/rightHelper.php';
 
-$objName = "holiday";
+$objName = "fixed_holiday";
 $rights = checkUserRights ( $objName, $_SESSION ['rightList'] );
 
 if (isset ( $rights ['view'] )) {
     
-    $aHoliday = new Holiday();
-    $aListOfHoliday = $aHoliday->getHoliday();
+    $aFixedHoliday = new FixedHoliday();
+    $aListOfFixedHoliday = $aFixedHoliday->getFixedHoliday();
     
     $default = "
    <section class='content'>
@@ -37,8 +37,8 @@ if (isset ( $rights ['view'] )) {
                             </div>
             <!-- /.box-header -->
             <div class='box-body'>";
-    if ($aListOfHoliday != null) {
-        if (sizeof ( $aListOfHoliday ) > 0) {
+    if ($aListOfFixedHoliday != null) {
+        if (sizeof ( $aListOfFixedHoliday ) > 0) {
 		    $default .= "<table class='table table-bordered table-hover'>
              <thead>
                 <tr>
@@ -53,7 +53,7 @@ if (isset ( $rights ['view'] )) {
 			    $default .= "</tr>
             <thead>
             <tbody>";
-			    $default .= $aHoliday->printHolidayList($aListOfHoliday, isset ( $rights ['update'] ), isset ( $rights ['delete'] ));
+			    $default .= $aFixedHoliday->printFixedHolidayList($aListOfFixedHoliday, isset ( $rights ['update'] ), isset ( $rights ['delete'] ));
             
 			$default .= "</tbody>
               </table>";
