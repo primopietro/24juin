@@ -47,6 +47,8 @@ if(isset($_POST)){
 			$anObject = new Week();
 		}else if ($objType== "zone"){
 			$anObject = new Zone();
+		}else if ($objType== "holiday"){
+		    $anObject = new Holiday();
 		}
 		//Add other objects here
 		

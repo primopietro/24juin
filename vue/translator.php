@@ -88,6 +88,12 @@ function frenchtranslator($word){
     }else if($word=="week"){
     	return "Semaines";
     	
+    }else if($word=="zone"){
+        return "Zones";
+        
+    }else if($word=="holiday"){
+        return "Congés";
+        
     }
     else{
         return $word;
