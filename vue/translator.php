@@ -91,7 +91,7 @@ function frenchtranslator($word){
     }else if($word=="zone"){
         return "Zones";
         
-    }else if($word=="holiday"){
+    }else if($word=="fixed_holiday"){
         return "Congés";
         
     }

@@ -109,6 +109,29 @@ if(isset($_POST)){
 		    }
 		    $aProgramPedagoDay->addDBObject();
 		}
+		
+		if($objType== "fixed_holiday"){
+		    require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_fixed_holiday.php";
+		    require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_year_fixed_holiday.php";
+		    require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_user.php";
+		   
+		    $aYearFixedHoliday = new YearFixedHoliday();
+		    $aYearFixedHoliday->setId_year($_SESSION['id_year']);
+		    $aYearFixedHoliday->setId_fixed_holiday($id);
+		    
+		    $aYearFixedHoliday->addDBObject();
+		}
+		if($objType== "pedago_day_all"){
+		    require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_pedago_day_all.php";
+		    require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_year_pedago_day_all.php";
+		    require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_user.php";
+		    
+		    $aYearPedagoDayAll = new YearPedagoDayAll();
+		    $aYearPedagoDayAll->setId_year($_SESSION['id_year']);
+		    $aYearPedagoDayAll->setId_pedago_day_all($id);
+		    
+		    $aYearPedagoDayAll->addDBObject();
+		}
 	}else{
 		echo "forbidden";
 	}
