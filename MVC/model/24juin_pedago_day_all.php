@@ -34,7 +34,7 @@ class PedagoDayAll extends BaseModel
     function getEachPedagoDayAllList($aPedagoDayAll, $canBeUpdated, $canBeDeleted)
     {
         $anObject = new YearPedagoDayAll();
-        $aYearPedagoDayAll = $anObject->getObjectWhereYearAndIdPedagoDayAll($_SESSION['id_year'], $aPedagoDayAll['id_pedago_day_all']);
+        $aYearPedagoDayAll = $anObject->getObjectWhereYearAndIdPedagoDayAllYear($_SESSION['id_year'], $aPedagoDayAll['id_pedago_day_all']);
         
         $line = '';
         if($aYearPedagoDayAll != null){

@@ -47,7 +47,7 @@ class YearPedagoDayAll extends BaseModel {
         return $this;
     }
     
-    public function getObjectWhereYearAndIdPedagoDayAll($id_year,$id_pedago_day_all) {
+    public function getObjectWhereYearAndIdPedagoDayAllYear($id_year,$id_pedago_day_all) {
         include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
         
         $internalAttributes = get_object_vars ( $this);
