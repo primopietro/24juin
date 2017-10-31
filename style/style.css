@@ -59,21 +59,36 @@ select[multiple], select[size] {
 
 .skin-blue .sidebar-menu>li>.treeview-menu,.skin-blue .sidebar-menu>li>.treeview-menu   {
     border-left: 5px solid #00bbd4;
+    background-color: #151c1f;
+    -webkit-box-shadow: inset 0px 0px 24px 0px rgba(47, 46, 46, 0.96);
+    -moz-box-shadow: inset 0px 0px 24px 0px rgba(47, 46, 46, 0.96);
+    box-shadow: inset 0px 0px 24px 0px rgba(47, 46, 46, 0.96);
 }
 .skin-blue .sidebar-menu>li>a {
     border-left: 5px solid transparent;
 }
-.sidebar-menu .action, .treeview > a  {
-    color: white !important;
+.sidebar-menu .action, .treeview > a {
+    color: #9b9fa0;
 }
+ .treeview{
+ transition:1s all linear !important;
+ }
+.treeview .action{
+ transition:1.8s all linear !important;
+ }
+ .treeview.active .action{
+ 
+ color:white;
+ }
 .selectTeacher{
 	height: 34px;
     margin-bottom: 10px;
     margin-top:20px;
 }
 .treeview.active > a>i:before,.treeview:hover > a>i:before{
-	color:#00BCD4;
+	color:#03a6bb;
 }
+.
 .skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a {
 	border-left-color: #00bbd4;
 	background-color: #1f292d;
@@ -147,3 +162,22 @@ body{
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3) !important;
 	background-color: #555 !important;
 }
+ .skin-blue .sidebar-menu>li.active>a{
+ background-color:#1c2529 !important;
+ }
+li.treeview:not(.active) {
+    background-color: #0e1315;
+}
+li.treeview:not(.active) >a {
+    color: #9b9fa0 !important;
+}
+li.treeview:not(.active):hover >a {
+    color: white !important;
+}
+.sidebar-menu .treeview-menu>li>a {
+    font-size: 12px;
+    margin-left:20px;
+}
+ .skin-blue .sidebar-menu>li.active>a,.skin-blue .sidebar-menu>li:hover>a{
+ border-left-color: #00bbd4;
+ }
