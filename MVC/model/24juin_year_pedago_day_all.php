@@ -3,6 +3,7 @@ require_once 'BaseModel.php';
 class YearPedagoDayAll extends BaseModel {
     protected $table_name = 'year_pedago_day_all';
     protected $primary_key = "id_year_pedago_day_all";
+    protected $id_year_pedago_day_all = 0; 
     protected $id_year = 0; 
     protected $id_pedago_day_all= 0;
   
@@ -71,6 +72,25 @@ class YearPedagoDayAll extends BaseModel {
         }
         $conn->close ();
         return null;
+    }
+
+
+    /**
+     * id_year_pedago_day_all
+     * @return unkown
+     */
+    public function getId_year_pedago_day_all(){
+        return $this->id_year_pedago_day_all;
+    }
+
+    /**
+     * id_year_pedago_day_all
+     * @param unkown $id_year_pedago_day_all
+     * @return YearPedagoDayAll
+     */
+    public function setId_year_pedago_day_all($id_year_pedago_day_all){
+        $this->id_year_pedago_day_all = $id_year_pedago_day_all;
+        return $this;
     }
 
 }

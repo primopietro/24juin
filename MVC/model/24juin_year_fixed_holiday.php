@@ -2,7 +2,8 @@
 require_once 'BaseModel.php';
 class YearFixedHoliday extends BaseModel {
     protected $table_name = 'year_fixed_holiday';
-    protected $primary_key = "id_year_fixed_holiday";
+    protected $primary_key = "id_year_fixed_holiday"; 
+    protected $id_year_fixed_holiday = 0; 
     protected $id_year = 0; 
     protected $id_fixed_holiday = 0;
   
@@ -70,6 +71,25 @@ class YearFixedHoliday extends BaseModel {
         }
         $conn->close ();
         return null;
+    }
+
+
+    /**
+     * id_year_fixed_holiday
+     * @return unkown
+     */
+    public function getId_year_fixed_holiday(){
+        return $this->id_year_fixed_holiday;
+    }
+
+    /**
+     * id_year_fixed_holiday
+     * @param unkown $id_year_fixed_holiday
+     * @return YearFixedHoliday
+     */
+    public function setId_year_fixed_holiday($id_year_fixed_holiday){
+        $this->id_year_fixed_holiday = $id_year_fixed_holiday;
+        return $this;
     }
 
 }
