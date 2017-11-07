@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 30 Octobre 2017 à 01:16
+-- Généré le :  Mar 07 Novembre 2017 à 17:08
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -228,6 +228,25 @@ CREATE TABLE `group_qualification` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `group_qualification_teached`
+--
+
+CREATE TABLE `group_qualification_teached` (
+  `id_group_qualification_teached` int(11) NOT NULL,
+  `id_group` int(11) NOT NULL,
+  `id_qualification_teached` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `group_qualification_teached`
+--
+
+INSERT INTO `group_qualification_teached` (`id_group_qualification_teached`, `id_group`, `id_qualification_teached`) VALUES
+(4, 18, 12);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `group_teacher`
 --
 
@@ -316,7 +335,8 @@ INSERT INTO `object` (`id_object`, `name`, `isMenu`, `icon`) VALUES
 (21, 'week', 1, '<i class="fa fa-calendar"></i>'),
 (22, 'zone', 1, '<i class="fa fa-edit"></i>'),
 (23, 'classroom_zone', 0, '<i class="fa fa-edit"></i>'),
-(24, 'fixed_holiday', 1, '<i class="fa fa-bell-slash"></i>');
+(24, 'fixed_holiday', 1, '<i class="fa fa-bell-slash"></i>'),
+(25, 'group_qualification_teached', 0, '<i class="fa fa-edit"></i>');
 
 -- --------------------------------------------------------
 
@@ -417,16 +437,6 @@ CREATE TABLE `program_qualification` (
   `id_qualification` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `program_qualification`
---
-
-INSERT INTO `program_qualification` (`id_program_qualification`, `id_program`, `id_qualification`) VALUES
-(1, 1, 7),
-(2, 1, 8),
-(3, 1, 9),
-(4, 1, 10);
-
 -- --------------------------------------------------------
 
 --
@@ -478,10 +488,7 @@ CREATE TABLE `qualification_teached` (
 --
 
 INSERT INTO `qualification_teached` (`id_qualification_teached`, `id_qualification`, `year`) VALUES
-(7, 9, '2017-2018'),
-(8, 11, '2017-2018'),
-(9, 11, '2018-2019'),
-(10, 10, '2018-2019');
+(12, 10, '2017-2018');
 
 -- --------------------------------------------------------
 
@@ -652,7 +659,11 @@ INSERT INTO `right_object_role` (`id_right_object_role`, `id_right`, `id_object`
 (153, 1, 24, 1),
 (154, 2, 24, 1),
 (155, 3, 24, 1),
-(156, 4, 24, 1);
+(156, 4, 24, 1),
+(157, 3, 25, 1),
+(158, 2, 25, 1),
+(159, 4, 25, 1),
+(160, 1, 25, 1);
 
 -- --------------------------------------------------------
 
@@ -772,7 +783,8 @@ CREATE TABLE `teacher_qualification` (
 --
 
 INSERT INTO `teacher_qualification` (`id_teacher_qualification`, `id_teacher`, `id_qualification`) VALUES
-(20, 1, 11);
+(20, 1, 11),
+(21, 2, 11);
 
 -- --------------------------------------------------------
 
@@ -1058,6 +1070,14 @@ ALTER TABLE `group_qualification`
   ADD KEY `gq_qualification` (`id_qualification`);
 
 --
+-- Index pour la table `group_qualification_teached`
+--
+ALTER TABLE `group_qualification_teached`
+  ADD PRIMARY KEY (`id_group_qualification_teached`),
+  ADD KEY `id_group_gqf` (`id_group`),
+  ADD KEY `id_qualification_teached_gqf` (`id_qualification_teached`);
+
+--
 -- Index pour la table `group_teacher`
 --
 ALTER TABLE `group_teacher`
@@ -1333,6 +1353,11 @@ ALTER TABLE `fixed_holiday`
 ALTER TABLE `group`
   MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
+-- AUTO_INCREMENT pour la table `group_qualification_teached`
+--
+ALTER TABLE `group_qualification_teached`
+  MODIFY `id_group_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT pour la table `group_teacher`
 --
 ALTER TABLE `group_teacher`
@@ -1341,7 +1366,7 @@ ALTER TABLE `group_teacher`
 -- AUTO_INCREMENT pour la table `holiday`
 --
 ALTER TABLE `holiday`
-  MODIFY `id_holiday` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_holiday` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `nature_time`
 --
@@ -1351,7 +1376,7 @@ ALTER TABLE `nature_time`
 -- AUTO_INCREMENT pour la table `object`
 --
 ALTER TABLE `object`
-  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT pour la table `pedago_day`
 --
@@ -1391,7 +1416,7 @@ ALTER TABLE `qualificationteached_timeslot`
 -- AUTO_INCREMENT pour la table `qualification_teached`
 --
 ALTER TABLE `qualification_teached`
-  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `right`
 --
@@ -1401,7 +1426,7 @@ ALTER TABLE `right`
 -- AUTO_INCREMENT pour la table `right_object_role`
 --
 ALTER TABLE `right_object_role`
-  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
 --
 -- AUTO_INCREMENT pour la table `role`
 --
@@ -1436,7 +1461,7 @@ ALTER TABLE `teacher_nature_time`
 -- AUTO_INCREMENT pour la table `teacher_qualification`
 --
 ALTER TABLE `teacher_qualification`
-  MODIFY `id_teacher_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_teacher_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT pour la table `teacher_qualification_teached`
 --
@@ -1456,7 +1481,7 @@ ALTER TABLE `timeslot_week`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `user_role`
 --
@@ -1539,6 +1564,13 @@ ALTER TABLE `custormer_year`
 ALTER TABLE `group_qualification`
   ADD CONSTRAINT `group_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `group_qualification_ibfk_2` FOREIGN KEY (`id_group`) REFERENCES `group` (`id_group`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `group_qualification_teached`
+--
+ALTER TABLE `group_qualification_teached`
+  ADD CONSTRAINT `id_group_gqt_fk` FOREIGN KEY (`id_group`) REFERENCES `group` (`id_group`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `id_qualification_gqt_fk` FOREIGN KEY (`id_qualification_teached`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `group_teacher`
