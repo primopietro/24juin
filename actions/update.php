@@ -67,7 +67,25 @@ if (isset($_POST)) {
             
             echo "success";
             exit();
-        } else if ($objType == "building_classroom") {
+        }else if ($objType == "group_qualification_teached") {
+            
+            $anObject = new GroupQualificationTeached();
+            // Delete old values
+            $anObject->deleteFromDBWhere("id_group", " = ", $idobj);
+            
+            if (isset($_POST['qualification_teached'])) {
+                $qualificationTeached = $_POST['qualification_teached'];
+                // Re-insert new ones
+                foreach ($qualificationTeached as $aQualificationTeached) {
+                    $anObject->setId_group($idobj);
+                    $anObject->setId_qualification_teached($aQualificationTeached);
+                    $anObject->addDBObject();
+                }
+            }
+            
+            echo "success";
+            exit();
+        }else if ($objType == "building_classroom") {
             
             $anObject = new BuildingClassroom();
             // Delete old values

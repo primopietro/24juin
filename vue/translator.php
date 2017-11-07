@@ -94,6 +94,9 @@ function frenchtranslator($word){
     }else if($word=="fixed_holiday"){
         return "Congés";
         
+    }else if($word=="group_qualification_teached"){
+        return "Compétences enseignés des groupes";
+        
     }
     else{
         return $word;

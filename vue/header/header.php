@@ -230,6 +230,22 @@ function getSubMenuItem($localItem,$tempRights){
             }
             
         }
+    }if($localItem ['object'] ['name'] == "group"){
+        foreach ($tempRights as $localItem ) {
+            
+            if($localItem ['object'] ['name'] == "group_qualification_teached"){
+                foreach ( $localItem ['rights'] as $aLocalRight ) {
+                    $right=frenchTranslator ($aLocalRight['name']);
+                    if($aLocalRight['name'] == "view"  ){
+                        
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compértence</a></li> ";
+                        
+                        
+                    }
+                }
+            }
+            
+        }
     }
     return $default;
 }
