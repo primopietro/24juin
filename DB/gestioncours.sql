@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 07 Novembre 2017 à 17:08
+-- Généré le :  Mer 08 Novembre 2017 à 19:13
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -237,13 +237,6 @@ CREATE TABLE `group_qualification_teached` (
   `id_qualification_teached` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `group_qualification_teached`
---
-
-INSERT INTO `group_qualification_teached` (`id_group_qualification_teached`, `id_group`, `id_qualification_teached`) VALUES
-(4, 18, 12);
-
 -- --------------------------------------------------------
 
 --
@@ -336,7 +329,8 @@ INSERT INTO `object` (`id_object`, `name`, `isMenu`, `icon`) VALUES
 (22, 'zone', 1, '<i class="fa fa-edit"></i>'),
 (23, 'classroom_zone', 0, '<i class="fa fa-edit"></i>'),
 (24, 'fixed_holiday', 1, '<i class="fa fa-bell-slash"></i>'),
-(25, 'group_qualification_teached', 0, '<i class="fa fa-edit"></i>');
+(25, 'group_qualification_teached', 0, '<i class="fa fa-edit"></i>'),
+(26, 'teacher_qualification_teached', 0, '<i class="fa fa-edit"></i>');
 
 -- --------------------------------------------------------
 
@@ -488,7 +482,8 @@ CREATE TABLE `qualification_teached` (
 --
 
 INSERT INTO `qualification_teached` (`id_qualification_teached`, `id_qualification`, `year`) VALUES
-(12, 10, '2017-2018');
+(12, 10, '2017-2018'),
+(13, 11, '2017-2018');
 
 -- --------------------------------------------------------
 
@@ -663,7 +658,11 @@ INSERT INTO `right_object_role` (`id_right_object_role`, `id_right`, `id_object`
 (157, 3, 25, 1),
 (158, 2, 25, 1),
 (159, 4, 25, 1),
-(160, 1, 25, 1);
+(160, 1, 25, 1),
+(161, 1, 26, 1),
+(162, 2, 26, 1),
+(163, 3, 26, 1),
+(164, 4, 26, 1);
 
 -- --------------------------------------------------------
 
@@ -1356,7 +1355,7 @@ ALTER TABLE `group`
 -- AUTO_INCREMENT pour la table `group_qualification_teached`
 --
 ALTER TABLE `group_qualification_teached`
-  MODIFY `id_group_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_group_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `group_teacher`
 --
@@ -1376,7 +1375,7 @@ ALTER TABLE `nature_time`
 -- AUTO_INCREMENT pour la table `object`
 --
 ALTER TABLE `object`
-  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_object` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT pour la table `pedago_day`
 --
@@ -1416,7 +1415,7 @@ ALTER TABLE `qualificationteached_timeslot`
 -- AUTO_INCREMENT pour la table `qualification_teached`
 --
 ALTER TABLE `qualification_teached`
-  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `right`
 --
@@ -1426,7 +1425,7 @@ ALTER TABLE `right`
 -- AUTO_INCREMENT pour la table `right_object_role`
 --
 ALTER TABLE `right_object_role`
-  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
+  MODIFY `id_right_object_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 --
 -- AUTO_INCREMENT pour la table `role`
 --
