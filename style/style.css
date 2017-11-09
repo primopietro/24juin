@@ -181,3 +181,18 @@ li.treeview:not(.active):hover >a {
  .skin-blue .sidebar-menu>li.active>a,.skin-blue .sidebar-menu>li:hover>a{
  border-left-color: #00bbd4;
  }
+ 
+ 
+.content-header {
+    position: relative;
+    padding: 25px 15px 0 15px;
+}
+.content-header>.breadcrumb{
+	top:20px;
+}
+ 
+.main-sidebar{
+	    background-color: #0e1315 !important;
+	
+	
+}
