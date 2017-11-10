@@ -182,6 +182,24 @@ if (isset($_POST)) {
         	
         	echo "success";
         	exit();
+        }else if ($objType == "teacher_qualification_teached") {
+            require_once $_SERVER["DOCUMENT_ROOT"] . "/24juin/MVC/model/24juin_teacher_qualification_teached.php";
+            $anObject = new TeacherQualificationTeached();
+            // Delete old values
+            $anObject->deleteFromDBWhere("id_teacher", " = ", $idobj);
+            
+            if (isset($_POST['qualification_teached'])) {
+                $qualificationTeached = $_POST['qualification_teached'];
+                // Re-insert new ones
+                foreach ($qualificationTeached as $aQualificationTeached) {
+                    $anObject->setId_teacher($idobj);
+                    $anObject->setId_qualification_teached($aQualificationTeached);
+                    $anObject->addDBObject();
+                }
+            }
+            
+            echo "success";
+            exit();
         }
         
         // Add other objects here as "else if"
