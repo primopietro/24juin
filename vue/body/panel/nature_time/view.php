@@ -35,7 +35,7 @@ if (isset ( $rights ['view'] )) {
             <div class='box-header'>
               <h3 class='box-title'>Liste des temps de nature</h3>";
 	
-	if (isset ( $rights ['add'] )) {
+	if (isset ( $rights ['add'] ) && $_SESSION['filter'] != 0) {
 	    $default .="<br><a class='btn btn-app action'  action='add' objtype='" . $objName . "'>
                 <i class='fa fa-plus'></i> Ajouter
               <div class='ripple-container'></div></a>";}

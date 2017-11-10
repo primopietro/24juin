@@ -92,6 +92,12 @@ if(isset($_POST)){
 				$aTeacherNatureTime->setId_teacher($_SESSION['filter']);
 			}
 			$aTeacherNatureTime->addDBObject();
+			
+			$aYearNatureTime = new YearNatureTime();
+			$aYearNatureTime->setId_year($_SESSION['id_year']);
+			$aYearNatureTime->setId_nature_time($id);
+			
+			$aYearNatureTime->addDBObject();
 		}
 		if($objType== "pedago_day"){
 		    require_once $_SERVER ["DOCUMENT_ROOT"] ."/24juin/MVC/model/24juin_program_pedago_day.php";

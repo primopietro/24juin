@@ -609,3 +609,5 @@ document.getElementById("passwordNew", "usernameNew").addEventListener("keyup",
 				document.getElementById("loginButton").click();
 			}
 		});
+
+

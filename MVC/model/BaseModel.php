@@ -288,4 +288,33 @@ class BaseModel{
         $this->primary_key = $primary_key;
         return $this;
     }
+    
+    
+    public  function getListOfAllDBObjectsSortBy($sort) {
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars ( $this);
+        
+        $sql = "SELECT * FROM '" . $this->table_name . "' ORDER BY ".$sort. "";
+        $result = $conn->query ( $sql );
+        //echo $sql;
+        if ($result->num_rows > 0) {
+            $localObjects = array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject = Array ();
+                $anObject ["primary_key"] = $this->primary_key;
+                $anObject ["table_name"] = $this->table_name;
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                }
+                
+                $localObjects [$row [$this->primary_key]] = $anObject;
+            }
+            
+            $conn->close ();
+            return $localObjects;
+        }
+        $conn->close ();
+        return null;
+    }
 }
