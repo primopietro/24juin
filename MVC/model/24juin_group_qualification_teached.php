@@ -3,17 +3,17 @@ require_once 'BaseModel.php';
 
 class GroupQualificationTeached extends BaseModel
 {
-    
+
     protected $table_name = 'group_qualification_teached';
-    
+
     protected $primary_key = "id_group_qualification_teached";
-    
+
     protected $id_group_qualification_teached = 0;
-    
+
     protected $id_group = 0;
-    
+
     protected $id_qualification_teached = 0;
-    
+
     public function getGroupQualificationTeached()
     {
         require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_group.php';
@@ -22,7 +22,7 @@ class GroupQualificationTeached extends BaseModel
         $group = new Group();
         $aGroupList = $group->getGroup();
         
-        $groupQualificationTeached= new GroupQualificationTeached();
+        $groupQualificationTeached = new GroupQualificationTeached();
         $groupQualificationTeachedList = array();
         
         $finalList = array();
@@ -34,11 +34,11 @@ class GroupQualificationTeached extends BaseModel
                     // Get group
                     
                     $finalList[$anObject['id_group']]['group'] = $anObject;
-                    $groupQualificationTeachedList = $groupQualificationTeached->getListOfAllDBObjectsWhere("id_group"," = ", $anObject['id_group']);
+                    $groupQualificationTeachedList = $groupQualificationTeached->getListOfAllDBObjectsWhere("id_group", " = ", $anObject['id_group']);
                     
-                    if($groupQualificationTeachedList != null){
-                        if(sizeof($groupQualificationTeachedList)>0){
-                            foreach($groupQualificationTeachedList as $localTQ){
+                    if ($groupQualificationTeachedList != null) {
+                        if (sizeof($groupQualificationTeachedList) > 0) {
+                            foreach ($groupQualificationTeachedList as $localTQ) {
                                 $aQualificationTeached = new QualificationTeached();
                                 $aQualificationTeached = $aQualificationTeached->getObjectFromDB($localTQ['id_qualification_teached']);
                                 $finalList[$anObject['id_group']]['qualification_teacheds'][] = $aQualificationTeached;
@@ -53,29 +53,28 @@ class GroupQualificationTeached extends BaseModel
         
         return $finalList;
     }
-    
+
     function getEachGroupQualificationTeachedComponentList($aGroupQualificationTeached, $canBeUpdated)
     {
-        
         $line = '';
         
         $line .= "<tr>";
         $line .= "<td>" . $aGroupQualificationTeached['group']['code'] . "</td>";
         $line .= "<td>";
         
-        if(isset($aGroupQualificationTeached['qualification_teacheds'])){
-            if($aGroupQualificationTeached['qualification_teacheds'] != null){
-                if(sizeof($aGroupQualificationTeached['qualification_teacheds'])>0){
-                    foreach($aGroupQualificationTeached['qualification_teacheds'] as $aQualificationTeached){
-                        $line .= $aQualificationTeached['code']  . " - " . $aQualificationTeached['name'] ."<br>";
+        if (isset($aGroupQualificationTeached['qualification_teacheds'])) {
+            if ($aGroupQualificationTeached['qualification_teacheds'] != null) {
+                if (sizeof($aGroupQualificationTeached['qualification_teacheds']) > 0) {
+                    foreach ($aGroupQualificationTeached['qualification_teacheds'] as $aQualificationTeached) {
+                        if ($aQualificationTeached['year'] == $_SESSION['year']) {
+                            $line .= $aQualificationTeached['code'] . " - " . $aQualificationTeached['name'] . "<br>";
+                        }
                     }
-                    
                 }
             }
-            
         }
         
-        $line .="</td>";
+        $line .= "</td>";
         if ($canBeUpdated) {
             $line .= "<td><a objtype='group_qualification_teached' action='update' class='action btn' idobj='" . $aGroupQualificationTeached['group']['id_group'] . "'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
         }
@@ -83,7 +82,7 @@ class GroupQualificationTeached extends BaseModel
         
         return $line;
     }
-    
+
     public function printGroupQualificationTeachedList($aListOfGroupQualificationTeacheds, $canBeUpdated)
     {
         $content = "";
@@ -96,6 +95,21 @@ class GroupQualificationTeached extends BaseModel
         }
         return $content;
     }
+
+    function deleteFromDBWhereAndGroup($id_group, $year) {
+        $sql = "DELETE pq FROM `" . $this->table_name . "` pq
+ 		JOIN qualification_teached qt ON qt.id_qualification_teached = pq.id_qualification_teached
+		WHERE id_group = " . $id_group . " AND qt.year = '" . $year . "'";
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        if ($conn->query ( $sql ) === TRUE) {
+            return "success";
+        } else {
+            return  "fail";
+        }
+        
+        $conn->close ();
+    }
     
     /**
      * id_group_qualification_teached
@@ -106,7 +120,7 @@ class GroupQualificationTeached extends BaseModel
     {
         return $this->id_group_qualification_teached;
     }
-    
+
     /**
      * id_group_qualification_teached
      *
@@ -118,7 +132,7 @@ class GroupQualificationTeached extends BaseModel
         $this->id_group_qualification_teached = $id_group_qualification_teached;
         return $this;
     }
-    
+
     /**
      * id_group
      *
@@ -128,7 +142,7 @@ class GroupQualificationTeached extends BaseModel
     {
         return $this->id_group;
     }
-    
+
     /**
      * id_group
      *
@@ -140,7 +154,7 @@ class GroupQualificationTeached extends BaseModel
         $this->id_group = $id_group;
         return $this;
     }
-    
+
     /**
      * id_qualification_teached
      *
@@ -150,7 +164,7 @@ class GroupQualificationTeached extends BaseModel
     {
         return $this->id_qualification_teached;
     }
-    
+
     /**
      * id_qualification_teached
      *

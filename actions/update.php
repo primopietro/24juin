@@ -71,7 +71,8 @@ if (isset($_POST)) {
             
             $anObject = new GroupQualificationTeached();
             // Delete old values
-            $anObject->deleteFromDBWhere("id_group", " = ", $idobj);
+            
+            $anObject->deleteFromDBWhereAndGroup($idobj, $_SESSION['year']);
             
             if (isset($_POST['qualification_teached'])) {
                 $qualificationTeached = $_POST['qualification_teached'];
