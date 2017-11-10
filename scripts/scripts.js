@@ -70,7 +70,7 @@ $(document).on('click', '#testAdd', function() {
 					            		console.log(comptZone + ' ' + zones.length);
 					            		comptZone++;
 					            	});
-					            	toFillWeeks += '],';
+					            	toFillWeeks += ']';
 				            	}
 			            		
 			            		
@@ -113,7 +113,7 @@ $(document).on('click', '#testAdd', function() {
             //ajax pour créé le fichier JSON
             $.ajax
             ({
-                type: 'GET',
+                type: 'POST',
                 dataType : 'json',
                 async: false,
                 url: 'http://localhost/24juin/jsonwriteTest.php',
