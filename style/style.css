@@ -28,7 +28,20 @@ li.treeview.menu-open.active ul {
     width: 360px;
     margin: 20% 17vw;
 }
-
+.scheduleDay {
+    width: 18% !important;
+    float: left;
+    border:1px solid black;
+}
+.scheduleCell {
+    float: left;
+    width: 4.5% !important;
+    border: 1px solid black;
+}
+.scheduleDayBefore {
+    width: 5%;
+    float: left;
+}
 .modal{
 	z-index:9001;
 }
