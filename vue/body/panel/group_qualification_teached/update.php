@@ -6,7 +6,7 @@ function getMarkup($idObj){
 	$aGroupQualificationTeached = new GroupQualificationTeached();
 	$aQualificationTeached = new QualificationTeached();
 	$aGroupQualificationTeachedList  = $aGroupQualificationTeached ->getListOfAllDBObjectsWhere("id_group"," = ",$idObj);
-	$aQualificationTeachedList = $aQualificationTeached->getListOfAllDBObjects();
+	$aQualificationTeachedList = $aQualificationTeached ->getListOfAllDBObjectsWhere("year"," LIKE ", "'".$_SESSION['year']."'");
 	$default = "<form id='formUpdate' idobj='".$idObj."'><div class='box-body'>
                   <div class='row'>
                     <div class='col-xs-6'>
