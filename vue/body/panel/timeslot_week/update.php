@@ -35,7 +35,7 @@ function getMarkup($idObj){
                 $default .= " > ";
                 
                 
-                $default .= $aWeek['name']  . " - " . $aWeek['date_start'] . " à " . $aWeek['date_finish'];
+                $default .=  $aWeek['name']  . " / " . $aWeek['date_start'] . " - " . $aWeek['date_finish'];
                 $default .= "   </option> ";
             }
             

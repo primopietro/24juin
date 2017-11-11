@@ -271,6 +271,18 @@ function getSubMenuItem($localItem,$tempRights){
                     }
                 }
             }
+            if($localItem ['object'] ['name'] == "timeslot_teacher"){
+                foreach ( $localItem ['rights'] as $aLocalRight ) {
+                    $right=frenchTranslator ($aLocalRight['name']);
+                    if($aLocalRight['name'] == "view"  ){
+                        
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des cases horaires à une semaine</a></li> ";
+                        
+                        
+                    }
+                }
+            }
+            
             
         }
     }

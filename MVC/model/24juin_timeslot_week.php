@@ -57,14 +57,17 @@ class TimeslotWeek extends BaseModel {
         $line = '';
         
         $line .= "<tr>";
-        $line .= "<td>" . $aTimeslotWeek['timeslot']['day'] . " - " . $aTeacherQualification['timeslot']['AM'] . "</td>";
+        $arrayValues = $this->returnDayNameAndAmValue($aTimeslotWeek['timeslot']['day'],$aTimeslotWeek['timeslot']['AM']);
+        $line .= "<td>" . $arrayValues[0] . " - " . $arrayValues[1] . "</td>";
         $line .= "<td>";
         
         if(isset($aTimeslotWeek['weeks'])){
             if($aTimeslotWeek['weeks'] != null){
                 if(sizeof($aTimeslotWeek['weeks'])>0){
                     foreach($aTimeslotWeek['weeks'] as $aWeek){
-                        $line .= $aWeek['name']  . " - " . $aWeek['date_start'] . " à " . $aWeek['date_finish'] ."<br>";
+                        if($aWeek['year'] == $_SESSION['year']){
+                        $line .= $aWeek['name']  . " / " . $aWeek['date_start'] . " - " . $aWeek['date_finish'] ."<br>";
+                        }
                     }
                     
                 }
@@ -92,6 +95,51 @@ class TimeslotWeek extends BaseModel {
             }
         }
         return $content;
+    }
+    
+    function deleteFromDBWhereAndTimeslot($id_timeslot, $year) {
+        $sql = "DELETE tw FROM `" . $this->table_name . "` tw
+ 		JOIN week w ON w.id_week = tw.id_week
+		WHERE id_timeslot = " . $id_timeslot . " AND w.year = '" . $year . "'";
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        if ($conn->query ( $sql ) === TRUE) {
+            return "success";
+        } else {
+            return  "fail";
+        }
+        
+        $conn->close ();
+    }
+    
+    function returnDayNameAndAmValue($day, $am){
+        if($day == "1"){
+            $DayName = "Lundi"; 
+        }else if($day == "2"){
+            $DayName = "Mardi"; 
+        }else if($day == "3"){
+            $DayName = "Mercredi";
+        }else if($day == "4"){
+            $DayName = "Jeudi";
+        }else if($day == "5"){
+            $DayName = "Vendredi";
+        }else if($day == "6"){
+            $DayName = "Samedi";
+        }else if($day == "7"){
+            $DayName = "Dimanche";
+        }
+        
+        if($am == "1"){
+            $AmValue = "Am1";
+        }else if($am == "2"){
+            $AmValue = "Am2";
+        }else if($am == "3"){
+            $AmValue = "Pm1";
+        }else if($am == "4"){
+            $AmValue = "Pm2";
+        }
+        
+        return array($DayName,$AmValue);
     }
     
     /**
