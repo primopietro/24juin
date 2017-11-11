@@ -146,7 +146,6 @@ function getScheduleHeader(scheduleObject) {
 	header += scheduleObject.pm.pm2.time_start + " - "
 			+ scheduleObject.pm.pm2.time_end;
 	header += "</div>";
-	header += "</div>";
 
 	header += "</div>";
 	return header;

@@ -20,8 +20,18 @@ li #logout {
 li.treeview.menu-open.active ul {
     border-left: 2px solid rgba(60, 141, 188, 0.6);
 }
-
-
+.scheduleContent div {
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 25px;
+    
+}
+.scheduleHeader, .scheduleContent {
+    overflow: hidden;
+    float: left;
+    width: 100%;
+}
 .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side{
 	background-color: #ecf0f5;
 }
@@ -38,6 +48,10 @@ li.treeview.menu-open.active ul {
     float: left;
     width: 4.5% !important;
     border: 1px solid black;
+    font-size:10px;
+}
+.scheduleHeader div{
+	min-height:50px;
 }
 .scheduleDayBefore {
     width: 5%;
