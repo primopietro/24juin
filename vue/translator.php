@@ -95,7 +95,13 @@ function frenchtranslator($word){
         return "Congés";
         
     }else if($word=="group_qualification_teached"){
-        return "Compétences enseignés des groupes";
+        return "Compétences enseignées des groupes";
+        
+    }else if($word=="teacher_qualification_teached"){
+        return "Compétences enseignées des enseignants";
+        
+    }else if($word=="schedule"){
+        return "Horaire";
         
     }
     else{
@@ -162,6 +168,10 @@ function englishtranslator($word){
     }else if($word=="role")
     {
         return "Role";
+        
+    }else if($word=="schedule")
+    {
+        return "Schedule";
         
     }else{
         return $word;

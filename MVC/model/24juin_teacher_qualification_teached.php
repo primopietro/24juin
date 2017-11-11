@@ -67,7 +67,9 @@ class TeacherQualificationTeached extends BaseModel
             if($aTeacherQualificationTeached['qualifications_teached'] != null){
                 if(sizeof($aTeacherQualificationTeached['qualifications_teached'])>0){
                     foreach($aTeacherQualificationTeached['qualifications_teached'] as $aQualificationTeached){
+                        if($aQualificationTeached['year'] == $_SESSION['year']){
                         $line .= $aQualificationTeached['code']  . " - " . $aQualificationTeached['name'] ."<br>";
+                        }
                     }
                     
                 }
@@ -95,6 +97,21 @@ class TeacherQualificationTeached extends BaseModel
             }
         }
         return $content;
+    }
+    
+    function deleteFromDBWhereAndTeacher($id_teacher, $year) {
+        $sql = "DELETE tqt FROM `" . $this->table_name . "` tqt
+ 		JOIN qualification_teached qt ON qt.id_qualification_teached = tqt.id_qualification_teached
+		WHERE id_teacher = " . $id_teacher . " AND qt.year = '" . $year . "'";
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        if ($conn->query ( $sql ) === TRUE) {
+            return "success";
+        } else {
+            return  "fail";
+        }
+        
+        $conn->close ();
     }
     
     /**

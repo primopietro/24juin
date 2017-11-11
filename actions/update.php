@@ -186,7 +186,8 @@ if (isset($_POST)) {
             require_once $_SERVER["DOCUMENT_ROOT"] . "/24juin/MVC/model/24juin_teacher_qualification_teached.php";
             $anObject = new TeacherQualificationTeached();
             // Delete old values
-            $anObject->deleteFromDBWhere("id_teacher", " = ", $idobj);
+            //$anObject->deleteFromDBWhere("id_teacher", " = ", $idobj);
+            $anObject->deleteFromDBWhereAndTeacher($idobj, $_SESSION['year']);
             
             if (isset($_POST['qualification_teached'])) {
                 $qualificationTeached = $_POST['qualification_teached'];

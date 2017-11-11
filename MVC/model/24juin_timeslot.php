@@ -9,7 +9,10 @@ class Timeslot extends BaseModel {
 
 
 
-
+	function getTimeslot(){
+	    $aListOfTimeslot= $this->getListOfAllDBObjects();
+	    return $aListOfTimeslot;
+	}
 
     /**
      * id_timeslot

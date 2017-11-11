@@ -1,106 +1,162 @@
 <?php
 require_once 'BaseModel.php';
-class Week extends BaseModel {
-	protected $table_name = 'week';
-	protected $primary_key = "id_week";
-	protected $id_week = 0;
-	
-	protected $year = 0;
-	protected $name = 0;
-	protected $start_date = 0;
-	protected $date_finish = 0;
-
-
-
+class TimeslotWeek extends BaseModel {
+    protected $table_name = 'timeslot_week';
+    
+    protected $primary_key = "id_timeslot_week";
+    
+    protected $id_timeslot_week = 0;
+    
+    protected $id_timeslot = 0;
+    
+    protected $id_week = 0;
+    
+    public function getTimeslotWeek()
+    {
+        require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_timeslot.php';
+        require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_week.php';
+        
+        $timeslot = new Timeslot();
+        $aTimeslotList = $timeslot->getTimeslot();
+        
+        $TimeslotWeek = new TimeslotWeek();
+        $TimeslotWeekList = array();
+        
+        $finalList = array();
+        $originalList = $this->getListOfAllDBObjects();
+        
+        if ($aTimeslotList != null) {
+            if (sizeof($aTimeslotList) > 0) {
+                foreach ($aTimeslotList as $anObject) {
+                    // Get teacher
+                    
+                    $finalList[$anObject['id_timeslot']]['timeslot'] = $anObject;
+                    $TimeslotWeekList = $TimeslotWeek->getListOfAllDBObjectsWhere("id_timeslot"," = ", $anObject['id_timeslot']);
+                    
+                    if($TimeslotWeekList != null){
+                        if(sizeof($TimeslotWeekList)>0){
+                            foreach($TimeslotWeekList as $localTQ){
+                                $aWeek = new Week();
+                                $aWeek = $aWeek->getObjectFromDB($localTQ['id_week']);
+                                $finalList[$anObject['id_timeslot']]['weeks'][] = $aWeek;
+                            }
+                        }
+                    }
+                    
+                    // Get all Timeslot for this week
+                }
+            }
+        }
+        
+        return $finalList;
+    }
+    
+    function getEachTimeslotWeekComponentList($aTimeslotWeek, $canBeUpdated)
+    {
+        
+        $line = '';
+        
+        $line .= "<tr>";
+        $line .= "<td>" . $aTimeslotWeek['timeslot']['day'] . " - " . $aTeacherQualification['timeslot']['AM'] . "</td>";
+        $line .= "<td>";
+        
+        if(isset($aTimeslotWeek['weeks'])){
+            if($aTimeslotWeek['weeks'] != null){
+                if(sizeof($aTimeslotWeek['weeks'])>0){
+                    foreach($aTimeslotWeek['weeks'] as $aWeek){
+                        $line .= $aWeek['name']  . " - " . $aWeek['date_start'] . " à " . $aWeek['date_finish'] ."<br>";
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        $line .="</td>";
+        if ($canBeUpdated) {
+            $line .= "<td><a objtype='timeslot_week' action='update' class='action btn' idobj='" . $aTimeslotWeek['timeslot']['id_timeslot'] . "'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
+        }
+        $line .= "</tr>";
+        
+        return $line;
+    }
+    
+    public function printTimeslotWeekList($aListOfTimeslotWeek, $canBeUpdated)
+    {
+        $content = "";
+        if ($aListOfTimeslotWeek != null) {
+            if (sizeof($aListOfTimeslotWeek) > 0) {
+                foreach ($aListOfTimeslotWeek as $aTimeslotWeek) {
+                    $content .= $this->getEachTimeslotWeekComponentList($aTimeslotWeek, $canBeUpdated);
+                }
+            }
+        }
+        return $content;
+    }
+    
     /**
-     * id_week
+     * id_timeslot_week
+     *
      * @return unkown
      */
-    protected function getId_week(){
-        return $this->id_week;
+    public function getId_timeslot_week()
+    {
+        return $this->id_timeslot_week;
     }
-
+    
+    /**
+     * id_timeslot_week
+     *
+     * @param unkown $id_timeslot_week
+     * @return TimeslotWeek
+     */
+    public function setId_timeslot_week($id_timeslot_week)
+    {
+        $this->id_timeslot_week = $id_timeslot_week;
+        return $this;
+    }
+    
+    /**
+     * id_timeslot
+     *
+     * @return unkown
+     */
+    public function getId_timeslot()
+    {
+        return $this->id_timeslot;
+    }
+    
+    /**
+     * id_timeslot
+     *
+     * @param unkown $id_timeslot
+     * @return Timeslot
+     */
+    public function setId_timeslot($id_timeslot)
+    {
+        $this->id_timeslot = $id_timeslot;
+        return $this;
+    }
     
     /**
      * id_week
-     * @param unkown $id_week
-     * @return Week
+     *
+     * @return unkown
      */
-    protected function setId_week($id_week){
+    public function getId_week()
+    {
+        return $this->id_week;
+    }
+    
+    /**
+     * id_week
+     *
+     * @param unkown $id_week
+     * @return IdWeek
+     */
+    public function setId_week($id_week)
+    {
         $this->id_week = $id_week;
         return $this;
     }
-
-    /**
-     * year
-     * @return unkown
-     */
-    protected function getYear(){
-        return $this->year;
-    }
-
-    /**
-     * year
-     * @param unkown $year
-     * @return Week
-     */
-    protected function setYear($year){
-        $this->year = $year;
-        return $this;
-    }
-
-    /**
-     * name
-     * @return unkown
-     */
-    protected function getName(){
-        return $this->name;
-    }
-
-    /**
-     * name
-     * @param unkown $name
-     * @return Week
-     */
-    protected function setName($name){
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
-     * start_date
-     * @return unkown
-     */
-    protected function getStart_date(){
-        return $this->start_date;
-    }
-
-    /**
-     * start_date
-     * @param unkown $start_date
-     * @return Week
-     */
-    protected function setStart_date($start_date){
-        $this->start_date = $start_date;
-        return $this;
-    }
-
-    /**
-     * date_finish
-     * @return unkown
-     */
-    protected function getDate_finish(){
-        return $this->date_finish;
-    }
-
-    /**
-     * date_finish
-     * @param unkown $date_finish
-     * @return Week
-     */
-    protected function setDate_finish($date_finish){
-        $this->date_finish = $date_finish;
-        return $this;
-    }
-
 }

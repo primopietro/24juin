@@ -181,7 +181,7 @@ function getSubMenuItem($localItem,$tempRights){
                     $right=frenchTranslator ($aLocalRight['name']);
                     if($aLocalRight['name'] == "view"  ){
                         
-                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compétence <br> enseigné</a></li> ";
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compétence <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp enseignée</a></li> ";
                         
                         
                     }
@@ -250,6 +250,22 @@ function getSubMenuItem($localItem,$tempRights){
                     if($aLocalRight['name'] == "view"  ){
                         
                         $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compértence</a></li> ";
+                        
+                        
+                    }
+                }
+            }
+            
+        }
+    }if($localItem ['object'] ['name'] == "schedule"){
+        
+        foreach ($tempRights as $localItem ) {
+            if($localItem ['object'] ['name'] == "timeslot_week"){
+                foreach ( $localItem ['rights'] as $aLocalRight ) {
+                    $right=frenchTranslator ($aLocalRight['name']);
+                    if($aLocalRight['name'] == "view"  ){
+                        
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des cases horaires � une semaine</a></li> ";
                         
                         
                     }
