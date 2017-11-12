@@ -163,11 +163,13 @@ class BaseModel{
     	
     	$sql = "SELECT * FROM `" . $this->table_name . "`"; 
     	
-	
+		if($this->table_name == "building_classroom"){
+			$sql .= " bc JOIN classroom c ON c.id_classroom = bc.id_classroom ";
+		}
     	
     	$sql .= "WHERE ".$argument. " ".$operation." ".$value." ";
     
-    	
+    	//echo $sql;
     	
     	$result = $conn->query ( $sql );
     	
@@ -316,5 +318,19 @@ class BaseModel{
         }
         $conn->close ();
         return null;
+    }
+    
+    public function getObjectAsSelect($toDisplay){
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+    	
+    	$aListOfObjects = $this->getListOfAllDBObjects ();
+    	
+    	echo "<option value='0' selected>Faites un choix</option>";
+    	if ($aListOfObjects != null) {
+    		foreach ( $aListOfObjects as $anObject ) {
+    			echo "<option value='" . $anObject [$this->primary_key] . "'>" . $anObject [$toDisplay] . "</option>";
+    		}
+    	}
+    	
     }
 }

@@ -124,6 +124,17 @@ $(document).on('click', '#testAdd', function() {
                 
         });
 
+$(document).on('change', '#buildingSelect', function() {
+	self = $(this);
+	
+	if(self.val() != 0){
+		$('#classroomSelect').removeAttr('disabled');
+		$('#classroomSelect').load("vue/body/panel/classroom/select.php?id_building=" + self.val());
+	} else{
+		$('#classroomSelect').attr('disabled', 'disabled');
+	}
+	
+});
 
 
 //Variables
