@@ -1,26 +1,26 @@
 <?php
 require_once 'BaseModel.php';
 class TimeslotTeacher extends BaseModel {
-    protected $table_name = 'timeslot_teacher';
+    protected $table_name = 'timeslot_classroom';
     
-    protected $primary_key = "id_timeslot_teacher";
+    protected $primary_key = "id_timeslot_classroom";
     
-    protected $id_timeslot_teacher = 0;
+    protected $id_timeslot_classroom = 0;
     
     protected $id_timeslot = 0;
     
-    protected $id_teacher = 0;
+    protected $id_classroom = 0;
     
-    public function getTimeslotTeacher()
+    public function getTimeslotClassroom()
     {
         require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_timeslot.php';
-        require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_teacher.php';
+        require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_classroom.php';
         
         $timeslot = new Timeslot();
         $aTimeslotList = $timeslot->getTimeslot();
         
-        $TimeslotTeacher = new TimeslotTeacher();
-        $TimeslotTeacherList = array();
+        $TimeslotClassroom = new TimeslotClassroom();
+        $TimeslotClassroomList = array();
         
         $finalList = array();
         $originalList = $this->getListOfAllDBObjects();
@@ -31,19 +31,19 @@ class TimeslotTeacher extends BaseModel {
                     // Get teacher
                     
                     $finalList[$anObject['id_timeslot']]['timeslot'] = $anObject;
-                    $TimeslotTeacherList = $TimeslotTeacher->getListOfAllDBObjectsWhere("id_timeslot"," = ", $anObject['id_timeslot']);
+                    $TimeslotClassroomList = $TimeslotClassroom->getListOfAllDBObjectsWhere("id_timeslot"," = ", $anObject['id_timeslot']);
                     
-                    if($TimeslotTeacherList != null){
-                        if(sizeof($TimeslotTeacherList)>0){
-                            foreach($TimeslotTeacherList as $localTQ){
-                                $aTeacher = new Teacher();
-                                $aTeacher = $aTeacher->getObjectFromDB($localTQ['id_teacher']);
-                                $finalList[$anObject['id_timeslot']]['teachers'][] = $aTeacher;
+                    if($TimeslotClassroomList != null){
+                        if(sizeof($TimeslotClassroomList)>0){
+                            foreach($TimeslotClassroomList as $localTQ){
+                                $aClassroom = new Classroom();
+                                $aClassroom = $aClassroom->getObjectFromDB($localTQ['id_classroom']);
+                                $finalList[$anObject['id_timeslot']]['classrooms'][] = $aClassroom;
                             }
                         }
                     }
                     
-                    // Get all Timeslot for this teacher
+                    // Get all Timeslot for this classroom
                 }
             }
         }
@@ -51,21 +51,21 @@ class TimeslotTeacher extends BaseModel {
         return $finalList;
     }
     
-    function getEachTimeslotTeacherComponentList($aTimeslotTeacher, $canBeUpdated)
+    function getEachTimeslotClassroomComponentList($aTimeslotClassroom, $canBeUpdated)
     {
         
         $line = '';
         
         $line .= "<tr>";
-        $arrayValues = $this->returnDayNameAndAmValue($aTimeslotTeacher['timeslot']['day'],$aTimeslotTeacher['timeslot']['AM']);
+        $arrayValues = $this->returnDayNameAndAmValue($aTimeslotClassroom['timeslot']['day'],$aTimeslotClassroom['timeslot']['AM']);
         $line .= "<td>" . $arrayValues[0] . " - " . $arrayValues[1] . "</td>";
         $line .= "<td>";
         
-        if(isset($aTimeslotTeacher['teachers'])){
-            if($aTimeslotTeacher['teachers'] != null){
-                if(sizeof($aTimeslotTeacher['teachers'])>0){
-                    foreach($aTimeslotTeacher['teachers'] as $aTeacher){
-                        $line .= $aTeacher['code'] . " - " . $aTeacher['first_name'] . "  " . $aTeacher['family_name']."<br>";
+        if(isset($aTimeslotClassroom['classrooms'])){
+            if($aTimeslotClassroom['classrooms'] != null){
+                if(sizeof($aTimeslotClassroom['classrooms'])>0){
+                    foreach($aTimeslotClassroom['classrooms'] as $aClassroom){
+                        $line .= $aClassroom['code']  ."<br>";
                     }
                     
                 }
@@ -75,20 +75,20 @@ class TimeslotTeacher extends BaseModel {
         
         $line .="</td>";
         if ($canBeUpdated) {
-            $line .= "<td><a objtype='timeslot_teacher' action='update' class='action btn' idobj='" . $aTimeslotTeacher['timeslot']['id_timeslot'] . "'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
+            $line .= "<td><a objtype='timeslot_classroom' action='update' class='action btn' idobj='" . $aTimeslotClassroom['timeslot']['id_timeslot'] . "'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
         }
         $line .= "</tr>";
         
         return $line;
     }
     
-    public function printTimeslotTeacherList($aListOfTimeslotTeacher, $canBeUpdated)
+    public function printTimeslotClassroomList($aListOfTimeslotClassroom, $canBeUpdated)
     {
         $content = "";
-        if ($aListOfTimeslotTeacher != null) {
-            if (sizeof($aListOfTimeslotTeacher) > 0) {
-                foreach ($aListOfTimeslotTeacher as $aTimeslotTeacher) {
-                    $content .= $this->getEachTimeslotTeacherComponentList($aTimeslotTeacher, $canBeUpdated);
+        if ($aListOfTimeslotClassroom != null) {
+            if (sizeof($aListOfTimeslotClassroom) > 0) {
+                foreach ($aListOfTimeslotClassroom as $aTimeslotClassroom) {
+                    $content .= $this->getEachTimeslotClassroomComponentList($aTimeslotClassroom, $canBeUpdated);
                 }
             }
         }
@@ -128,24 +128,24 @@ class TimeslotTeacher extends BaseModel {
     }
     
     /**
-     * id_timeslot_teacher
+     * id_timeslot_classroom
      *
      * @return unkown
      */
-    public function getId_timeslot_teacher()
+    public function getId_timeslot_classroom()
     {
-        return $this->id_timeslot_teacher;
+        return $this->id_timeslot_classroom;
     }
     
     /**
-     * id_timeslot_teacher
+     * id_timeslot_classroom
      *
-     * @param unkown $id_timeslot_teacher
-     * @return TimeslotTeacher
+     * @param unkown $id_timeslot_classroom
+     * @return TimeslotClassroom
      */
-    public function setId_timeslot_teacher($id_timeslot_teacher)
+    public function setId_timeslot_classroom($id_timeslot_classroom)
     {
-        $this->id_timeslot_teacher = $id_timeslot_teacher;
+        $this->id_timeslot_classroom = $id_timeslot_classroom;
         return $this;
     }
     
@@ -172,24 +172,24 @@ class TimeslotTeacher extends BaseModel {
     }
     
     /**
-     * id_teacher
+     * id_classroom
      *
      * @return unkown
      */
-    public function getId_teacher()
+    public function getId_classroom()
     {
-        return $this->id_teacher;
+        return $this->id_classroom;
     }
     
     /**
-     * id_teacher
+     * id_classroom
      *
-     * @param unkown $id_teacher
-     * @return IdTeacher
+     * @param unkown $id_classroom
+     * @return IdClassroom
      */
-    public function setId_teacher($id_teacher)
+    public function setId_classroom($id_classroom)
     {
-        $this->id_teacher = $id_teacher;
+        $this->id_classroom = $id_classroom;
         return $this;
     }
 }

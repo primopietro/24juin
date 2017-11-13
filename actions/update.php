@@ -201,42 +201,6 @@ if (isset($_POST)) {
             
             echo "success";
             exit();
-        }else if ($objType == "timeslot_week") {
-            $anObject = new TimeslotWeek();
-            // Delete old values
-            //$anObject->deleteFromDBWhere("id_timeslot", " = ", $idobj);
-            $anObject->deleteFromDBWhereAndTimeslot($idobj, $_SESSION['year']);
-            
-            if (isset($_POST['weeks'])) {
-                $week = $_POST['weeks'];
-                // Re-insert new ones
-                foreach ($week as $aWeeks) {
-                    $anObject->setId_timeslot($idobj);
-                    $anObject->setId_week($aWeeks);
-                    $anObject->addDBObject();
-                }
-            }
-            echo "success";
-            exit();
-            
-            }else if ($objType == "timeslot_teacher") {
-                $anObject = new TimeslotTeacher();
-                // Delete old values
-                $anObject->deleteFromDBWhere("id_timeslot", " = ", $idobj);
-                //$anObject->deleteFromDBWhereAndTimeslot($idobj, $_SESSION['year']);
-                
-                if (isset($_POST['teachers'])) {
-                    $teacher = $_POST['teachers'];
-                    // Re-insert new ones
-                    foreach ($teacher as $aTeachers) {
-                        $anObject->setId_timeslot($idobj);
-                        $anObject->setId_teacher($aTeachers);
-                        $anObject->addDBObject();
-                    }
-                }
-            
-            echo "success";
-            exit();
         }
         
         // Add other objects here as "else if"
