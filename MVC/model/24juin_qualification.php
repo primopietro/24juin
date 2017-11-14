@@ -117,5 +117,76 @@ class Qualification extends BaseModel {
     }
 
   
+    public function getObjectFromDB($primary_key) {
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars ( $this );
+        
+        if($this->primary_key == "order"){
+            $this->primary_key = "name";
+        }
+        
+        $sql = "SELECT * FROM `" . $this->table_name . "` qt
+		WHERE " . $this->primary_key . " = '" .$primary_key ."'";
+        $result = $conn->query ( $sql );
+        
+        if ($result->num_rows > 0) {
+            $anObject = Array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject ["primary_key"] = $this->primary_key;
+                $anObject ["table_name"] = $this->table_name;
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                    $this->$aRowName = $aValue;
+                }
+            }
+            $conn->close ();
+            return $anObject;
+        }
+        $conn->close ();
+        return null;
+    }
+    
+    
+    public function getListOfAllDBObjectsWhere($argument,$operation, $value) {
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars ( $this);
+        
+        $sql = "SELECT * FROM `" . $this->table_name . "` qt
+		WHERE ".$argument. " ".$operation." ".$value." ";
+        
+        
+        
+        $result = $conn->query ( $sql );
+        
+        if ($result->num_rows > 0) {
+            $localObjects = array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject = Array ();
+                $anObject ["primary_key"] = $this->primary_key;
+                $anObject ["table_name"] = $this->table_name;
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                }
+                
+                $localObjects [$row [$this->primary_key]] = $anObject;
+            }
+            
+            $conn->close ();
+            return $localObjects;
+        }
+        $conn->close ();
+        return null;
+    }
+    
+    function getObjectAsSelectWhere($id){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        $aListOfObjects = $this->getListOfAllDBObjectsWhere("id_qualification", " = ", $id);
+        
+        return $aListOfObjects;
+        
+    }
 
 }

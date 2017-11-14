@@ -162,4 +162,6 @@ class TeacherQualification extends BaseModel
         $this->id_qualification = $id_qualification;
         return $this;
     }
+    
+    
 }

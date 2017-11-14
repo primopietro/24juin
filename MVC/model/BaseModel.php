@@ -322,15 +322,39 @@ class BaseModel{
     
     public function getObjectAsSelect($toDisplay){
     	include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
-    	
+    	$aToDisplay = explode(",", $toDisplay);
     	$aListOfObjects = $this->getListOfAllDBObjects ();
     	
     	echo "<option value='0' selected>Faites un choix</option>";
     	if ($aListOfObjects != null) {
     		foreach ( $aListOfObjects as $anObject ) {
-    			echo "<option value='" . $anObject [$this->primary_key] . "'>" . $anObject [$toDisplay] . "</option>";
+    		    $infoToDisplay = "";
+    		    foreach ( $aToDisplay as $anColumn){
+    		      $infoToDisplay .=  $anObject[$anColumn] . " ";
+    		    }
+    			 echo "<option value='" . $anObject [$this->primary_key] . "'>" . $infoToDisplay . "</option>";
+    		    
     		}
     	}
     	
+    }
+    
+    public function getObjectAsSelectWhereYear($toDisplay, $year){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        $aToDisplay = explode(",", $toDisplay);
+        $aListOfObjects = $this->getListOfAllDBObjectsWhere("year"," LIKE ", "'".$_SESSION['year']."'");
+        
+        echo "<option value='0' selected>Faites un choix</option>";
+        if ($aListOfObjects != null) {
+            foreach ( $aListOfObjects as $anObject ) {
+                $infoToDisplay = "";
+                foreach ( $aToDisplay as $anColumn){
+                    $infoToDisplay .=  $anObject[$anColumn] . " ";
+                }
+                echo "<option value='" . $anObject [$this->primary_key] . "'>" . $infoToDisplay . "</option>";
+                
+            }
+        }
+        
     }
 }

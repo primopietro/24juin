@@ -136,6 +136,18 @@ $(document).on('change', '#buildingSelect', function() {
 	
 });
 
+$(document).on('change', '#teacherSelect', function() {
+	self = $(this);
+	
+	if(self.val() != 0){
+		$('#qualificationTeachedSelect').removeAttr('disabled');
+		$('#qualificationTeachedSelect').load("vue/body/panel/qualification_teached/select.php?id_teacher=" + self.val());
+	} else{
+		$('#qualificationTeachedSelect').attr('disabled', 'disabled');
+	}
+	
+});
+
 
 //Variables
 var ajaxPath = "http://localhost/24juin/";

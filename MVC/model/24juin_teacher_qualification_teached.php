@@ -63,5 +63,36 @@ class TeacherQualificationTeached extends BaseModel {
         $this->id_qualification_teached = $id_qualification_teached;
         return $this;
     }
+    
+    function getObjectAsSelectWhere($toDisplay, $id){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        $aToDisplay = explode(",", $toDisplay);
+        $aListOfObjects = $this->getListOfAllDBObjectsWhere("id_teacher", "=", $id);
+        
+        
+        echo "<option value='0' selected>Faites un choix</option>";
+        if ($aListOfObjects != null) {
+            foreach ( $aListOfObjects as $anObject ) {
+                require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_qualification_teached.php';
+                $aQualificationTeached = new QualificationTeached();
+                $aListOfObjects2 = $aQualificationTeached->getObjectWhereYearAndIdQualificationTeached($anObject["id_qualification_teached"],$_SESSION['year']);
+                  foreach ( $aListOfObjects2 as $anObject2 ) {
+                    require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_qualification.php';
+                    $aQualification = new Qualification();
+                    $aListOfObjects3 = $aQualification->getListOfAllDBObjectsWhere("id_qualification", " = ", $anObject2["id_qualification"]);
+                    
+                    foreach ( $aListOfObjects3 as $anObject3 ) {
+                        $infoToDisplay = "";
+                        foreach ( $aToDisplay as $anColumn){
+                            $infoToDisplay .=  $anObject3[$anColumn] . " ";
+                        }
+                        echo "<option value='" . $anObject3["id_qualification"] . "'>" . $infoToDisplay . "</option>";
+                    }
+                }
+            }
+        }
+        
+    }
 
 }

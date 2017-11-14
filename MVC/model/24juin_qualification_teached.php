@@ -219,5 +219,42 @@ class QualificationTeached extends BaseModel {
     	$conn->close ();
     	return null;
     }
+    
+    public function getObjectWhereYearAndIdQualificationTeached($id_qualification_teached,$year) {
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars ( $this);
+        
+        $sql = "SELECT * FROM `" . $this->table_name . "` WHERE year = '" . $year . "' AND id_qualification_teached  = " . $id_qualification_teached;
+        
+        $result = $conn->query ( $sql );
+        
+        if ($result->num_rows > 0) {
+            $anObject = Array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject ["primary_key"] = $this->primary_key;
+                $anObject ["table_name"] = $this->table_name;
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                }
+                $localObjects [$row [$this->primary_key]] = $anObject;
+            }
+            
+            $conn->close ();
+            return $localObjects;
+        }
+        $conn->close ();
+        return null;
+    }
+    
+    function getObjectAsSelectWhere($id,$year){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        $aListOfObjects = $this->getObjectWhereYearAndIdQualificationTeached($id,$year);
+        
+        return $aListOfObjects;
+        
+    }
+    
 
 }
