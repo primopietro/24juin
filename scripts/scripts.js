@@ -136,17 +136,100 @@ $(document).on('change', '#buildingSelect', function() {
 	
 });
 
+$(document).on('change', '#classroomSelect', function() {
+	self = $(this);
+	
+	if(self.val() != 0){
+		$('#zoneSelect').removeAttr('disabled');
+		$('#zoneSelect').load("vue/body/panel/zone/select.php?id_classroom=" + self.val());
+	} else{
+		$('#zoneSelect').attr('disabled', 'disabled');
+	}
+	
+});
+
+$(document).on('change', '#zoneSelect', function() {
+	self = $(this);
+	
+	if(self.val() != 0){
+		$('#weekSelect').removeAttr('disabled');
+	} else{
+		$('#weekSelect').attr('disabled', 'disabled');
+	}
+	
+});
+
 $(document).on('change', '#teacherSelect', function() {
 	self = $(this);
 	
 	if(self.val() != 0){
 		$('#qualificationTeachedSelect').removeAttr('disabled');
 		$('#qualificationTeachedSelect').load("vue/body/panel/qualification_teached/select.php?id_teacher=" + self.val());
+
 	} else{
 		$('#qualificationTeachedSelect').attr('disabled', 'disabled');
 	}
 	
 });
+
+$(document).on('change', '#weekSelect', function() {
+	self = $(this);
+	
+	if(self.val() != 0){
+		$('#start_day').removeAttr('disabled');
+	} else{
+		$('#start_day').attr('disabled', 'disabled');
+		$('#start_day').val("0").trigger("change");
+	}
+	
+});
+
+$(document).on('change', '#start_day', function() {
+	self = $(this);
+	
+	if(self.val() != 0){
+		$('#end_day').removeAttr('disabled');
+		$('#end_day').load("vue/body/panel/days/select_end.php?day=" + self.val());
+
+	} else{
+		$('#end_day').attr('disabled', 'disabled');
+		$('#end_day')
+	    .find('option')
+	    .remove()
+	    .end()
+	    .append('<option value="0">Faites un choix</option>');
+	}
+	
+});
+
+$(document).on('change', '#end_day', function() {
+	self = $(this);
+	
+	if(self.val() != 0){
+		$('#teacherSelect').removeAttr('disabled');
+		
+		$('#am1Check').removeAttr('disabled');
+		$('#am2Check').removeAttr('disabled');
+		$('#pm1Check').removeAttr('disabled');
+		$('#pm2Check').removeAttr('disabled');
+
+	} else{
+		$('#teacherSelect').attr('disabled', 'disabled');
+
+		$('#am1Check').prop('checked', false);
+		$('#am2Check').prop('checked', false);
+		$('#pm1Check').prop('checked', false);
+		$('#pm2Check').prop('checked', false);
+		
+		$('#am1Check').attr('disabled', 'disabled');
+		$('#am2Check').attr('disabled', 'disabled');
+		$('#pm1Check').attr('disabled', 'disabled');
+		$('#pm2Check').attr('disabled', 'disabled');
+		
+	}
+	
+});
+
 
 
 //Variables

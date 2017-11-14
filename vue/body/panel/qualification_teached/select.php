@@ -6,6 +6,6 @@ if (! isset ( $_SESSION ))
 	$id_teacher = $_GET['id_teacher'];
 	
 	$aTeacherQualificationTeached = new TeacherQualificationTeached();
-	$aTeacherQualificationTeached->getObjectAsSelectWhere("code,name", $id_teacher);
+	$aTeacherQualificationTeached->getObjectAsSelectWhere($id_teacher);
 	
 ?>

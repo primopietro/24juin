@@ -151,7 +151,6 @@ class BuildingClassroom extends BaseModel {
     	
     	$aListOfObjects = $this->getListOfAllDBObjectsWhere("id_building", "=", $id);
     	
-    	echo "<option value='0' selected>Faites un choix</option>";
     	if ($aListOfObjects != null) {
     		foreach ( $aListOfObjects as $anObject ) {
     			echo "<option value='" . $anObject [$this->primary_key] . "'>" . $anObject [$toDisplay] . "</option>";

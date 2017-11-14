@@ -165,6 +165,8 @@ class BaseModel{
     	
 		if($this->table_name == "building_classroom"){
 			$sql .= " bc JOIN classroom c ON c.id_classroom = bc.id_classroom ";
+		} else if($this->table_name == "classroom_zone"){
+		    $sql .= " cz JOIN zone z ON z.id_zone = cz.id_zone ";
 		}
     	
     	$sql .= "WHERE ".$argument. " ".$operation." ".$value." ";
@@ -325,7 +327,9 @@ class BaseModel{
     	$aToDisplay = explode(",", $toDisplay);
     	$aListOfObjects = $this->getListOfAllDBObjects ();
     	
-    	echo "<option value='0' selected>Faites un choix</option>";
+    	if($this->table_name != "teacher"){
+    	    echo "<option value='0' selected>Faites un choix</option>";
+    	}
     	if ($aListOfObjects != null) {
     		foreach ( $aListOfObjects as $anObject ) {
     		    $infoToDisplay = "";
@@ -344,7 +348,6 @@ class BaseModel{
         $aToDisplay = explode(",", $toDisplay);
         $aListOfObjects = $this->getListOfAllDBObjectsWhere("year"," LIKE ", "'".$_SESSION['year']."'");
         
-        echo "<option value='0' selected>Faites un choix</option>";
         if ($aListOfObjects != null) {
             foreach ( $aListOfObjects as $anObject ) {
                 $infoToDisplay = "";
