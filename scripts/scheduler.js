@@ -117,8 +117,15 @@ function getTimeSlotForAPeriod(aPeriod,colorIndex) {
 
 	var colors = Object.values(Colors.names);
 	var timeSlotForAPeriod = "<div class='scheduleCell' style='background-color:"+colors[colorIndex]+";'>";
-	console.log(aPeriod);
-	timeSlotForAPeriod +="TEMPCODE";
+	var temp =aPeriod['qualifications'];
+	if(temp!= undefined){
+		if(temp.length>0){
+			var temp2 = temp[0];
+			timeSlotForAPeriod +=temp2["code"];
+		}
+		
+	}
+	
 	timeSlotForAPeriod += "</div>";
 	
 	return timeSlotForAPeriod;

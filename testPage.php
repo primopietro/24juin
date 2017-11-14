@@ -445,8 +445,6 @@ function transformDBScheduleToMemory($dataForSchedule)
 $dataForSchedule = json_decode($dataForSchedule, true);
 $scheduleTransformed = transformDBScheduleToMemory($dataForSchedule);
 
-print_r($scheduleTransformed);
-
 echo "<script>  schedule=";
 echo json_encode($scheduleTransformed, JSON_PRETTY_PRINT);
 //echo $scheduleTransformed;
