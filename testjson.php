@@ -47,7 +47,7 @@
     $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     
     echo "<div class='col-xs-3'>
-	   <h4>Jour début</h4>
+	   <h4>Jour dï¿½but</h4>
 	   <select id='start_day' disabled><option value='0'>Faites un choix</option>";
        
     foreach($days as $day){

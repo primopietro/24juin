@@ -1,4 +1,3 @@
-//testerino
 $(document).on('click', '#testAdd', function() {
             var eventsholded = [];
 
@@ -17,8 +16,173 @@ $(document).on('click', '#testAdd', function() {
             //ajout des semaines
             //global.weeks = new Object();
             var toFillWeeks = "[";
+            var weeks = new Array(document.getElementById("weekSelect").value);
+            	console.log(weeks);
+            var teachers = new Array(document.getElementById("teacherSelect").value);
+            	console.log(teachers);
+            var classrooms = new Array(document.getElementById("classroomSelect").value);
+            	console.log(classrooms);
+            var zones =new Array(document.getElementById("zoneSelect").value);
+            	console.log(zones);
+            var days = ['Monday', 'Thursday', 'Friday'];
+            	console.log(days);
+            var qualificationT =new Array(document.getElementById("qualificationTeachedSelect").value);
+            	console.log(qualificationT);
+            
+
+        	var id_timeslotToUse = 1;
+            var comptWeek = 1;
+            var comptTeacher = 1;
+            var comptClassroom = 1;
+            var comptZone = 1;
+        	
+        	//pour chaque jour de la semaine
+        	if(weeks != null){
+	        	$.each(weeks, function(indexWeek, valueWeek) {
+	        		toFillWeeks += '{"id_week": "'+valueWeek+'",';
+		            $.each(days, function(index, value) {
+		            	toFillWeeks += ' "' + value + '": {"am1": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
+		            	
+		            	if(teachers != null){
+		            		toFillWeeks += '"teacher": [';
+		            		comptTeacher = 1;
+			            	$.each(teachers, function(index, value) {
+			            		toFillWeeks += '{"id_teacher": "'+value+'"}';
+			            		
+			            		if(comptTeacher != teachers.length){
+				        			toFillWeeks += ', ';
+				        		}
+			            		
+			            		comptTeacher++;
+			            	});
+			            	toFillWeeks += '],';
+		            	}
+		            	
+		            	if(classrooms != null){
+		            		toFillWeeks += '"classroom": [';
+		            		comptClassroom = 1;
+			            	$.each(classrooms, function(index, value) {
+			            		toFillWeeks += '{"id_classroom": "'+value+'", ';
+			            		
+			            		
+			            		if(zones != null){
+				            		toFillWeeks += '"zone": [';
+				            		comptZone = 1;
+					            	$.each(zones, function(indexZone, valueZone) {
+					            		toFillWeeks += '{"id_zone": "'+valueZone+'"}';
+					            		
+					            		if(comptZone != zones.length){
+						        			toFillWeeks += ', ';
+						        		}
+					            		console.log(comptZone + ' ' + zones.length);
+					            		comptZone++;
+					            	});
+					            	toFillWeeks += ']';
+				            	}
+			            		
+			            		
+			            		toFillWeeks += '}';
+			            		
+			            		if(comptClassroom != classrooms.length){
+				        			toFillWeeks += ', ';
+				        		}
+			            		
+			            		comptClassroom++;
+			            	});
+			            	toFillWeeks += '],';
+		            	}
+		            	
+		            	toFillWeeks += '"isExam": "false", "isPedagoDayProgram": "false", "isPegadoDayAll": "false", "isFixedHoliday": "false", "isStageIndividual": "false", "isStageAccompanied": "false", "isSpecialEvent": "false"}}';
+		           
+		           if(document.getElementById("am1Check").checked) {
+			        	 var am1="check";
+		        	} else {
+		        	   var am1=null;
+		        	   toFillWeeks += ', "am1": ' + am1 ;
+		        	}
+		        	if(document.getElementById("am2Check").checked) {
+		        	    var am2="check";
+		        	  
+		        	} else {
+		        	   var am2=null;
+		        	   toFillWeeks += ', "am2": ' + am2 ;
+		        	}
+		        	if(document.getElementById("pm1Check").checked) {
+		        	    var pm1="check";
+		        	   
+		        	} else {
+		        	   var pm1=null;	        	
+		        	   toFillWeeks += ', "pm1": ' + pm1 ;
+		        	}
+		        	if(document.getElementById("pm2Check").checked) {
+		        	    var pm2="check";
+		  
+		        	} else {
+		        	   var pm2=null;		        	   
+		        	   toFillWeeks += ', "pm2": ' + pm2 ;
+		        	}
+			        	 
+		        	toFillWeeks += '}';
+		            
+		            
+		            	if(value != "Friday"){
+		                	toFillWeeks += ', ';
+		                }
+		            	
+		            	id_timeslotToUse++;
+		            });
+		            
+	        		toFillWeeks += '}';
+	        		
+	        		if(comptWeek != weeks.length){
+	        			toFillWeeks += ', ';
+	        		}
+	        		
+	        		comptWeek++;
+	        	});
+        	}
+        	
+        	toFillWeeks += ']';
+        	
+        	console.log(toFillWeeks);
+            global.weeks = $.parseJSON(toFillWeeks);
+            
+            eventsholded.push(global);
+
+            //ajax pour créé le fichier JSON
+            $.ajax
+            ({
+                type: 'POST',
+                dataType : 'json',
+                async: false,
+                url: 'http://localhost/24juin/jsonwriteTest.php',
+                data: { data: JSON.stringify(eventsholded) },
+                success: function () {alert('Thanks!'); },
+                failure: function() {alert('Error!');}
+            });
+                
+        });
+//testerino
+$(document).on('click', '#testAdd2', function() {
+            var eventsholded = [];
+
+            //ajout object global
+            var global = new Object();
+            global.id_year = '1';           //ajout id_year
+            global.id_group = '1';          //ajout id_group
+            global.id_program = '1';        //ajout id_program
+
+            //ajout am
+            global.am = {'am1': {'time_start': '08:15', 'time_end': '10:15'}, 'am2': {'time_start': '10:30', 'time_end': '11:30'}};
+            
+            //ajout pm
+            global.pm = {'pm1': {'time_start': '12:30', 'time_end': '14:30'}, 'pm2': {'time_start': '14:45', 'time_end': '15:45'}};
+    
+            //ajout des semaines
+            //global.weeks = new Object();
+            var toFillWeeks = "[";
             var weeks = ['1', '2'];
-            var teachers = ['1', '2'];
+             var teachers = ['1', '2'];
             var classrooms = ['1', '2'];
             var zones = ['1', '2'];
             var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
