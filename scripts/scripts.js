@@ -30,6 +30,7 @@ $(document).on('click', '#testAdd', function() {
             	console.log(qualificationT);
             
 
+            	
         	var id_timeslotToUse = 1;
             var comptWeek = 1;
             var comptTeacher = 1;
