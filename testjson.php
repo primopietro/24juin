@@ -15,7 +15,10 @@
 	$aQualificationTeached = new QualificationTeached();
 	$aWeek = new Week();
 	$aZone = new Zone();
-	
+	echo "<form>
+            <h4> Nom de l'horaire</h4>
+            <input type='text' id='aName'>
+           </form>";
 	echo "<form style='float:left;'>
 	<div class='col-xs-3'>
 	   <h4>Bâtiments</h4>
