@@ -9,17 +9,94 @@
     require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_week.php';
     require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_zone.php';
     
-	$aBuilding = new Building();
-	$aTeacher = new Teacher();
-	$aClassroom = new Classroom();
-	$aQualificationTeached = new QualificationTeached();
-	$aWeek = new Week();
-	$aZone = new Zone();
+    require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_group.php';
+    require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_program.php';
+    
+    
+    
+	$aGroup = new Group();
+	$aProgram = new Program();
+	
 	echo "<form>
-            <h4> Nom de l'horaire</h4>
-            <input type='text' id='aName'>
-           </form>";
-	echo "<form style='float:left;'>
+
+	<div class='col-xs-4'>
+		<h4>Année</h4>
+	    <input type='text' id='year' value='".$_SESSION['year']."' id_year='".$_SESSION['id_year']."'readonly></input>
+	</div>
+
+	<div class='col-xs-4'>
+		<h4>Groupe</h4>
+	    <select id='groupSelect' style='height: 26px;'>";
+	$aGroup->getObjectAsSelect("code");
+    echo "</select>
+	</div>
+
+	<div class='col-xs-4'>
+		<h4>Programme</h4>
+	    <select id='programSelect' style='height: 26px;'>";
+    $aProgram->getObjectAsSelect("name");
+    echo "</select>
+	</div>
+
+	<div class='col-xs-3'>
+		<h4>AM1 Début</h4>
+	    <input type='time' id='am1Time_start'></input>
+	</div>
+
+	<div class='col-xs-3'>
+		<h4>AM1 Fin</h4>
+	    <input type='time' id='am1Time_end'></input>
+	</div>
+
+	<div class='col-xs-3'>
+		<h4>AM2 Début</h4>
+	    <input type='time' id='am2Time_start'></input>
+	</div>
+
+	<div class='col-xs-3'>
+		<h4>AM2 Fin</h4>
+	    <input type='time' id='am2Time_end'></input>
+	</div>
+
+
+
+	<div class='col-xs-3'>
+		<h4>PM1 Début</h4>
+	    <input type='time' id='pm1Time_start'></input>
+	</div>
+
+	<div class='col-xs-3'>
+		<h4>PM1 Fin</h4>
+	    <input type='time' id='pm1Time_end'></input>
+	</div>
+
+	<div class='col-xs-3'>
+		<h4>PM2 Début</h4>
+	    <input type='time' id='pm2Time_start'></input>
+	</div>
+
+	<div class='col-xs-3'>
+		<h4>PM2 Fin</h4>
+	    <input type='time' id='pm2Time_end'></input>
+	</div>
+	<a class='addTest' id='testFirstForm'>add</a>
+	</form>";
+	
+    
+    
+    
+    $aBuilding = new Building();
+    $aTeacher = new Teacher();
+    $aClassroom = new Classroom();
+    $aQualificationTeached = new QualificationTeached();
+    $aWeek = new Week();
+    $aZone = new Zone();
+	
+	echo "<form style='margin-top:150px; float:left;'>
+	<div class='col-xs-3'>
+		<h4> Nom de l'horaire</h4>
+	    <input type='text' id='aName'></input>
+	</div>
 	<div class='col-xs-3'>
 	   <h4>Bâtiments</h4>
 	   <select id='buildingSelect'>";

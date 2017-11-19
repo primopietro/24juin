@@ -1,20 +1,64 @@
+$(document).on('click', '#testFirstForm', function(){
+	var eventsholded = [];
+
+    //ajout object global
+    var global = new Object();
+    
+    var year = $('#year').attr('id_year');
+    var group = $('#groupSelect').val();
+    var program = $('#programSelect').val();
+    
+    var am1Start = $('#am1Time_start').val();
+    var am1End = $('#am1Time_end').val();
+    var am2Start = $('#am2Time_start').val();
+    var am2End = $('#am2Time_end').val();
+    
+    var pm1Start = $('#pm1Time_start').val();
+    var pm1End = $('#pm1Time_end').val();
+    var pm2Start = $('#pm2Time_start').val();
+    var pm2End = $('#pm2Time_end').val();
+    
+    global.id_year = year;           //ajout id_year
+    global.id_group = group;          //ajout id_group
+    global.id_program = program;        //ajout id_program
+    
+    //ajout am
+    global.am = {'am1': {'time_start': am1Start, 'time_end': am1End}, 'am2': {'time_start': am2Start, 'time_end': am2End}};
+    
+    //ajout pm
+    global.pm = {'pm1': {'time_start': pm1Start, 'time_end': pm1End}, 'pm2': {'time_start': pm2Start, 'time_end': pm2End}};
+
+    eventsholded.push(global);
+    
+    $.ajax
+    ({
+        type: 'POST',
+        dataType : 'json',
+        async: false,
+        url: 'http://localhost/24juin/jsonwriteTest.php?name=firstForm',
+        data: { data: JSON.stringify(eventsholded) },
+        success: function () {alert('Thanks!'); },
+        failure: function() {alert('Error!');}
+    });
+});
+
 $(document).on('click', '#testAdd', function() {
 			var theName=$( "#aName" ).val();
-	
+			
             var eventsholded = [];
 
             //ajout object global
             var global = new Object();
-            global.id_year = '1';           //ajout id_year
-            global.id_group = '1';          //ajout id_group
-            global.id_program = '1';        //ajout id_program
-
-            //ajout am
-            global.am = {'am1': {'time_start': '08:15', 'time_end': '10:15'}, 'am2': {'time_start': '10:30', 'time_end': '11:30'}};
             
-            //ajout pm
-            global.pm = {'pm1': {'time_start': '12:30', 'time_end': '14:30'}, 'pm2': {'time_start': '14:45', 'time_end': '15:45'}};
-    
+            $.getJSON( "firstForm.json", function( data ) {
+            	  var items = [];
+            	  $.each( data, function( key, val ) {
+            	    items.push(key + ", " + val);
+            	    console.log(data.id_year);
+            	  });
+            	  console.log(items);
+            	});
+            
             //ajout des semaines
             //global.weeks = new Object();
             var toFillWeeks = "[";
@@ -36,18 +80,22 @@ $(document).on('click', '#testAdd', function() {
             	console.log("qualification: "+qualificationT);
     	  
 	        var days=[];
+	        var boolDay = 0;
 	         	
 	        var	index=0;
          	$.each(allDays, function( index, value ) {
-         		 if(value==startDay){
-         			$.each(allDays, function( index, value ) {
-         				days.push(value);
-         				if(value==endDay){
-         					return false;
-         				}
-         			});
-         		 }
-         		});
+         		if(value == startDay){
+         			boolDay = 1;
+         		}
+         		 
+	     		if(boolDay == 1){
+	     			days.push(value);
+	     		}
+         		 
+         		if(value == endDay){
+ 					return false;
+ 				}
+     		});
             	
          	console.log(days);
          	
@@ -212,7 +260,7 @@ $(document).on('click', '#testAdd', function() {
                 type: 'POST',
                 dataType : 'json',
                 async: false,
-                url: 'http://localhost/24juin/jsonwriteTest.php',
+                url: 'http://localhost/24juin/jsonwriteTest.php?name=' + theName,
                 data: { data: JSON.stringify(eventsholded) },
                 success: function () {alert('Thanks!'); },
                 failure: function() {alert('Error!');}

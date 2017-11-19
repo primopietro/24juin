@@ -90,7 +90,7 @@ class TeacherQualificationTeached extends BaseModel {
           WHERE qt.year = '" . $_SESSION['year'] . "' AND tqt.id_teacher = " . $id_teacher;
           
           
-          echo $sql;
+          //echo $sql;
           
           $result = $conn->query ( $sql );
           

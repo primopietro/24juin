@@ -1,4 +1,5 @@
 <?php
+if(!isset($_SESSION)){session_start();}
 class BaseModel{
     // Known attributes
     protected $table_name = '';
@@ -336,8 +337,11 @@ class BaseModel{
     		    foreach ( $aToDisplay as $anColumn){
     		      $infoToDisplay .=  $anObject[$anColumn] . " ";
     		    }
-    			 echo "<option value='" . $anObject [$this->primary_key] . "'>" . $infoToDisplay . "</option>";
-    		    
+    		    if($this->table_name != "group"){
+    				echo "<option value='" . $anObject [$this->primary_key] . "'>" . $infoToDisplay . "</option>";
+    		    }else if($this->table_name == "group" && $anObject['year'] == $_SESSION['year']){
+    		    	echo "<option value='" . $anObject [$this->primary_key] . "'>" . $infoToDisplay . "</option>";
+    		    }
     		}
     	}
     	
