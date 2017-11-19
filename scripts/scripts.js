@@ -45,226 +45,211 @@ $(document).on('click', '#testFirstForm', function(){
 $(document).on('click', '#testAdd', function() {
 			var theName=$( "#aName" ).val();
 			
-            var eventsholded = [];
 
             //ajout object global
             var global = new Object();
             
-            $.getJSON( "firstForm.json", function( data ) {
-            	  var items = [];
-            	  $.each( data, function( key, val ) {
-            	    items.push(key + ", " + val);
-            	    console.log(data.id_year);
-            	  });
-            	  console.log(items);
-            	});
+            $.getJSON("firstForm.json", function(json) {
+            	//eventsholded.push(json);
+                
+                var toFillWeeks = "[";
+                var weeks =$( "#weekSelect" ).val();
+                var teachers = $( "#teacherSelect" ).val();
+                var classrooms =$( "#classroomSelect" ).val();
+                var zones =$( "#zoneSelect" ).val();
+            	var startDay =$( "#start_day" ).val();
+                var endDay =$( "#end_day" ).val();
+                var allDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+                                	
+                var qualificationT =$( "#qualificationTeachedSelect" ).val();
+        	  
+    	        var days=[];
+    	        var boolDay = 0;
+    	         	
+    	        var	index=0;
+             	$.each(allDays, function( index, value ) {
+             		if(value == startDay){
+             			boolDay = 1;
+             		}
+             		 
+    	     		if(boolDay == 1){
+    	     			days.push(value);
+    	     		}
+             		 
+             		if(value == endDay){
+     					return false;
+     				}
+         		});
+                	
+             	
+               if($('#am1Check').is(":checked")) {
+    	        	 var am1="check";
+            	} else {
+            	   var am1=null;
+             	}
+            	if($('#am2Check').is(":checked")) {
+            	    var am2="check";
+            	  
+            	} else {
+            	   var am2=null;
+            	          	}
+            	if($('#pm1Check').is(":checked")) {
+            		 var pm1="check";
+            	    
+            	} else {
+            	   var pm1=null;	        	
+            	          	}
+            	if($('#pm2Check').is(":checked")) {
+            	    var pm2="check";
+      
+            	} else {
+            	   var pm2=null;		        	        
+            	}
+            	
+            	var period=[];
+            	period.push(am1);
+            	period.push(am2);
+            	period.push(pm1);
+            	period.push(pm2);
+           
+            	var id_timeslotToUse = 1;
+                var comptWeek = 1;
+                var comptTeacher = 1;
+                var comptClassroom = 1;
+                var comptZone = 1;
+            	
+            	//pour chaque jour de la semaine
+            	if(weeks != null){
+    	        	$.each(weeks, function(indexWeek, valueWeek) {
+    	        		toFillWeeks += '{"id_week": "'+valueWeek+'"';
+    		            $.each(days, function(index, value) {
+    		            	$.each(period, function(indexPeriod, valuePeriod) {
+    		            		if(valuePeriod=="check"){
+               	            			 
+    						           if(indexPeriod==0) {
+    						        	   toFillWeeks += ', "' + value + '": {"am1": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
+    						        	}
+    						           if(indexPeriod==1){
+    						        	   toFillWeeks += ', "' + value + '": {"am2": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
+    						        	}
+    						           if(indexPeriod==2) {  	
+    		            					toFillWeeks += ', "' + value + '": {"pm1": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
+    						        	}
+    		            				if(indexPeriod==3) {		        	   
+    		            					toFillWeeks += ', "' + value + '": {"pm2": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
+    						        	}
+    				            	
+    				            	
+    				            	if(teachers != null){
+    				            		toFillWeeks += '"teacher": [';
+    				            		comptTeacher = 1;
+    					            	$.each(teachers, function(index, value) {
+    					            		toFillWeeks += '{"id_teacher": "'+value+'"}';
+    					            		
+    					            		if(comptTeacher != teachers.length){
+    						        			toFillWeeks += ', ';
+    						        		}
+    					            		
+    					            		comptTeacher++;
+    					            	});
+    					            	toFillWeeks += '],';
+    				            	}
+    				            	
+    				            	if(classrooms != null){
+    				            		toFillWeeks += '"classroom": [';
+    				            		comptClassroom = 1;
+    					            	$.each(classrooms, function(index, value) {
+    					            		toFillWeeks += '{"id_classroom": "'+value+'", ';
+    					            		
+    					            		
+    					            		if(zones != null){
+    						            		toFillWeeks += '"zone": [';
+    						            		comptZone = 1;
+    							            	$.each(zones, function(indexZone, valueZone) {
+    							            		toFillWeeks += '{"id_zone": "'+valueZone+'"}';
+    							            		
+    							            		if(comptZone != zones.length){
+    								        			toFillWeeks += ', ';
+    								        		}
+    							            		console.log(comptZone + ' ' + zones.length);
+    							            		comptZone++;
+    							            	});
+    							            	toFillWeeks += ']';
+    						            	}
+    					            		
+    					            		
+    					            		toFillWeeks += '}';
+    					            		
+    					            		if(comptClassroom != classrooms.length){
+    						        			toFillWeeks += ', ';
+    						        		}
+    					            		
+    					            		comptClassroom++;
+    					            	});
+    					            	toFillWeeks += '],';
+    				            	}
+    				            	
+    				            	toFillWeeks += '"isExam": "false", "isPedagoDayProgram": "false", "isPegadoDayAll": "false", "isFixedHoliday": "false", "isStageIndividual": "false", "isStageAccompanied": "false", "isSpecialEvent": "false"}}';
+    		            		}
+    			            });
+    				           if(am1==null) {
+    				        	   toFillWeeks += ', "am1": ' + am1 ;
+    				        	}
+    				        	if(am2==null){
+    				        	   toFillWeeks += ', "am2": ' + am2 ;
+    				        	}
+    				        	if(pm1==null) {  	
+    				        	   toFillWeeks += ', "pm1": ' + pm1 ;
+    				        	}
+    				        	if(pm2==null) {		        	   
+    				        	   toFillWeeks += ', "pm2": ' + pm2 ;
+    				        	}
+    					        	 
+    				        	toFillWeeks += '}';
+    				            
+    				            
+    				            	
+    		            
+    		            	/*if(value != endDay){
+    		                	toFillWeeks += ', ';
+    		                }*/
+    		            	
+    		            	id_timeslotToUse++;
+    		            });
+    		            
+    	        		toFillWeeks += '}';
+    	        		
+    	        		if(comptWeek != weeks.length){
+    	        			toFillWeeks += ', ';
+    	        		}
+    	        		
+    	        		comptWeek++;
+    	        	});
+            	}
+            	
+            	toFillWeeks += ']';
+            	
+            	console.log(toFillWeeks);
+                global.weeks = $.parseJSON(toFillWeeks);
+                json.push(global);
+                console.log(json);
+                
+                //ajax pour créé le fichier JSON
+                $.ajax
+                ({
+                    type: 'POST',
+                    dataType : 'json',
+                    async: false,
+                    url: 'http://localhost/24juin/jsonwriteTest.php?name=' + theName,
+                    data: { data: JSON.stringify(json) },
+                    success: function () {alert('Thanks!'); },
+                    failure: function() {alert('Error!');}
+                });
+            });
             
             //ajout des semaines
             //global.weeks = new Object();
-            var toFillWeeks = "[";
-            var weeks =$( "#weekSelect" ).val();
-            	console.log("weeks: "+weeks);
-            var teachers = $( "#teacherSelect" ).val();
-            	console.log("teacher: "+teachers);
-            var classrooms =$( "#classroomSelect" ).val();
-            	console.log(classrooms);
-            var zones =$( "#zoneSelect" ).val();
-        		console.log("zones: "+zones);
-        	var startDay =$( "#start_day" ).val();
-          		console.log("startDay: "+startDay);
-            var endDay =$( "#end_day" ).val();
-            	console.log("endDay: "+endDay);
-            var allDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-                            	
-            var qualificationT =$( "#qualificationTeachedSelect" ).val();
-            	console.log("qualification: "+qualificationT);
-    	  
-	        var days=[];
-	        var boolDay = 0;
-	         	
-	        var	index=0;
-         	$.each(allDays, function( index, value ) {
-         		if(value == startDay){
-         			boolDay = 1;
-         		}
-         		 
-	     		if(boolDay == 1){
-	     			days.push(value);
-	     		}
-         		 
-         		if(value == endDay){
- 					return false;
- 				}
-     		});
-            	
-         	console.log(days);
-         	
-           if($('#am1Check').is(":checked")) {
-	        	 var am1="check";
-        	} else {
-        	   var am1=null;
-         	}
-        	if($('#am2Check').is(":checked")) {
-        	    var am2="check";
-        	  
-        	} else {
-        	   var am2=null;
-        	          	}
-        	if($('#pm1Check').is(":checked")) {
-        		 var pm1="check";
-        	    
-        	} else {
-        	   var pm1=null;	        	
-        	          	}
-        	if($('#pm2Check').is(":checked")) {
-        	    var pm2="check";
-  
-        	} else {
-        	   var pm2=null;		        	        
-        	}
-        	console.log("am1: "+am1);
-        	console.log("am2: "+am2);
-        	console.log("pm1: "+pm1);
-        	console.log("pm2: "+pm2);
-        	var period=[];
-        	period.push(am1);
-        	period.push(am2);
-        	period.push(pm1);
-        	period.push(pm2);
-       
-        	var id_timeslotToUse = 1;
-            var comptWeek = 1;
-            var comptTeacher = 1;
-            var comptClassroom = 1;
-            var comptZone = 1;
-        	
-        	//pour chaque jour de la semaine
-        	if(weeks != null){
-	        	$.each(weeks, function(indexWeek, valueWeek) {
-	        		toFillWeeks += '{"id_week": "'+valueWeek+'"';
-		            $.each(days, function(index, value) {
-		            	$.each(period, function(indexPeriod, valuePeriod) {
-		            		if(valuePeriod=="check"){
-           	            			 
-						           if(indexPeriod==0) {
-						        	   toFillWeeks += ', "' + value + '": {"am1": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
-						        	}
-						           if(indexPeriod==1){
-						        	   toFillWeeks += ', "' + value + '": {"am2": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
-						        	}
-						           if(indexPeriod==2) {  	
-		            					toFillWeeks += ', "' + value + '": {"pm1": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
-						        	}
-		            				if(indexPeriod==3) {		        	   
-		            					toFillWeeks += ', "' + value + '": {"pm2": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
-						        	}
-				            	
-				            	
-				            	if(teachers != null){
-				            		toFillWeeks += '"teacher": [';
-				            		comptTeacher = 1;
-					            	$.each(teachers, function(index, value) {
-					            		toFillWeeks += '{"id_teacher": "'+value+'"}';
-					            		
-					            		if(comptTeacher != teachers.length){
-						        			toFillWeeks += ', ';
-						        		}
-					            		
-					            		comptTeacher++;
-					            	});
-					            	toFillWeeks += '],';
-				            	}
-				            	
-				            	if(classrooms != null){
-				            		toFillWeeks += '"classroom": [';
-				            		comptClassroom = 1;
-					            	$.each(classrooms, function(index, value) {
-					            		toFillWeeks += '{"id_classroom": "'+value+'", ';
-					            		
-					            		
-					            		if(zones != null){
-						            		toFillWeeks += '"zone": [';
-						            		comptZone = 1;
-							            	$.each(zones, function(indexZone, valueZone) {
-							            		toFillWeeks += '{"id_zone": "'+valueZone+'"}';
-							            		
-							            		if(comptZone != zones.length){
-								        			toFillWeeks += ', ';
-								        		}
-							            		console.log(comptZone + ' ' + zones.length);
-							            		comptZone++;
-							            	});
-							            	toFillWeeks += ']';
-						            	}
-					            		
-					            		
-					            		toFillWeeks += '}';
-					            		
-					            		if(comptClassroom != classrooms.length){
-						        			toFillWeeks += ', ';
-						        		}
-					            		
-					            		comptClassroom++;
-					            	});
-					            	toFillWeeks += '],';
-				            	}
-				            	
-				            	toFillWeeks += '"isExam": "false", "isPedagoDayProgram": "false", "isPegadoDayAll": "false", "isFixedHoliday": "false", "isStageIndividual": "false", "isStageAccompanied": "false", "isSpecialEvent": "false"}}';
-		            		}
-			            });
-				           if(am1==null) {
-				        	   toFillWeeks += ', "am1": ' + am1 ;
-				        	}
-				        	if(am2==null){
-				        	   toFillWeeks += ', "am2": ' + am2 ;
-				        	}
-				        	if(pm1==null) {  	
-				        	   toFillWeeks += ', "pm1": ' + pm1 ;
-				        	}
-				        	if(pm2==null) {		        	   
-				        	   toFillWeeks += ', "pm2": ' + pm2 ;
-				        	}
-					        	 
-				        	toFillWeeks += '}';
-				            
-				            
-				            	
-		            
-		            	/*if(value != endDay){
-		                	toFillWeeks += ', ';
-		                }*/
-		            	
-		            	id_timeslotToUse++;
-		            });
-		            
-	        		toFillWeeks += '}';
-	        		
-	        		if(comptWeek != weeks.length){
-	        			toFillWeeks += ', ';
-	        		}
-	        		
-	        		comptWeek++;
-	        	});
-        	}
-        	
-        	toFillWeeks += ']';
-        	
-        	console.log(toFillWeeks);
-            global.weeks = $.parseJSON(toFillWeeks);
             
-            eventsholded.push(global);
-
-            //ajax pour créé le fichier JSON
-            $.ajax
-            ({
-                type: 'POST',
-                dataType : 'json',
-                async: false,
-                url: 'http://localhost/24juin/jsonwriteTest.php?name=' + theName,
-                data: { data: JSON.stringify(eventsholded) },
-                success: function () {alert('Thanks!'); },
-                failure: function() {alert('Error!');}
-            });
                 
             });
 //testerino
@@ -378,6 +363,7 @@ $(document).on('click', '#testAdd2', function() {
             global.weeks = $.parseJSON(toFillWeeks);
             
             eventsholded.push(global);
+            console.log(global);
 
             //ajax pour créé le fichier JSON
             $.ajax
