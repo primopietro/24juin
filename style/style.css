@@ -225,3 +225,14 @@ li.treeview:not(.active):hover >a {
 	
 	
 }
+
+.divBorder{
+	display: block;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid lightgrey;
+}
+
+#consultSchedule{
+	cursor: pointer;
+}

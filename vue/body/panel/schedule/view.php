@@ -5,6 +5,9 @@ if (! isset ( $_SESSION )) {
 
 require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_group.php';
 require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_program.php';
+
+require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_schedule.php';
+
 require_once $_SERVER ["DOCUMENT_ROOT"] . '/24juin/vue/rightHelper.php';
 
 $objName = "schedule";
@@ -26,76 +29,98 @@ if (isset ( $rights ['view'] )) {
 			    if (isset ( $rights ['add'] )) {
 			    	$aGroup = new Group();
 			    	$aProgram = new Program();
+			    	
+			    	$aSchedule = new Schedule();
+			    	$aListOfSchedule = $aSchedule->getScheduleList();
+			    	
 			    	$default .= "<form>
 			    	<div class='col-xs-12'>
 						<h4> Nom de l'horaire</h4>
 					    <input type='text' id='aName'></input>
 					</div>
 
-			    	<div class='col-xs-2'>
+			    	<div class='col-xs-3'>
 			    	<h4>Année</h4>
 			    	<input type='text' id='year' value='".$_SESSION['year']."' id_year='".$_SESSION['id_year']."'readonly></input>
 			    	</div>
 			    	
-			    	<div class='col-xs-2'>
+			    	<div class='col-xs-3'>
 			    	<h4>Groupe</h4>
 			    	<select id='groupSelect' style='height: 26px;'>";
 			    	$default .= $aGroup->getObjectAsSelect("code");
 			    	$default .= "</select>
 				    </div>
 				    
-				    <div class='col-xs-8'>
+				    <div class='col-xs-6'>
 				    <h4>Programme</h4>
 				    <select id='programSelect' style='height: 26px;'>";
 			    	$default .= $aProgram->getObjectAsSelect("name");
 				    $default .= "</select>
 				    </div>
 				    
-				    <div class='col-xs-1'>
+				    <div class='col-xs-3'>
 				    <h4>AM1 Début</h4>
 				    <input type='time' id='am1Time_start'></input>
 				    </div>
 				    
-				    <div class='col-xs-1'>
+				    <div class='col-xs-3'>
 				    <h4>AM1 Fin</h4>
 				    <input type='time' id='am1Time_end'></input>
 				    </div>
 				    
-				    <div class='col-xs-1'>
+				    <div class='col-xs-3'>
 				    <h4>AM2 Début</h4>
 				    <input type='time' id='am2Time_start'></input>
 				    </div>
 				    
-				    <div class='col-xs-9'>
+				    <div class='col-xs-3'>
 				    <h4>AM2 Fin</h4>
 				    <input type='time' id='am2Time_end'></input>
 				    </div>
 				    
 				    
 				    
-				    <div class='col-xs-1'>
+				    <div class='col-xs-3'>
 				    <h4>PM1 Début</h4>
 				    <input type='time' id='pm1Time_start'></input>
 				    </div>
 				    
-				    <div class='col-xs-1'>
+				    <div class='col-xs-3'>
 				    <h4>PM1 Fin</h4>
 				    <input type='time' id='pm1Time_end'></input>
 				    </div>
 				    
-				    <div class='col-xs-1'>
+				    <div class='col-xs-3'>
 				    <h4>PM2 Début</h4>
 				    <input type='time' id='pm2Time_start'></input>
 				    </div>
 				    
-				    <div class='col-xs-1'>
+				    <div class='col-xs-3'>
 				    <h4>PM2 Fin</h4>
 				    <input type='time' id='pm2Time_end'></input>
 				    </div>
-				    <a class='btn btn-app'  style='margin-left: 36px; margin-top: -15px;' id='addHoraire' objtype='" . $objName . "'>
+				    <a class='btn btn-app' id='addHoraire' objtype='" . $objName . "'>
 			                		<i class='fa fa-plus'></i> Ajouter
 			              		<div class='ripple-container'></div></a>
 				    </form>";
+				    
+				    if ($aListOfSchedule != null) {
+				        if (sizeof ( $aListOfSchedule ) > 0) {
+				            $default .= "<table class='table table-bordered table-hover'>
+                			<thead>
+                			<tr>
+                			<th>Nom horaire</th>
+                			<th>JSON</th>
+                            <th></th></tr></thead>";
+                				          
+				            $default .= "<tbody>";
+				            
+				            $default .= $aSchedule->printScheduleList ( $aListOfSchedule );
+				            
+				            $default .= "</tbody>
+                              </table>";
+				        }
+				    }
 			    }
 
         $default .= "</div>

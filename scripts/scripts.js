@@ -49,23 +49,33 @@ $(document).on('click', '#addHoraire', function(){
 	        },
 	        failure: function() {alert('Error!');}
 	    }).always(function(data){
-			var div = $(".box-header");
-    		div.html('');
-    		$.ajax
-    	    ({
-    	        type: 'POST',
-    	        url: 'http://localhost/24juin/json/formTimeslot.php',
-    	        data: "",
-    	        success: function (response) {
-    	        	div.append(response);
-    	        }
-    	    });
+	    	getFormTimeSlot(data);
 		});
     } else {
     	alert("Tout les champs sont requis pour la création d'un horaire");
     }
 });
 
+
+
+
+$(document).on('click', '#consultSchedule', function(){
+	getFormTimeSlot($(this).attr("idschedule"));
+});
+
+function getFormTimeSlot(id_schedule){
+	var div = $(".box-header");
+	div.html('');
+	$.ajax
+    ({
+        type: 'POST',
+        url: 'http://localhost/24juin/json/formTimeslot.php',
+        data: "",
+        success: function (response) {
+        	div.append(response);
+        }
+    });
+}
 
 $("form").submit(function(e) {
 	e.preventDefault();

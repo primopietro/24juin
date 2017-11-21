@@ -16,8 +16,7 @@ if(!isset($_SESSION)){session_start();}
     $query = "INSERT INTO `schedule` (`id_schedule`, `code`, `year`, `schedule`) VALUES (NULL, '" . $_GET['name'] . "','" . $_SESSION['year'] . "','" . $stringData . "')";
     
     $result = $conn->query ($query);
-    print_r($result);
-    $conn->close();
     
-    echo $query;
+    echo $conn->insert_id;
+    $conn->close();
 ?>
