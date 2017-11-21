@@ -88,7 +88,7 @@ if (isset ( $rights ['view'] )) {
 				    <h4>PM2 Fin</h4>
 				    <input type='time' id='pm2Time_end'></input>
 				    </div>
-				    <a class='btn btn-app action'  style='margin-left: 36px; margin-top: -15px;' id='addHoraire' objtype='" . $objName . "'>
+				    <a class='btn btn-app'  style='margin-left: 36px; margin-top: -15px;' id='addHoraire' objtype='" . $objName . "'>
 			                		<i class='fa fa-plus'></i> Ajouter
 			              		<div class='ripple-container'></div></a>
 				    </form>";

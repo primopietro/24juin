@@ -21,28 +21,32 @@ $(document).on('click', '#addHoraire', function(){
     var pm2Start = $('#pm2Time_start').val();
     var pm2End = $('#pm2Time_end').val();
     
-    global.id_year = year;           //ajout id_year
-    global.id_group = group;          //ajout id_group
-    global.id_program = program;        //ajout id_program
-    
-    //ajout am
-    global.am = {'am1': {'time_start': am1Start, 'time_end': am1End}, 'am2': {'time_start': am2Start, 'time_end': am2End}};
-    
-    //ajout pm
-    global.pm = {'pm1': {'time_start': pm1Start, 'time_end': pm1End}, 'pm2': {'time_start': pm2Start, 'time_end': pm2End}};
-
-    eventsholded.push(global);
-    
-    $.ajax
-    ({
-        type: 'POST',
-        dataType : 'json',
-        async: false,
-        url: 'http://localhost/24juin/jsonwriteTest.php?name=firstForm',
-        data: { data: JSON.stringify(eventsholded) },
-        success: function () {alert('Thanks!'); },
-        failure: function() {alert('Error!');}
-    });
+    if(year != "" && group != "" && program != "" && am1Start != "" && am1End != "" && am2Start != "" && am2End != "" && pm1Start != "" && pm1End != "" && pm2Start != "" && pm2End != ""){
+	    global.id_year = year;           //ajout id_year
+	    global.id_group = group;          //ajout id_group
+	    global.id_program = program;        //ajout id_program
+	    
+	    //ajout am
+	    global.am = {'am1': {'time_start': am1Start, 'time_end': am1End}, 'am2': {'time_start': am2Start, 'time_end': am2End}};
+	    
+	    //ajout pm
+	    global.pm = {'pm1': {'time_start': pm1Start, 'time_end': pm1End}, 'pm2': {'time_start': pm2Start, 'time_end': pm2End}};
+	
+	    eventsholded.push(global);
+	    
+	    $.ajax
+	    ({
+	        type: 'POST',
+	        dataType : 'json',
+	        async: false,
+	        url: 'http://localhost/24juin/json/jsonwriteTest.php?name=firstForm',
+	        data: { data: JSON.stringify(eventsholded) },
+	        success: function () {alert('Thanks!'); },
+	        failure: function() {alert('Error!');}
+	    });
+    } else {
+    	alert("Tout les champs sont requis pour la création d'un horaire");
+    }
 });
 
 
