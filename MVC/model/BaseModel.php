@@ -317,4 +317,52 @@ class BaseModel{
         $conn->close ();
         return null;
     }
+    
+    public function getObjectAsSelect($toDisplay){
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+    	
+    	$toReturn = "";
+    	
+    	$aToDisplay = explode(",", $toDisplay);
+    	$aListOfObjects = $this->getListOfAllDBObjects ();
+    	
+    	if($this->table_name != "teacher"){
+    		$toReturn .= "<option value='0' selected>Faites un choix</option>";
+    	}
+    	if ($aListOfObjects != null) {
+    		foreach ( $aListOfObjects as $anObject ) {
+    			$infoToDisplay = "";
+    			foreach ( $aToDisplay as $anColumn){
+    				$infoToDisplay .=  $anObject[$anColumn] . " ";
+    			}
+    			if($this->table_name != "group"){
+    				$toReturn .= "<option value='" . $anObject [$this->primary_key] . "'>" . $infoToDisplay . "</option>";
+    			}else if($this->table_name == "group" && $anObject['year'] == $_SESSION['year']){
+    				$toReturn .= "<option value='" . $anObject [$this->primary_key] . "'>" . $infoToDisplay . "</option>";
+    			}
+    		}
+    	}
+    	
+    	return $toReturn;
+    	
+    }
+    
+    public function getObjectAsSelectWhereYear($toDisplay, $year){
+    	include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+    	
+    	$aToDisplay = explode(",", $toDisplay);
+    	$aListOfObjects = $this->getListOfAllDBObjectsWhere("year"," LIKE ", "'".$_SESSION['year']."'");
+    	
+    	if ($aListOfObjects != null) {
+    		foreach ( $aListOfObjects as $anObject ) {
+    			$infoToDisplay = "";
+    			foreach ( $aToDisplay as $anColumn){
+    				$infoToDisplay .=  $anObject[$anColumn] . " ";
+    			}
+    			echo "<option value='" . $anObject [$this->primary_key] . "'>" . $infoToDisplay . "</option>";
+    			
+    		}
+    	}
+    	
+    }
 }

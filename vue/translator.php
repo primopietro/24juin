@@ -97,6 +97,9 @@ function frenchtranslator($word){
     }else if($word=="group_qualification_teached"){
         return "Compétences enseignés des groupes";
         
+    }else if($word=="schedule"){
+    	return "Horaire";
+    	
     }
     else{
         return $word;
