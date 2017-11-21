@@ -56,6 +56,223 @@ $(document).on('click', '#addHoraire', function(){
     }
 });
 
+$(document).on('click', '#addTimeslot', function() {
+	
+    //ajout object global
+    var global = new Object();
+    
+    var id_schedule = $("#id_schedule").text();
+    
+    var dataToSend = "id_schedule=" + id_schedule;
+    
+    $.ajax
+    ({
+        type: 'POST',
+        url: 'http://localhost/24juin/json/getSchedule.php',
+        data: dataToSend,
+        success: function (response) {
+
+        	JSONParsed = $.parseJSON(response);
+        	
+        	//console.log(JSONParsed);
+        
+        	var toFillWeeks = "[";
+        	
+            var weeks =$( "#weekSelect" ).val();
+            var teachers = $( "#teacherSelect" ).val();
+            var classrooms =$( "#classroomSelect" ).val();
+            var zones =$( "#zoneSelect" ).val();
+        	var startDay =$( "#start_day" ).val();
+            var endDay =$( "#end_day" ).val();
+            var allDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+                            	
+            var qualificationT = $( "#qualificationTeachedSelect" ).val();
+    	  
+            var days=[];
+            var boolDay = 0;
+             	
+            var	index = 0;
+         	$.each(allDays, function( index, value ) {
+         		if(value == startDay){
+         			boolDay = 1;
+         		}
+         		 
+         		if(boolDay == 1){
+         			days.push(value);
+         		}
+         		 
+         		if(value == endDay){
+    					return false;
+    				}
+     		});
+            	
+         	
+           if($('#am1Check').is(":checked")) {
+            	 var am1="check";
+        	} else {
+        	   var am1=null;
+         	}
+        	if($('#am2Check').is(":checked")) {
+        	    var am2="check";
+        	  
+        	} else {
+        	   var am2=null;
+        	          	}
+        	if($('#pm1Check').is(":checked")) {
+        		 var pm1="check";
+        	    
+        	} else {
+        	   var pm1=null;	        	
+        	          	}
+        	if($('#pm2Check').is(":checked")) {
+        	    var pm2="check";
+
+        	} else {
+        	   var pm2=null;		        	        
+        	}
+        	
+        	var period=[];
+        	period.push(am1);
+        	period.push(am2);
+        	period.push(pm1);
+        	period.push(pm2);
+       
+        	var id_timeslotToUse = 1;
+            var comptWeek = 1;
+            var comptTeacher = 1;
+            var comptClassroom = 1;
+            var comptZone = 1;
+        	
+        	//pour chaque jour de la semaine
+        	if(weeks != null){
+            	$.each(weeks, function(indexWeek, valueWeek) {
+            		toFillWeeks += '{"id_week": "'+valueWeek+'"';
+    	            $.each(days, function(index, value) {
+    	            	$.each(period, function(indexPeriod, valuePeriod) {
+    	            		if(valuePeriod=="check"){
+           	            			 
+    					           if(indexPeriod==0) {
+    					        	   toFillWeeks += ', "' + value + '": {"am1": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
+    					        	}
+    					           if(indexPeriod==1){
+    					        	   toFillWeeks += ', "' + value + '": {"am2": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
+    					        	}
+    					           if(indexPeriod==2) {  	
+    	            					toFillWeeks += ', "' + value + '": {"pm1": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
+    					        	}
+    	            				if(indexPeriod==3) {		        	   
+    	            					toFillWeeks += ', "' + value + '": {"pm2": {"timeslot": {"id_timeslot": "' + id_timeslotToUse + '", "id_qualification_teached":  "' + qualificationT + '",';
+    					        	}
+    			            	
+    			            	
+    			            	if(teachers != null){
+    			            		toFillWeeks += '"teacher": [';
+    			            		comptTeacher = 1;
+    				            	$.each(teachers, function(index, value) {
+    				            		toFillWeeks += '{"id_teacher": "'+value+'"}';
+    				            		
+    				            		if(comptTeacher != teachers.length){
+    					        			toFillWeeks += ', ';
+    					        		}
+    				            		
+    				            		comptTeacher++;
+    				            	});
+    				            	toFillWeeks += '],';
+    			            	}
+    			            	
+    			            	if(classrooms != null){
+    			            		toFillWeeks += '"classroom": [';
+    			            		comptClassroom = 1;
+    				            	$.each(classrooms, function(index, value) {
+    				            		toFillWeeks += '{"id_classroom": "'+value+'", ';
+    				            		
+    				            		
+    				            		if(zones != null){
+    					            		toFillWeeks += '"zone": [';
+    					            		comptZone = 1;
+    						            	$.each(zones, function(indexZone, valueZone) {
+    						            		toFillWeeks += '{"id_zone": "'+valueZone+'"}';
+    						            		
+    						            		if(comptZone != zones.length){
+    							        			toFillWeeks += ', ';
+    							        		}
+    						            		console.log(comptZone + ' ' + zones.length);
+    						            		comptZone++;
+    						            	});
+    						            	toFillWeeks += ']';
+    					            	}
+    				            		
+    				            		
+    				            		toFillWeeks += '}';
+    				            		
+    				            		if(comptClassroom != classrooms.length){
+    					        			toFillWeeks += ', ';
+    					        		}
+    				            		
+    				            		comptClassroom++;
+    				            	});
+    				            	toFillWeeks += '],';
+    			            	}
+    			            	
+    			            	toFillWeeks += '"isExam": "false", "isPedagoDayProgram": "false", "isPegadoDayAll": "false", "isFixedHoliday": "false", "isStageIndividual": "false", "isStageAccompanied": "false", "isSpecialEvent": "false"}}';
+    	            		}
+    		            });
+    			           if(am1==null) {
+    			        	   toFillWeeks += ', "am1": ' + am1 ;
+    			        	}
+    			        	if(am2==null){
+    			        	   toFillWeeks += ', "am2": ' + am2 ;
+    			        	}
+    			        	if(pm1==null) {  	
+    			        	   toFillWeeks += ', "pm1": ' + pm1 ;
+    			        	}
+    			        	if(pm2==null) {		        	   
+    			        	   toFillWeeks += ', "pm2": ' + pm2 ;
+    			        	}
+    				        	 
+    			        	toFillWeeks += '}';
+    			            
+    	            	
+    	            	id_timeslotToUse++;
+    	            });
+    	            
+            		toFillWeeks += '}';
+            		
+            		if(comptWeek != weeks.length){
+            			toFillWeeks += ', ';
+            		}
+            		
+            		comptWeek++;
+            	});
+        	}
+        	
+        	toFillWeeks += ']';
+        	
+        	console.log(toFillWeeks);
+            global.weeks = $.parseJSON(toFillWeeks);
+            
+            JSONParsed.push(global);
+            
+            console.log(JSONParsed);
+            
+            //ajax pour créé le fichier JSON
+            $.ajax
+            ({
+                type: 'POST',
+                dataType : 'json',
+                async: false,
+                url: 'http://localhost/24juin/jsonUpdate.php?id_schedule=' + theName,
+                data: { data: JSON.stringify(JSONParsed) },
+                success: function () {alert('Thanks!'); },
+                failure: function() {alert('Error!');}
+            });
+        },
+        failure: function() {alert('Error!');}
+        
+    });
+    
+});
+
 
 
 
@@ -66,6 +283,7 @@ $(document).on('click', '#consultSchedule', function(){
 function getFormTimeSlot(id_schedule){
 	var div = $(".box-header");
 	div.html('');
+	div.append("<label id='id_schedule' style='display:none'>"+id_schedule+"</label>");
 	$.ajax
     ({
         type: 'POST',
