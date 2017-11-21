@@ -1,4 +1,5 @@
 <?php
+if(!isset($_SESSION)){session_start();}
 class BaseModel{
     // Known attributes
     protected $table_name = '';

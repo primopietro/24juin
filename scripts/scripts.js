@@ -51,7 +51,6 @@ $(document).on('click', '#addHoraire', function(){
 	    }).always(function(data){
 			var div = $(".box-header");
     		div.html('');
-			
 		});
     } else {
     	alert("Tout les champs sont requis pour la création d'un horaire");
