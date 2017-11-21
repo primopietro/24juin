@@ -44,7 +44,7 @@ function frenchtranslator($word){
         
     }else if($word=="teacher")
     {
-        return "Professeurs";
+        return "Enseignants";
         
     }
     else if($word=="user")
@@ -61,7 +61,7 @@ function frenchtranslator($word){
         
     }else if($word=="teacher_qualification")
     {
-        return "Compétences des professeurs";
+        return "Compétences des enseignants";
         
     }else if($word=="building_classroom")
     {
