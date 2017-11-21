@@ -1,11 +1,11 @@
 <?php
 if(!isset($_SESSION)){session_start();}
-    $myFile = $_GET['name'] . ".json";
+    /*$myFile = $_GET['name'] . ".json";
     
     $fh = fopen($myFile, 'w') or die("can't open file");
     $stringData = $_POST["data"];
     fwrite($fh, $stringData);
-    fclose($fh);
+    fclose($fh);*/
     
     include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
     
