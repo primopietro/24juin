@@ -51,6 +51,15 @@ $(document).on('click', '#addHoraire', function(){
 	    }).always(function(data){
 			var div = $(".box-header");
     		div.html('');
+    		$.ajax
+    	    ({
+    	        type: 'POST',
+    	        url: 'http://localhost/24juin/json/formTimeslot.php',
+    	        data: "",
+    	        success: function (response) {
+    	        	div.append(response);
+    	        }
+    	    });
 		});
     } else {
     	alert("Tout les champs sont requis pour la création d'un horaire");

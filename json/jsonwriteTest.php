@@ -6,8 +6,12 @@ if(!isset($_SESSION)){session_start();}
     $stringData = $_POST["data"];
     fwrite($fh, $stringData);
     fclose($fh);*/
+
     
     include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+    
+    
+    $stringData = $_POST["data"];
     
     $query = "INSERT INTO `schedule` (`id_schedule`, `code`, `year`, `schedule`) VALUES (NULL, '" . $_GET['name'] . "','" . $_SESSION['year'] . "','" . $stringData . "')";
     
