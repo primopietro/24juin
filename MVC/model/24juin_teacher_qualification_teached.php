@@ -179,6 +179,55 @@ class TeacherQualificationTeached extends BaseModel
         $this->id_qualification_teached = $id_qualification_teached;
         return $this;
     }
+    
+    function getObjectAsSelectWhere($id){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        $aListOfObjects = $this->getSelectQuerry($id);
+        
+        echo "<option value='0'>Faites un choix</option>";
+        if ($aListOfObjects != null) {
+            foreach ( $aListOfObjects as $anObject ) {
+                echo "<option value='".$anObject['id_qualification_teached']."'>".$anObject['code']. " " . $anObject['name']."</option>";
+            }
+        }
+        
+    }
+    
+    function getSelectQuerry($id_teacher){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        $internalAttributes = get_object_vars ($this);
+        
+        $sql = "SELECT tqt.id_qualification_teached, q.code, q.name FROM " . $this->table_name . " tqt JOIN teacher t ON t.id_teacher = tqt.id_teacher
+          JOIN qualification_teached qt ON qt.id_qualification_teached = tqt.id_qualification_teached
+          JOIN qualification q ON q.id_qualification = qt.id_qualification
+          WHERE qt.year = '" . $_SESSION['year'] . "' AND tqt.id_teacher = " . $id_teacher;
+        
+        
+        //echo $sql;
+        
+        $result = $conn->query ( $sql );
+        
+        if ($result->num_rows > 0) {
+            $localObjects = array ();
+            while ( $row = $result->fetch_assoc () ) {
+                $anObject = Array ();
+                $anObject ["primary_key"] = $this->primary_key;
+                $anObject ["table_name"] = $this->table_name;
+                foreach ( $row as $aRowName => $aValue ) {
+                    $anObject [$aRowName] = $aValue;
+                }
+                
+                $localObjects [$row [$this->primary_key]] = $anObject;
+            }
+            
+            $conn->close ();
+            return $localObjects;
+        }
+        $conn->close ();
+        return null;
+    }
 }
 
 
