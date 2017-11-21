@@ -19,7 +19,7 @@
 	<div class='col-xs-3'>
 	   <h4>Bâtiments</h4>
 	   <select id='buildingSelect'>";
-	$aBuilding->getObjectAsSelect("name");
+	echo $aBuilding->getObjectAsSelect("name");
     echo "</select>
 	</div>
 
@@ -36,7 +36,7 @@
     <div class='col-xs-3'>
 	   <h4>Semaine</h4>
 	   <select id='weekSelect' multiple disabled>";
-	   $aWeek->getObjectAsSelectWhereYear("name", $_SESSION["year"]);
+	   echo $aWeek->getObjectAsSelectWhereYear("name", $_SESSION["year"]);
 	   echo "</select>
 	</div>";
 	
@@ -73,13 +73,13 @@
     <div class='col-xs-3'>
 	   <h4>Enseignant</h4>
 	   <select id='teacherSelect' multiple disabled>";
-    $aTeacher->getObjectAsSelect("first_name,family_name");
+    echo $aTeacher->getObjectAsSelect("first_name,family_name");
 	   echo "</select>
 	</div>
     <div class='col-xs-3'>
 	   <h4>Compétence enseignée</h4>
 	   <select id='qualificationTeachedSelect' disabled>";
-	   $aQualificationTeached->getObjectAsSelect("code,name");
+	   echo $aQualificationTeached->getObjectAsSelect("code,name");
 	   echo "</select>
 	</div>
 	<a class='addTimeslot' id='testAdd'>add</a>

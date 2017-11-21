@@ -360,10 +360,11 @@ class BaseModel{
     			foreach ( $aToDisplay as $anColumn){
     				$infoToDisplay .=  $anObject[$anColumn] . " ";
     			}
-    			echo "<option value='" . $anObject [$this->primary_key] . "'>" . $infoToDisplay . "</option>";
+    			$toReturn .= "<option value='" . $anObject [$this->primary_key] . "'>" . $infoToDisplay . "</option>";
     			
     		}
     	}
     	
+    	return $toReturn;
     }
 }
