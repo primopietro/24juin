@@ -27,7 +27,11 @@ if (isset ( $rights ['view'] )) {
 			    	$aGroup = new Group();
 			    	$aProgram = new Program();
 			    	$default .= "<form>
-			    	
+			    	<div class='col-xs-12'>
+						<h4> Nom de l'horaire</h4>
+					    <input type='text' id='aName'></input>
+					</div>
+
 			    	<div class='col-xs-2'>
 			    	<h4>Année</h4>
 			    	<input type='text' id='year' value='".$_SESSION['year']."' id_year='".$_SESSION['id_year']."'readonly></input>
