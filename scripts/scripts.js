@@ -1,6 +1,51 @@
 //Variables
 var ajaxPath = "http://localhost/24juin/";
 
+$(document).on('click', '#addHoraire', function(){
+	var eventsholded = [];
+
+    //ajout object global
+    var global = new Object();
+    
+    var year = $('#year').attr('id_year');
+    var group = $('#groupSelect').val();
+    var program = $('#programSelect').val();
+    
+    var am1Start = $('#am1Time_start').val();
+    var am1End = $('#am1Time_end').val();
+    var am2Start = $('#am2Time_start').val();
+    var am2End = $('#am2Time_end').val();
+    
+    var pm1Start = $('#pm1Time_start').val();
+    var pm1End = $('#pm1Time_end').val();
+    var pm2Start = $('#pm2Time_start').val();
+    var pm2End = $('#pm2Time_end').val();
+    
+    global.id_year = year;           //ajout id_year
+    global.id_group = group;          //ajout id_group
+    global.id_program = program;        //ajout id_program
+    
+    //ajout am
+    global.am = {'am1': {'time_start': am1Start, 'time_end': am1End}, 'am2': {'time_start': am2Start, 'time_end': am2End}};
+    
+    //ajout pm
+    global.pm = {'pm1': {'time_start': pm1Start, 'time_end': pm1End}, 'pm2': {'time_start': pm2Start, 'time_end': pm2End}};
+
+    eventsholded.push(global);
+    
+    $.ajax
+    ({
+        type: 'POST',
+        dataType : 'json',
+        async: false,
+        url: 'http://localhost/24juin/jsonwriteTest.php?name=firstForm',
+        data: { data: JSON.stringify(eventsholded) },
+        success: function () {alert('Thanks!'); },
+        failure: function() {alert('Error!');}
+    });
+});
+
+
 $("form").submit(function(e) {
 	e.preventDefault();
 });
