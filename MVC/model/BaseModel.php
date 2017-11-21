@@ -164,7 +164,11 @@ class BaseModel{
     	
     	$sql = "SELECT * FROM `" . $this->table_name . "`"; 
     	
-	
+    	if($this->table_name == "building_classroom"){
+    	    $sql .= " bc JOIN classroom c ON c.id_classroom = bc.id_classroom ";
+    	} else if($this->table_name == "classroom_zone"){
+    	    $sql .= " cz JOIN zone z ON z.id_zone = cz.id_zone ";
+    	}
     	
     	$sql .= "WHERE ".$argument. " ".$operation." ".$value." ";
     
