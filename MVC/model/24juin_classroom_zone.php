@@ -150,4 +150,17 @@ class ClassroomZone extends BaseModel {
     	return $content;
     }
     
+    function getObjectAsSelectWhere($toDisplay, $id){
+        include $_SERVER ["DOCUMENT_ROOT"] . '/24juin/DB/dbConnect.php';
+        
+        $aListOfObjects = $this->getListOfAllDBObjectsWhere("id_classroom", "=", $id);
+        
+        if ($aListOfObjects != null) {
+            foreach ( $aListOfObjects as $anObject ) {
+                echo "<option value='" . $anObject ['id_zone'] . "'>" . $anObject [$toDisplay] . "</option>";
+            }
+        }
+        
+    }
+    
 }

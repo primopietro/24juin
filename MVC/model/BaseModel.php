@@ -172,7 +172,7 @@ class BaseModel{
     	
     	$sql .= "WHERE ".$argument. " ".$operation." ".$value." ";
     
-    	
+    	echo $sql;
     	
     	$result = $conn->query ( $sql );
     	

@@ -153,7 +153,7 @@ class BuildingClassroom extends BaseModel {
         
         if ($aListOfObjects != null) {
             foreach ( $aListOfObjects as $anObject ) {
-                echo "<option value='" . $anObject [$this->primary_key] . "'>" . $anObject [$toDisplay] . "</option>";
+                echo "<option value='" . $anObject ['id_classroom'] . "'>" . $anObject [$toDisplay] . "</option>";
             }
         }
         

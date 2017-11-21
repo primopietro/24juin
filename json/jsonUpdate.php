@@ -9,7 +9,9 @@ if(!isset($_SESSION)){session_start();}
     $id_schedule = $_GET['id_schedule'];
     
     $query = "UPDATE `schedule` 
-              SET schedule = " . $stringData . "WHERE id_schedule = " . $id_schedule;
+              SET schedule = '" . $stringData . "' WHERE id_schedule = " . $id_schedule;
+    
+    //echo $query;
     
     $result = $conn->query ($query);
     

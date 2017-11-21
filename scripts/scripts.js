@@ -261,7 +261,7 @@ $(document).on('click', '#addTimeslot', function() {
                 type: 'POST',
                 dataType : 'json',
                 async: false,
-                url: 'http://localhost/24juin/jsonUpdate.php?id_schedule=' + theName,
+                url: 'http://localhost/24juin/json/jsonUpdate.php?id_schedule=' + id_schedule,
                 data: { data: JSON.stringify(JSONParsed) },
                 success: function () {alert('Thanks!'); },
                 failure: function() {alert('Error!');}
