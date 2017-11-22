@@ -5,7 +5,11 @@ table{
 li #logout { 
     cursor:pointer;
 }
-
+.miniCell {
+    float: left;
+    margin: 10px;
+    padding: 10px;
+}
 .content {
      min-height:0px !important;
 }

@@ -45,6 +45,9 @@ Colors.names = {
     white: "#ffffff",
     yellow: "#ffff00"
 };
+
+var teachers =[];
+var qualifications =[];
 // Call this function every time schedule is changed
 function renderSchedule(elementID, scheduleObject) {
 
@@ -54,8 +57,59 @@ function renderSchedule(elementID, scheduleObject) {
 	header += getScheduleHeader(scheduleObject);
 	header += getSubHeader();
 	header += getScheduleContent(scheduleObject);
+	header += getTeachers(scheduleObject);
+	header += getStaticCells(scheduleObject);
 	header += "</div>";
+	
 	theDiv.innerHTML = header;
+}
+
+function getStaticCells(scheduleObject){
+	var html ="";
+	
+  
+    html+=getMiniCell("Evaluation module","EM");
+    html+=getMiniCell("Reprise d'examen ou enseignat","REOE");
+    html+=getMiniCell("Recuperation pas d'enseignant","RPE");
+    html+=getMiniCell("Journee pedagogique fixe","JPF");
+    html+=getMiniCell("Journee pedagogique unitaire","JPU");
+    html+=getMiniCell("Journee pedagogique departementaire","JPD");
+    html+=getMiniCell("Conge fixe","CF");
+    html+=getMiniCell("Conge unitaire","CU");
+    html+=getMiniCell("Portes ouvertes","PO");
+    html+=getMiniCell("Visites guidees","VG");
+    html+=getMiniCell("Stages initiation","SI");
+    html+=getMiniCell("Stages accompagnement","SA");
+    html+=getMiniCell("Conge departemental","CD");
+    html+=getMiniCell("Strategies d'etude","SE");
+    html+=getMiniCell("Journee pedagogique groupe","JPG");
+    html+=getMiniCell("Travail personnel","TP");
+    html+=getMiniCell("Explo de la FP","EFP");
+    html+=getMiniCell("1/2 journee comites","DEMIJOURNE");
+    html+=getMiniCell("Perseverance scolaire","PE");
+   
+    
+	return html;
+}
+
+function getMiniCell(aName,aClass){
+	var html ="";
+	 html +="<div class='miniCell "+aClass+"' style='display:table;border:1px solid black;'>";
+    
+    html+=aName;
+    html +="</div>";
+	return html;
+}
+
+function getTeachers(scheduleObject){
+	var html ="";
+	for(var index in teachers)
+	{
+	    html +="<div class='miniCell' style='display:table;border:1px solid black;background-color:"+teachers[index].color+";'>";
+	    html +=teachers[index].first_name +", "+teachers[index].family_name ;
+	    html +="</div>";
+	}
+	return html;
 }
 
 function getScheduleContent(scheduleObject) {
@@ -116,7 +170,36 @@ function getTimeSlotsForADay(aDay) {
 function getTimeSlotForAPeriod(aPeriod,colorIndex) {
 
 	var colors = Object.values(Colors.names);
-	var timeSlotForAPeriod = "<div class='scheduleCell' style='background-color:"+colors[colorIndex]+";'>";
+	var localTeacher = 0;
+	var localIndex = 0;
+	if(aPeriod.teachers != null){
+		teachers[aPeriod.teachers[0].id_teacher] = aPeriod.teachers[0];
+		localTeacher = aPeriod.teachers[0].id_teacher;
+		for(var index in teachers)
+		{
+		    if(teachers[index]==localTeacher)
+		    	localIndex = index;
+		}
+		aPeriod.teachers[0].color = colors[localIndex];
+		teachers[aPeriod.teachers[0].id_teacher] = aPeriod.teachers[0];
+	}
+	if(aPeriod.qualifications != null){
+		qualifications[aPeriod.qualifications[0].id_qualification] = aPeriod.qualifications[0];
+	}
+	
+	
+	
+	//teachers[aPeriod.teachers[0]]
+	var timeSlotForAPeriod = "<div class='scheduleCell ";
+	timeSlotForAPeriod +=comparerForTimeslot(aPeriod,"isExam","EM");
+	timeSlotForAPeriod +=comparerForTimeslot(aPeriod,"isSpecialEvent","EM");
+	timeSlotForAPeriod +=comparerForTimeslot(aPeriod,"isStageAccompanied","SA");
+	timeSlotForAPeriod +=comparerForTimeslot(aPeriod,"isStageIndividual","SI");
+	
+	
+	
+	
+	timeSlotForAPeriod+=" ' style='background-color:"+colors[localIndex]+";'>";
 	var temp =aPeriod['qualifications'];
 	if(temp!= undefined){
 		if(temp.length>0){
@@ -126,10 +209,27 @@ function getTimeSlotForAPeriod(aPeriod,colorIndex) {
 		
 	}
 	
+	timeSlotForAPeriod += "<br>";
+	var tempClassroom =aPeriod['classrooms'];
+	if(tempClassroom!= undefined){
+		if(tempClassroom.length>0){
+			var tempClassroom2 = tempClassroom[0];
+			timeSlotForAPeriod +=tempClassroom2["code"];
+		}
+		
+	}
+	
 	timeSlotForAPeriod += "</div>";
 	
 	return timeSlotForAPeriod;
 }
+function comparerForTimeslot(aPeriod,propertyName,className){
+	if(aPeriod[propertyName] != 1){
+		return " "+className+" ";
+	}
+	return "";
+}
+
 
 function getScheduleHeader(scheduleObject) {
 	var header = "";
