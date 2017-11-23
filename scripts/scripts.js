@@ -72,11 +72,11 @@ $(document).on('click', '#addTimeslot', function() {
         data: dataToSend,
         success: function (response) {
 
-        	JSONParsed = $.parseJSON(response);
-        	
+        	//JSONParsed = $.parseJSON(response);
+        	JSONResponse = response.slice(0, -2);
         	//console.log(JSONParsed);
         
-        	var toFillWeeks = "[";
+        	var toFillWeeks = ',"weeks":[';
         	
             var weeks =$( "#weekSelect" ).val();
             var teachers = $( "#teacherSelect" ).val();
@@ -147,6 +147,7 @@ $(document).on('click', '#addTimeslot', function() {
         	if(weeks != null){
             	$.each(weeks, function(indexWeek, valueWeek) {
             		toFillWeeks += '{"id_week": "'+valueWeek+'"';
+            		console.log(valueWeek);
     	            $.each(days, function(index, value) {
     	            	$.each(period, function(indexPeriod, valuePeriod) {
     	            		if(valuePeriod=="check"){
@@ -248,12 +249,10 @@ $(document).on('click', '#addTimeslot', function() {
         	
         	toFillWeeks += ']';
         	
-        	console.log(toFillWeeks);
-            global.weeks = $.parseJSON(toFillWeeks);
-            
-            JSONParsed.push(global);
-            
-            console.log(JSONParsed);
+        	JSONResponse +=  toFillWeeks;
+        	JSONResponse += "}]";
+        	JSONParsed = $.parseJSON(JSONResponse);
+        	console.log(JSONParsed);
             
             //ajax pour créé le fichier JSON
             $.ajax
