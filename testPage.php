@@ -20,9 +20,12 @@ if (isset($_GET['actions']) || isset($_SESSION['current_page'])) {
 // This is returned from database
 require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_schedule.php';
 $aSchedule = new Schedule();
-$aSchedule = $aSchedule->getObjectFromDB(12);
+$aSchedule = $aSchedule->getObjectFromDB(13);
 $dataForSchedule = $aSchedule['schedule'];
-print_r($dataForSchedule);
+
+echo "<pre>";
+print_r(json_decode($dataForSchedule));
+echo "</pre>";
 function transformDBScheduleToMemory($dataForSchedule)
 {
     require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_year.php';
