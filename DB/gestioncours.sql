@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2017 at 02:02 AM
+-- Generation Time: Nov 21, 2017 at 03:01 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -40,11 +40,10 @@ CREATE TABLE `building` (
 --
 
 INSERT INTO `building` (`id_building`, `name`, `address`, `nb_classrooms`) VALUES
-(1, 'Pavillon 2', '1050 rue lo', 30),
-(2, 'Pav2', '1122', 6),
-(3, 'pav4', '15', 6),
-(4, 'r', 'r', 2),
-(5, '4jetiognj', 'efownm', 2);
+(1, 'Bâtisse 258 - Pavillon central', '', 93),
+(2, 'Bâtisse 201 - PTI', '', 17),
+(3, 'Bâtisse 025 - PVS', '', 55),
+(4, 'Bâtisse 173 - Bowen', '', 10);
 
 -- --------------------------------------------------------
 
@@ -63,9 +62,167 @@ CREATE TABLE `building_classroom` (
 --
 
 INSERT INTO `building_classroom` (`id_building_classroom`, `id_building`, `id_classroom`) VALUES
-(1, 1, 2),
-(2, 1, 1),
-(3, 2, 2);
+(4, 1, 1),
+(5, 1, 2),
+(6, 1, 31),
+(7, 1, 32),
+(8, 1, 33),
+(9, 1, 34),
+(10, 1, 35),
+(11, 1, 36),
+(12, 1, 37),
+(13, 1, 38),
+(14, 1, 39),
+(15, 1, 40),
+(16, 1, 41),
+(17, 1, 42),
+(18, 1, 43),
+(19, 1, 44),
+(20, 1, 45),
+(21, 1, 46),
+(22, 1, 47),
+(23, 1, 48),
+(24, 1, 49),
+(25, 1, 50),
+(26, 1, 51),
+(27, 1, 52),
+(28, 1, 53),
+(29, 1, 54),
+(30, 1, 55),
+(31, 1, 56),
+(32, 1, 57),
+(33, 1, 58),
+(34, 1, 59),
+(35, 1, 60),
+(36, 1, 61),
+(37, 1, 62),
+(38, 1, 63),
+(39, 1, 64),
+(40, 1, 65),
+(41, 1, 66),
+(42, 1, 67),
+(43, 1, 68),
+(44, 1, 69),
+(45, 1, 70),
+(46, 1, 71),
+(47, 1, 72),
+(48, 1, 73),
+(49, 1, 74),
+(50, 1, 75),
+(51, 1, 76),
+(52, 1, 77),
+(53, 1, 78),
+(54, 1, 79),
+(55, 1, 80),
+(56, 1, 81),
+(57, 1, 82),
+(58, 1, 83),
+(59, 1, 84),
+(60, 1, 85),
+(61, 1, 86),
+(62, 1, 87),
+(63, 1, 88),
+(64, 1, 89),
+(65, 1, 90),
+(66, 1, 91),
+(67, 1, 92),
+(68, 1, 93),
+(69, 1, 94),
+(70, 1, 95),
+(71, 1, 96),
+(72, 1, 97),
+(73, 1, 98),
+(74, 1, 99),
+(75, 1, 100),
+(76, 1, 101),
+(77, 1, 102),
+(78, 1, 103),
+(79, 1, 104),
+(80, 1, 105),
+(81, 1, 106),
+(82, 1, 107),
+(83, 1, 108),
+(84, 1, 109),
+(85, 1, 110),
+(86, 1, 111),
+(87, 1, 112),
+(88, 1, 113),
+(89, 1, 114),
+(90, 2, 115),
+(91, 2, 116),
+(92, 2, 117),
+(93, 2, 118),
+(94, 2, 119),
+(95, 2, 120),
+(96, 2, 121),
+(97, 2, 122),
+(98, 2, 123),
+(99, 2, 124),
+(100, 2, 125),
+(101, 4, 126),
+(102, 4, 127),
+(103, 4, 128),
+(104, 4, 129),
+(105, 4, 130),
+(106, 4, 131),
+(107, 4, 132),
+(108, 4, 133),
+(109, 4, 134),
+(110, 4, 135),
+(111, 3, 174),
+(112, 3, 175),
+(113, 3, 176),
+(114, 3, 177),
+(115, 3, 178),
+(116, 3, 179),
+(117, 3, 180),
+(118, 3, 181),
+(119, 3, 182),
+(120, 3, 183),
+(121, 3, 184),
+(122, 3, 185),
+(123, 3, 186),
+(124, 3, 187),
+(125, 3, 188),
+(126, 3, 189),
+(127, 3, 190),
+(128, 3, 191),
+(129, 3, 192),
+(130, 3, 193),
+(131, 3, 194),
+(132, 3, 195),
+(133, 3, 196),
+(134, 3, 197),
+(135, 3, 198),
+(136, 3, 199),
+(137, 3, 200),
+(138, 3, 201),
+(139, 3, 202),
+(140, 3, 203),
+(141, 3, 204),
+(142, 3, 205),
+(143, 3, 206),
+(144, 3, 207),
+(145, 3, 208),
+(146, 3, 209),
+(147, 3, 210),
+(148, 3, 211),
+(149, 3, 212),
+(150, 3, 213),
+(151, 3, 214),
+(152, 3, 215),
+(153, 3, 216),
+(154, 3, 217),
+(155, 3, 218),
+(156, 3, 219),
+(157, 3, 220),
+(158, 3, 221),
+(159, 3, 222),
+(160, 3, 223),
+(161, 3, 224),
+(162, 3, 225),
+(163, 3, 226),
+(164, 3, 227);
 
 -- --------------------------------------------------------
 
@@ -84,8 +241,167 @@ CREATE TABLE `classroom` (
 --
 
 INSERT INTO `classroom` (`id_classroom`, `code`, `nb_zone`) VALUES
-(1, '10', 2),
-(2, 'ewg12', 3);
+(1, 'E2-018-1', 0),
+(2, 'E2-021', 0),
+(31, 'E2-025', 0),
+(32, 'E2-026', 0),
+(33, 'E2-027', 0),
+(34, 'E2-030', 0),
+(35, 'E2-031', 0),
+(36, 'E2-036', 0),
+(37, 'E2-042', 0),
+(38, 'E2-046', 0),
+(39, 'E2-048', 0),
+(40, 'E2-049', 0),
+(41, 'F2-025', 0),
+(42, 'F2-024', 0),
+(43, 'F2-021', 0),
+(44, 'F2-020', 0),
+(45, 'F2-019', 0),
+(46, 'F2-018', 0),
+(47, 'F2-017', 0),
+(48, 'F2-016', 0),
+(49, 'F2-015', 0),
+(50, 'F2-012', 0),
+(51, 'F2-013', 0),
+(52, 'F2-008', 0),
+(53, 'F1-012', 0),
+(54, 'F1-011', 0),
+(55, 'F1-010', 0),
+(56, 'F1-008', 0),
+(57, 'F1-007', 0),
+(58, '001', 0),
+(59, '120', 0),
+(60, 'B2-005', 0),
+(61, 'B2-008', 0),
+(62, 'B2-009', 0),
+(63, 'B2-010', 0),
+(64, 'B2-012', 0),
+(65, 'B2-014', 0),
+(66, 'B2-016', 0),
+(67, 'B2-017', 0),
+(68, 'B2-019', 0),
+(69, 'B2-020', 0),
+(70, 'B2-022', 0),
+(71, 'B2-024', 2),
+(72, 'B2-025', 0),
+(73, 'B2-026', 0),
+(74, 'B2-027', 0),
+(75, 'B2-028', 0),
+(76, 'B2-24A', 0),
+(77, 'E1-020', 0),
+(78, 'E1-027', 0),
+(79, 'E1-029', 0),
+(80, 'E1-036', 0),
+(81, 'E1-037', 0),
+(82, 'ARGYL1', 0),
+(83, 'ARGYL2', 0),
+(84, 'ARGYL3', 0),
+(85, 'ARGYL4', 0),
+(86, 'ARGYLU', 0),
+(87, 'CHFL4B', 0),
+(88, 'CHFL5', 3),
+(89, 'CHFL6', 3),
+(90, 'CHFL7C', 0),
+(91, 'CHFL8C', 0),
+(92, 'CHFL9C', 0),
+(93, 'CHHD4A', 0),
+(94, 'CHHD4C', 0),
+(95, 'B1-002', 0),
+(96, 'B1-004', 0),
+(97, 'B1-005', 0),
+(98, 'B1-006', 0),
+(99, 'B1-013', 0),
+(100, 'B1-016', 0),
+(101, 'B1-017', 0),
+(102, 'B1-108', 0),
+(103, 'B2-005', 0),
+(104, 'B2-021', 0),
+(105, 'B2-023', 0),
+(106, 'B2-025', 0),
+(107, 'B2-108', 0),
+(108, 'E2-029', 0),
+(109, 'ES-001', 0),
+(110, 'F1-006', 0),
+(111, 'F2-002', 0),
+(112, 'F2-004', 0),
+(113, 'F2-005', 0),
+(114, 'F2-006', 0),
+(115, '2123', 2),
+(116, '2126', 5),
+(117, '2131', 0),
+(118, '2132', 0),
+(119, '2133', 0),
+(120, '2135', 0),
+(121, '2137', 0),
+(122, '2151', 0),
+(123, '2154', 0),
+(124, '2155', 0),
+(125, '2160', 0),
+(126, 'A-104', 0),
+(127, 'A-119', 0),
+(128, 'A-126', 0),
+(129, 'A-129', 0),
+(130, 'A-130', 0),
+(131, 'B-118', 0),
+(132, 'B-107', 0),
+(133, 'B-112', 0),
+(134, 'B-114', 0),
+(135, 'B-104', 0),
+(174, 'A-1-16', 0),
+(175, 'A-1-21', 0),
+(176, 'A-1-22', 0),
+(177, 'A-1-23', 0),
+(178, 'A-2-01', 0),
+(179, 'A-2-02', 0),
+(180, 'A-2-03', 0),
+(181, 'A-2-04', 0),
+(182, 'A-2-05', 0),
+(183, 'A-2-10', 0),
+(184, 'A-2-11', 0),
+(185, 'A-2-13', 0),
+(186, 'A-2-20', 0),
+(187, 'A-2-21', 0),
+(188, 'A-2-24', 0),
+(189, 'A-2-31', 0),
+(190, 'A-2-34', 0),
+(191, 'A-2-38', 0),
+(192, 'A-2-39', 0),
+(193, 'A-2-40', 2),
+(194, 'A-2-43', 0),
+(195, 'A-3-01', 0),
+(196, 'A-3-17', 0),
+(197, 'A-3-18', 0),
+(198, 'A-3-19', 0),
+(199, 'A-3-21', 0),
+(200, 'A-3-22', 0),
+(201, 'A-3-23', 0),
+(202, 'A-3-24', 0),
+(203, 'A-3-25', 0),
+(204, 'A-3-26', 0),
+(205, 'A-3-27', 0),
+(206, 'A-3-28', 0),
+(207, 'A-3-29', 0),
+(208, 'A-3-30', 0),
+(209, 'A-4-01', 0),
+(210, 'A-4-10', 0),
+(211, 'A-4-11', 0),
+(212, 'ATE', 0),
+(213, 'ATEREC', 0),
+(214, 'BLOCA', 0),
+(215, 'BLOCB', 0),
+(216, 'BLOCC', 0),
+(217, 'D-1-00', 0),
+(218, 'D-1003', 0),
+(219, '01-005', 0),
+(220, '01-007', 0),
+(221, 'D1-008', 0),
+(222, 'D2-003', 0),
+(223, 'A-3-16', 0),
+(224, 'D-2-05', 0),
+(225, 'D-2-06', 0),
+(226, 'D-2-07', 0),
+(227, 'D-1-004', 0);
 
 -- --------------------------------------------------------
 
@@ -116,9 +432,25 @@ CREATE TABLE `classroom_zone` (
 --
 
 INSERT INTO `classroom_zone` (`id_classroom_zone`, `id_classroom`, `id_zone`) VALUES
-(1, 1, 2),
-(2, 1, 3),
-(3, 2, 3);
+(5, 71, 4),
+(6, 71, 5),
+(7, 88, 9),
+(8, 88, 10),
+(9, 88, 11),
+(10, 89, 6),
+(11, 89, 7),
+(12, 89, 8),
+(13, 193, 21),
+(14, 193, 22),
+(15, 115, 12),
+(16, 115, 13),
+(17, 116, 14),
+(18, 116, 15),
+(19, 116, 16),
+(20, 116, 17),
+(21, 116, 18),
+(22, 123, 19),
+(23, 123, 20);
 
 -- --------------------------------------------------------
 
@@ -191,10 +523,13 @@ CREATE TABLE `fixed_holiday` (
 --
 
 INSERT INTO `fixed_holiday` (`id_fixed_holiday`, `day`) VALUES
-(4, '2017-10-10'),
+(4, '2017-11-27'),
 (5, '2018-10-19'),
 (6, '2018-10-27'),
-(7, '2017-10-04');
+(7, '2017-11-06'),
+(8, '2017-12-22'),
+(9, '2017-12-22'),
+(10, '2017-11-07');
 
 -- --------------------------------------------------------
 
@@ -213,11 +548,26 @@ CREATE TABLE `group` (
 --
 
 INSERT INTO `group` (`id_group`, `code`, `year`) VALUES
-(18, 'uh', '2017-2018'),
-(19, 'lol123', '2018-2019'),
-(20, 'test2', '2017-2018'),
-(21, 'test3', '2017-2018'),
-(22, 'test4', '2017-2018');
+(18, 'Aut1', '2017-2018'),
+(19, 'CHAR3', '2018-2019'),
+(20, 'INF121', '2017-2018'),
+(21, 'Coif1', '2017-2018'),
+(22, 'EST5', '2017-2018'),
+(23, 'Dent1', '2017-2018'),
+(24, 'PAT1', '2017-2018'),
+(25, 'ELECT1', '2017-2018');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `group_qualification`
+--
+
+CREATE TABLE `group_qualification` (
+  `id_group_qualification` int(11) NOT NULL,
+  `id_group` int(11) NOT NULL,
+  `id_qualification` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -236,9 +586,22 @@ CREATE TABLE `group_qualification_teached` (
 --
 
 INSERT INTO `group_qualification_teached` (`id_group_qualification_teached`, `id_group`, `id_qualification_teached`) VALUES
-(8, 18, 16),
-(9, 19, 12),
-(10, 19, 16);
+(8, 18, 24),
+(9, 18, 25),
+(10, 20, 28),
+(11, 20, 29),
+(12, 21, 38),
+(13, 21, 39),
+(14, 22, 40),
+(15, 22, 41),
+(16, 23, 42),
+(17, 23, 43),
+(18, 24, 22),
+(19, 24, 23),
+(20, 25, 34),
+(21, 25, 36),
+(22, 19, 12),
+(23, 19, 13);
 
 -- --------------------------------------------------------
 
@@ -374,11 +737,11 @@ CREATE TABLE `pedago_day_all` (
 --
 
 INSERT INTO `pedago_day_all` (`id_pedago_day_all`, `day`) VALUES
-(5, '2018-10-19'),
+(5, '2017-10-31'),
 (6, '2017-10-26'),
 (7, '2017-11-24'),
-(8, '2018-10-25'),
-(9, '2018-10-19');
+(8, '2017-11-10'),
+(9, '2017-12-22');
 
 -- --------------------------------------------------------
 
@@ -398,9 +761,23 @@ CREATE TABLE `program` (
 --
 
 INSERT INTO `program` (`id_program`, `name`, `duration`, `nb_of_qualifications`) VALUES
-(1, 'ProgMec', 10, 10),
-(2, 'progCui', 2, 2),
-(3, 'progChar', 1, 1);
+(1, 'Comptabilité', 10, 10),
+(2, 'Cuisine', 2, 2),
+(3, 'Chrapenterie', 1, 1),
+(4, 'Pàtisserie', 413, 13),
+(5, 'Mécanique automobile', 100, 10),
+(6, 'Carosserie', 100, 10),
+(7, 'Infographie', 100, 10),
+(8, 'Secrétariat', 100, 10),
+(9, 'Réfrigération', 120, 12),
+(10, 'Électricité', 150, 15),
+(11, 'Ébénisterie', 100, 10),
+(12, 'Coiffure', 100, 10),
+(13, 'Esthétique', 100, 10),
+(14, 'Assistance dentaire', 150, 12),
+(15, 'Dessin de bâtiment', 140, 14),
+(16, 'Réparation d’appareils électroniques audiovidéos', 100, 10),
+(17, 'Soin infirmer', 15, 10);
 
 -- --------------------------------------------------------
 
@@ -436,6 +813,46 @@ CREATE TABLE `program_qualification` (
   `id_qualification` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `program_qualification`
+--
+
+INSERT INTO `program_qualification` (`id_program_qualification`, `id_program`, `id_qualification`) VALUES
+(5, 1, 20),
+(6, 1, 21),
+(7, 2, 16),
+(8, 2, 17),
+(9, 3, 12),
+(10, 3, 13),
+(11, 4, 22),
+(12, 4, 23),
+(13, 5, 24),
+(14, 5, 25),
+(15, 6, 26),
+(16, 6, 27),
+(17, 7, 28),
+(18, 7, 29),
+(19, 8, 30),
+(20, 8, 31),
+(21, 9, 32),
+(22, 9, 33),
+(23, 10, 34),
+(24, 10, 36),
+(26, 11, 35),
+(27, 11, 37),
+(28, 12, 38),
+(29, 12, 39),
+(30, 13, 40),
+(31, 13, 41),
+(32, 14, 42),
+(33, 14, 43),
+(34, 15, 44),
+(35, 15, 45),
+(36, 16, 46),
+(37, 16, 47),
+(38, 17, 48),
+(39, 17, 49);
+
 -- --------------------------------------------------------
 
 --
@@ -455,8 +872,41 @@ CREATE TABLE `qualification` (
 
 INSERT INTO `qualification` (`id_qualification`, `code`, `name`, `nb_hours`) VALUES
 (9, '123', 'Cusine', 4),
-(10, '234', 'Mecanique', 300),
-(11, '345', 'Charpenterie', 666);
+(10, '234', 'Charpenterie', 300),
+(11, '345', 'Charpenterie', 666),
+(12, '1515', 'Cuisine', 10),
+(13, '1', 'Cuisine', 4),
+(14, '2', 'Cusine', 15),
+(15, '1', 'Comptabilité', 10),
+(16, '2', 'Comptabilité', 10),
+(17, '1', 'Pàtisserie', 10),
+(18, '2', 'Pàtisserie', 10),
+(19, '1', 'Mécanique automobile', 10),
+(20, '2', 'Mécanique automobile', 10),
+(21, '1', 'Carosserie', 10),
+(22, '2', 'Carosserie', 10),
+(23, '1', 'Infographie', 10),
+(24, '2', 'Infographie', 10),
+(25, '1', 'Secrétariat', 10),
+(26, '2', 'Secrétariat', 10),
+(27, '1', 'Réfrigération', 10),
+(28, '2', 'Réfrigération', 10),
+(29, '1', 'Électricité', 10),
+(30, '2', 'Électricité', 10),
+(31, '1', 'Ébénisterie', 10),
+(32, '2', 'Ébénisterie', 10),
+(33, '1', 'Coiffure', 10),
+(34, '2', 'Coiffure', 10),
+(35, '1', 'Esthétique', 10),
+(36, '2', 'Esthétique', 10),
+(37, '1', 'Assistance dentaire', 10),
+(38, '2', 'Assistance dentaire', 10),
+(39, '1', 'Dessin de bâtiment', 10),
+(40, '2', 'Dessin de bâtiment', 10),
+(41, '1', 'Réparation d’appareils électroniques audiovidéos', 10),
+(42, '2', 'Réparation d’appareils électroniques audiovidéos', 10),
+(43, '1', 'Soin infirmer', 10),
+(44, '2', 'Soin infirmer', 10);
 
 -- --------------------------------------------------------
 
@@ -488,9 +938,54 @@ CREATE TABLE `qualification_teached` (
 
 INSERT INTO `qualification_teached` (`id_qualification_teached`, `id_qualification`, `year`) VALUES
 (12, 10, '2017-2018'),
+(13, 11, '2017-2018'),
+(14, 11, '2018-2019'),
+(15, 10, '2018-2019'),
 (16, 9, '2017-2018'),
-(21, 11, '2018-2019'),
-(22, 10, '2018-2019');
+(17, 12, '2017-2018'),
+(18, 14, '2017-2018'),
+(19, 13, '2017-2018'),
+(20, 15, '2017-2018'),
+(21, 16, '2017-2018'),
+(22, 17, '2017-2018'),
+(23, 18, '2017-2018'),
+(24, 19, '2017-2018'),
+(25, 20, '2017-2018'),
+(26, 21, '2017-2018'),
+(27, 22, '2017-2018'),
+(28, 23, '2017-2018'),
+(29, 24, '2017-2018'),
+(30, 25, '2017-2018'),
+(31, 26, '2017-2018'),
+(32, 27, '2017-2018'),
+(33, 28, '2017-2018'),
+(34, 29, '2017-2018'),
+(35, 31, '2017-2018'),
+(36, 30, '2017-2018'),
+(37, 32, '2017-2018'),
+(38, 33, '2017-2018'),
+(39, 34, '2017-2018'),
+(40, 35, '2017-2018'),
+(41, 36, '2017-2018'),
+(42, 37, '2017-2018'),
+(43, 38, '2017-2018'),
+(44, 39, '2017-2018'),
+(45, 40, '2017-2018'),
+(46, 41, '2017-2018'),
+(47, 42, '2017-2018'),
+(48, 43, '2017-2018'),
+(49, 44, '2017-2018'),
+(50, 23, '2018-2019'),
+(51, 22, '2018-2019'),
+(52, 18, '2018-2019'),
+(53, 16, '2018-2019'),
+(54, 28, '2018-2019'),
+(55, 35, '2018-2019'),
+(56, 38, '2018-2019'),
+(57, 37, '2018-2019'),
+(58, 40, '2018-2019'),
+(59, 41, '2018-2019'),
+(60, 20, '2018-2019');
 
 -- --------------------------------------------------------
 
@@ -713,10 +1208,7 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`id_schedule`, `code`, `year`, `schedule`) VALUES
-(1, 'hb', '2017-2018', '{}'),
-(4, 'test', '2017-2018', '[{"am": {"am1": {"time_end": "10:15", "time_start": "08:15"}, "am2": {"time_end": "11:30", "time_start": "10:30"}}, "pm": {"pm1": {"time_end": "14:30", "time_start": "12:30"}, "pm2": {"time_end": "15:45", "time_start": "14:45"}}, "id_year": "1", "id_group": "18", "id_program": "1"}]'),
-(5, 'testerino', '2017-2018', '[{"am": {"am1": {"time_end": "10:15", "time_start": "08:15"}, "am2": {"time_end": "11:30", "time_start": "10:30"}}, "pm": {"pm1": {"time_end": "14:30", "time_start": "12:30"}, "pm2": {"time_end": "15:45", "time_start": "14:45"}}, "id_year": "1", "id_group": "18", "id_program": "2"}]'),
-(6, 'test', '2017-2018', '[{"am": {"am1": {"time_end": "14:01", "time_start": "22:21"}, "am2": {"time_end": "14:00", "time_start": "12:31"}}, "pm": {"pm1": {"time_end": "12:03", "time_start": "14:31"}, "pm2": {"time_end": "15:06", "time_start": "17:06"}}, "id_year": "1", "id_group": "20", "id_program": "1"}]');
+(7, 'test', '2017-2018', '[{"am": {"am1": {"time_end": "15:45", "time_start": "15:51"}, "am2": {"time_end": "04:08", "time_start": "04:05"}}, "pm": {"pm1": {"time_end": "18:18", "time_start": "18:10"}, "pm2": {"time_end": "19:19", "time_start": "19:00"}}, "id_year": "1", "id_group": "21", "id_program": "12"}]');
 
 -- --------------------------------------------------------
 
@@ -748,8 +1240,40 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`id_teacher`, `code`, `first_name`, `family_name`) VALUES
-(1, 'proulxMa', 'Maxime', 'Proulx'),
-(2, 'zoretibo', 'Boris', 'Zoretic');
+(1, 'AUC1', 'Chantal', 'Audy'),
+(2, 'AUR2', 'Robert', 'Auger'),
+(3, 'BAG1\r\n', 'Geneviève', 'Barry'),
+(5, 'BEB1\r\n', 'Brigitte', 'Bédard'),
+(6, 'BEC3\r\n', 'Claude', 'Beaudoin'),
+(7, 'BEG3', 'Germain', 'Bélanger'),
+(8, 'BEI1\r\n', 'Isabelle', 'Bernier'),
+(9, 'Bel3', 'Lucie', 'Beauregard'),
+(10, 'BEM1', 'Mario', 'BeauBien'),
+(11, 'BEM2', 'Michel', 'Bélanger'),
+(12, 'Bep1', 'Pascal', 'Beaudoin'),
+(13, 'Ber1', 'Richard', 'Bersgeron'),
+(14, 'BES1\r\n', 'Sylvie', 'Bergeron'),
+(15, 'Bes4', 'Sylvain', 'Bérard'),
+(16, 'BES5\r\n', 'Steve', 'Beachemin'),
+(17, 'BES7\r\n', 'Simon', 'Beaupré'),
+(18, 'BIA1\r\n', 'Anick', 'Bisson'),
+(19, 'BIC1\r\n', 'Carol', 'Bibeau'),
+(20, 'BIJ1', 'Johanna\r\n', 'Bisson'),
+(21, 'BIJ2\r\n', 'Jean-Michel\r\n', 'Bisaillon'),
+(22, 'BIS1\r\n', 'Sylvie\r\n', 'Binette'),
+(23, 'BLC1\r\n', 'Catherine\r\n', 'Blanchette'),
+(24, 'BLD1\r\n', 'Danny\r\n', 'Blais'),
+(25, 'BLM2\r\n', 'Marie-Josée\r\n', 'Blais'),
+(26, 'BOI1\r\n', 'Isabelle\r\n', 'Boisvert'),
+(27, 'BOJ7\r\n', 'Judith\r\n', 'Bonneville'),
+(28, 'BOJ9\r\n', 'Jocelyn\r\n', 'Boulet'),
+(29, 'BON1\r\n', 'Nathalie\r\n', 'Bourassa'),
+(30, 'BOP3\r\n', 'Pascal\r\n', 'Boulet'),
+(31, 'BRC1\r\n', 'Caroline\r\n', 'Breton'),
+(32, 'BRH1\r\n', 'Henri\r\n', 'Breton'),
+(33, 'BRM1\r\n', 'Martin\r\n', 'Brochu'),
+(34, 'BRM2\r\n', 'Marc\r\n', 'Brodeur'),
+(35, 'BRY1\r\n', 'Yves\r\n\r\n', 'Breton');
 
 -- --------------------------------------------------------
 
@@ -809,9 +1333,18 @@ CREATE TABLE `teacher_qualification` (
 --
 
 INSERT INTO `teacher_qualification` (`id_teacher_qualification`, `id_teacher`, `id_qualification`) VALUES
-(22, 1, 11),
-(23, 2, 10),
-(24, 2, 11);
+(22, 2, 15),
+(23, 2, 16),
+(26, 5, 21),
+(27, 5, 22),
+(28, 1, 9),
+(29, 1, 12),
+(30, 1, 17),
+(31, 1, 18),
+(32, 3, 23),
+(33, 3, 24),
+(34, 3, 25),
+(35, 3, 26);
 
 -- --------------------------------------------------------
 
@@ -824,13 +1357,6 @@ CREATE TABLE `teacher_qualification_teached` (
   `id_teacher` int(11) NOT NULL,
   `id_qualification_teached` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `teacher_qualification_teached`
---
-
-INSERT INTO `teacher_qualification_teached` (`id_teacher_qualification_teached`, `id_teacher`, `id_qualification_teached`) VALUES
-(1, 1, 12);
 
 -- --------------------------------------------------------
 
@@ -961,9 +1487,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `name`, `password`, `fk_teacher`) VALUES
 (1, 'admin', 'password', 0),
-(2, 'client', 'password', 1),
-(3, 'gestion', 'password', 0),
-(4, 'ZoretiBo', '12345', 2);
+(3, 'gestion', 'password', 0);
 
 -- --------------------------------------------------------
 
@@ -983,9 +1507,7 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`id_user_role`, `id_user`, `id_role`) VALUES
 (1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 2);
+(3, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -1008,7 +1530,14 @@ CREATE TABLE `week` (
 INSERT INTO `week` (`id_week`, `year`, `name`, `date_start`, `date_finish`) VALUES
 (1, '2017-2018', '10-juil', '2017-10-14', '2017-10-21'),
 (2, '2018-2019', '17-juil', '2017-10-28', '2017-10-30'),
-(3, '2017-2018', '17-juil', '2017-07-16', '2017-07-22');
+(3, '2017-2018', '29 oct', '2017-10-29', '2017-11-04'),
+(4, '2017-2018', '5nov', '2017-11-05', '2017-11-11'),
+(5, '2017-2018', '12nov', '2017-11-12', '2017-11-18'),
+(6, '2017-2018', '19 nov', '2017-11-19', '2017-11-25'),
+(7, '2017-2018', '26 nov', '2017-11-26', '2017-12-02'),
+(8, '2017-2018', '3dec', '2017-12-03', '2017-12-09'),
+(9, '2017-2018', '10dec', '2017-12-10', '2017-12-16'),
+(10, '2017-2018', '17 dec', '2017-12-17', '2017-12-23');
 
 -- --------------------------------------------------------
 
@@ -1051,7 +1580,10 @@ INSERT INTO `year_fixed_holiday` (`id_year_fixed_day`, `id_year`, `id_fixed_holi
 (2, 1, 4),
 (3, 2, 5),
 (4, 2, 6),
-(5, 1, 7);
+(5, 1, 7),
+(6, 1, 8),
+(7, 1, 9),
+(8, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -1122,8 +1654,25 @@ CREATE TABLE `zone` (
 --
 
 INSERT INTO `zone` (`id_zone`, `code`, `comment`) VALUES
-(2, 'dasd', 'asdasd'),
-(3, 'efw', 'wef');
+(4, 'B2-024-1', 'pour le local B2-024'),
+(5, 'B2-024-2', 'pour le local B2-024\r\n'),
+(6, 'CHFL6A', 'pour le local CHFL6'),
+(7, 'CHFL6B', 'pour le local CHFL6'),
+(8, 'CHFL6C', 'pour le local CHFL6'),
+(9, 'CHFL5A', 'pour le local CHFL5'),
+(10, 'CHFL5B', 'pour le local CHFL5'),
+(11, 'CHFL5C', 'pour le local CHFL5'),
+(12, '2123-1', 'pour le local 2123'),
+(13, '2123-2', 'pour le local 2123'),
+(14, '2126-1', 'pour le local 2126'),
+(15, '2126-2', 'pour le local 2126'),
+(16, '2126-4', 'pour le local 2126'),
+(17, '2126-6', 'pour le local 2126'),
+(18, '2126-7', 'pour le local 2126'),
+(19, '2154-1', 'pour le local 2154'),
+(20, '2154-2', 'pour le local 2154'),
+(21, 'A-2-40-A', 'pour le local A-240'),
+(22, 'A-2-40-B', 'pour le local A-240');
 
 --
 -- Indexes for dumped tables
@@ -1206,6 +1755,14 @@ ALTER TABLE `fixed_holiday`
 --
 ALTER TABLE `group`
   ADD PRIMARY KEY (`id_group`);
+
+--
+-- Indexes for table `group_qualification`
+--
+ALTER TABLE `group_qualification`
+  ADD PRIMARY KEY (`id_group_qualification`),
+  ADD KEY `gq_group` (`id_group`),
+  ADD KEY `gq_qualification` (`id_qualification`);
 
 --
 -- Indexes for table `group_qualification_teached`
@@ -1471,17 +2028,17 @@ ALTER TABLE `zone`
 -- AUTO_INCREMENT for table `building`
 --
 ALTER TABLE `building`
-  MODIFY `id_building` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_building` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `building_classroom`
 --
 ALTER TABLE `building_classroom`
-  MODIFY `id_building_classroom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_building_classroom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
 --
 -- AUTO_INCREMENT for table `classroom`
 --
 ALTER TABLE `classroom`
-  MODIFY `id_classroom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_classroom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
 --
 -- AUTO_INCREMENT for table `classroom_qualification`
 --
@@ -1491,7 +2048,7 @@ ALTER TABLE `classroom_qualification`
 -- AUTO_INCREMENT for table `classroom_zone`
 --
 ALTER TABLE `classroom_zone`
-  MODIFY `id_classroom_zone` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_classroom_zone` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `customer`
 --
@@ -1516,17 +2073,17 @@ ALTER TABLE `custormer_year`
 -- AUTO_INCREMENT for table `fixed_holiday`
 --
 ALTER TABLE `fixed_holiday`
-  MODIFY `id_fixed_holiday` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_fixed_holiday` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `group`
 --
 ALTER TABLE `group`
-  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `group_qualification_teached`
 --
 ALTER TABLE `group_qualification_teached`
-  MODIFY `id_group_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_group_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `group_teacher`
 --
@@ -1561,7 +2118,7 @@ ALTER TABLE `pedago_day_all`
 -- AUTO_INCREMENT for table `program`
 --
 ALTER TABLE `program`
-  MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `program_pedago_day`
 --
@@ -1571,12 +2128,12 @@ ALTER TABLE `program_pedago_day`
 -- AUTO_INCREMENT for table `program_qualification`
 --
 ALTER TABLE `program_qualification`
-  MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_program_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 --
 -- AUTO_INCREMENT for table `qualification`
 --
 ALTER TABLE `qualification`
-  MODIFY `id_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `qualificationteached_timeslot`
 --
@@ -1586,7 +2143,7 @@ ALTER TABLE `qualificationteached_timeslot`
 -- AUTO_INCREMENT for table `qualification_teached`
 --
 ALTER TABLE `qualification_teached`
-  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `right`
 --
@@ -1606,7 +2163,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `id_schedule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_schedule` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `schedule_timeslot`
 --
@@ -1616,7 +2173,7 @@ ALTER TABLE `schedule_timeslot`
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `id_teacher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_teacher` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `teacher_holiday`
 --
@@ -1631,12 +2188,12 @@ ALTER TABLE `teacher_nature_time`
 -- AUTO_INCREMENT for table `teacher_qualification`
 --
 ALTER TABLE `teacher_qualification`
-  MODIFY `id_teacher_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_teacher_qualification` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `teacher_qualification_teached`
 --
 ALTER TABLE `teacher_qualification_teached`
-  MODIFY `id_teacher_qualification_teached` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_teacher_qualification_teached` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `timeslot`
 --
@@ -1676,7 +2233,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `week`
 --
 ALTER TABLE `week`
-  MODIFY `id_week` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_week` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `year`
 --
@@ -1686,7 +2243,7 @@ ALTER TABLE `year`
 -- AUTO_INCREMENT for table `year_fixed_holiday`
 --
 ALTER TABLE `year_fixed_holiday`
-  MODIFY `id_year_fixed_day` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_year_fixed_day` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `year_nature_time`
 --
@@ -1701,7 +2258,7 @@ ALTER TABLE `year_pedago_day_all`
 -- AUTO_INCREMENT for table `zone`
 --
 ALTER TABLE `zone`
-  MODIFY `id_zone` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_zone` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- Constraints for dumped tables
 --
@@ -1747,6 +2304,13 @@ ALTER TABLE `customer_user`
 ALTER TABLE `custormer_year`
   ADD CONSTRAINT `custormer_year_ibfk_1` FOREIGN KEY (`id_customer`) REFERENCES `customer` (`id_customer`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `custormer_year_ibfk_2` FOREIGN KEY (`id_year`) REFERENCES `year` (`id_year`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `group_qualification`
+--
+ALTER TABLE `group_qualification`
+  ADD CONSTRAINT `group_qualification_ibfk_1` FOREIGN KEY (`id_qualification`) REFERENCES `qualification_teached` (`id_qualification_teached`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `group_qualification_ibfk_2` FOREIGN KEY (`id_group`) REFERENCES `group` (`id_group`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `group_qualification_teached`

@@ -20,12 +20,9 @@ if (isset($_GET['actions']) || isset($_SESSION['current_page'])) {
 // This is returned from database
 require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_schedule.php';
 $aSchedule = new Schedule();
-$aSchedule = $aSchedule->getObjectFromDB(13);
+$aSchedule = $aSchedule->getObjectFromDB(9);
 $dataForSchedule = $aSchedule['schedule'];
 
-echo "<pre>";
-print_r(json_decode($dataForSchedule));
-echo "</pre>";
 function transformDBScheduleToMemory($dataForSchedule)
 {
     require_once $_SERVER["DOCUMENT_ROOT"] . '/24juin/MVC/model/24juin_year.php';
@@ -87,102 +84,70 @@ function transformDBScheduleToMemory($dataForSchedule)
     $aWeekList = array();
     if(isset($localSchedule['weeks'] ))
     foreach ($localSchedule['weeks'] as $aLocalWeek) {
+        
         $aWeek = new Week();
-        $aTimeslotWeek = new TimeslotWeek();
         
         $aWeek = $aWeek->getObjectFromDB($aLocalWeek['id_week']);
         
-        $timeslotListForWeek = $aTimeslotWeek->getListOfAllDBObjectsWhere("id_week", " = ", $aLocalWeek['id_week']);
         $timeslotsForWeekTemporary = array();
-        if($timeslotListForWeek != null){
-            foreach ($timeslotListForWeek as $localTimeslot) {
-                $aTimeslot = new Timeslot();
-                $aTimesloTeacher = new TimeslotTeacher();
-                $aTimeslotQualificationTeached = new TimeslotQualificationTeached();
-                $aTeacher = new Teacher();
-                $aQualificationTeached = new QualificationTeached();
-                
-                $aTimeslotClassroom = new TimeslotClassroom();
-                $aClassroom = new Classroom();
-                
-                $aTimeslotTeacherList = $aTimesloTeacher->getListOfAllDBObjectsWhere("id_timeslot", " = ", $localTimeslot['id_timeslot']);
-                $aTimeslotQualificationTeachedList =  $aTimeslotQualificationTeached->getListOfAllDBObjectsWhere("id_timeslot", " = ", $localTimeslot['id_timeslot']);
-                $aTimeslotClassroomList =  $aTimeslotClassroom->getListOfAllDBObjectsWhere("id_timeslot", " = ", $localTimeslot['id_timeslot']);
-                
-                
-                
-                $aTimeslot = $aTimeslot->getObjectFromDB($localTimeslot['id_timeslot']);
-                $timeslotsForWeekTemporary[$localTimeslot['id_timeslot']] = $aTimeslot;
-                
-                
-                
-                if($aTimeslotTeacherList!= null){
-                    if(sizeof($aTimeslotTeacherList)>0){
-                        foreach($aTimeslotTeacherList as $tempItem){                          
-                            $aTempTeacher =$aTeacher->getObjectFromDB($tempItem['id_teacher']);
-                            $timeslotsForWeekTemporary[$localTimeslot['id_timeslot']]['teachers'][] = $aTempTeacher;
-                        }
-                    }
-                }
-                
-                
-                if($aTimeslotQualificationTeachedList!= null){
-                    if(sizeof($aTimeslotQualificationTeachedList)>0){
-                        foreach($aTimeslotQualificationTeachedList as $tempItem){
+        foreach ($WeekDays as $keyDay => $valueDay){
+            
+            if(isset($aLocalWeek[$keyDay])){
+               
+                foreach ($dayTimes as $keyTime => $valueTime){
+                  
+                    if(isset($aLocalWeek[$keyDay][$keyTime])){
+                        
+                        $tempTimeslot =current($aLocalWeek[$keyDay][$keyTime]);
+                        $tempTimeslot['day'] = $valueDay;
+                        $tempTimeslot['AM'] = $valueTime;
+                        
+                        //Get teacher
+                        $aTeacher = new Teacher();
+                        $aTeacher = $aTeacher->getObjectFromDB($tempTimeslot['teacher'][0]['id_teacher']);
+                        
+                        $tempTimeslot['teacher'][0] = $aTeacher;
+                        
+                        //Get classroom
+                        $aClassroom = new Classroom();
+                        $aZone = new Zone();
+                        $tempZones = $tempTimeslot['classroom'][0]['zone'];
+                        $aClassroom = $aClassroom->getObjectFromDB($tempTimeslot['classroom'][0]['id_classroom']);
+                        
+                        //Get zone
+                        $aZone = $aZone->getObjectFromDB($tempZones[0]['id_zone']);
+                        $aClassroom['zone'][0] = $aZone;
                            
-                            $aTempQT =$aQualificationTeached->getObjectFromDB($tempItem['id_qualification_teached']);
-                            $timeslotsForWeekTemporary[$localTimeslot['id_timeslot']]['qualifications'][] = $aTempQT;
-                        }
+                            
+                        //get qualification teached
+                        $aQualificationTeached = new QualificationTeached();
+                        $aQualificationTeached = $aQualificationTeached->getObjectFromDB($tempTimeslot['id_qualification_teached']);
+                        $tempTimeslot['id_qualification_teached']=$aQualificationTeached;
+                        
+                        
+                        $timeslotsForWeekTemporary[current($aLocalWeek[$keyDay][$keyTime])['id_timeslot']] = $tempTimeslot;
                     }
                 }
                 
-                if($aTimeslotClassroomList!= null){
-                    if(sizeof($aTimeslotClassroomList)>0){
-                        foreach($aTimeslotClassroomList as $tempItem){
-                            $aClassroomZone = new ClassroomZone();
-                            $aZone = new Zone();
-                            $aClassroomZoneList =  $aClassroomZone->getListOfAllDBObjectsWhere("id_classroom", " = ", $tempItem['id_classroom']);
-                            
-                            $aTempClassroom =$aClassroom->getObjectFromDB($tempItem['id_classroom']);
-                            
-                            if($aClassroomZoneList!= null){
-                                if(sizeof($aClassroomZoneList)>0){
-                                    foreach($aClassroomZoneList as $tempItem2){
-                                        $aZoneTemp = $aZone->getObjectFromDB($tempItem2['id_zone']);
-                                        $aTempClassroom['zones'][] = $aZoneTemp;
-                                    }
-                                }
-                            }
-                            
-                            
-                           
-                            $timeslotsForWeekTemporary[$localTimeslot['id_timeslot']]['classrooms'][] = $aTempClassroom;
-                        }
-                    }
-                }
             }
         }
-        
-        
-        // Correctly order timeslots based on day and time
-        
+       
         // For each week day
         foreach ($timeslotsForWeekTemporary as $tempTimeslot) {
             foreach ($WeekDays as $keyWeekday => $valueWeekDay) {
-            // For each day time
-            
-                 foreach ($dayTimes as $keyDayTimes => $valueDayTimes) {
+                // For each day time
                 
-                     
+                foreach ($dayTimes as $keyDayTimes => $valueDayTimes) {
+                    
+                    
                     if ($tempTimeslot['day'] == $valueWeekDay && $tempTimeslot['AM'] == $valueDayTimes) {
                         
                         $aWeek[$keyWeekday][$keyDayTimes] = $tempTimeslot;
-                    } 
-                  
+                    }
+                    
                 }
             }
         }
-        //TODO : timeslot_teacher et timeslot_local, timeslot_qualification teached
         $aWeekList[$aLocalWeek['id_week']] = $aWeek;
     }
     
