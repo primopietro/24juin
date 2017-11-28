@@ -26,12 +26,14 @@ if($aUser->checkPassword()) {
     //Set up environment variables
     $userRole = new UserRole();
     $userRoles = $userRole->getListOfAllDBObjectsWhere("id_user","=",$aUser->getId_user());
+    $theRole = 0;
     if($userRoles != null){
     	foreach ($userRoles as $localUserRole){
     		
     		$localRightObjectRole = new RightObjectRole();
     		$localRightObjectRoleList = $localRightObjectRole->getListOfAllDBObjectsWhere("id_role","=",$localUserRole['id_role']);
     		$_SESSION['rights'][] = $localRightObjectRoleList;
+    		$theRole = $localUserRole['id_role'];
     	}
     }
    
@@ -87,7 +89,13 @@ if($aUser->checkPassword()) {
     $_SESSION['rightList'] = $newMenuList;
     $_SESSION['current_user'] = serialize($aUser);
     $_SESSION['current_user_role'] = serialize($userRoles);
-    $_SESSION['filter'] = 0;
+    
+    if($theRole != 2){
+    	$_SESSION['filter'] = 0;
+    } else{
+    	$_SESSION['filter'] = $aUser->getId_user();
+    }
+    
     $_SESSION['filterPedago'] = 0;
     $_SESSION['id_year'] = 0;
     $_SESSION['year'] = '';
