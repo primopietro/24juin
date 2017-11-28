@@ -59,7 +59,7 @@ function transformDBScheduleToMemory($dataForSchedule)
         "am1" => "1",
         "am2" => "2",
         "pm1" => "3",
-        "pm3" => "4"
+        "pm2" => "4"
     );
     
     $newSchedule['am'] = $localSchedule['am'];
@@ -82,6 +82,7 @@ function transformDBScheduleToMemory($dataForSchedule)
     
     // For each week
     $aWeekList = array();
+    $counter =0;
     if(isset($localSchedule['weeks'] ))
     foreach ($localSchedule['weeks'] as $aLocalWeek) {
         
@@ -89,48 +90,63 @@ function transformDBScheduleToMemory($dataForSchedule)
         
         $aWeek = $aWeek->getObjectFromDB($aLocalWeek['id_week']);
         
+        
+        
         $timeslotsForWeekTemporary = array();
-        foreach ($WeekDays as $keyDay => $valueDay){
+        foreach ($WeekDays as $keyDay => $valueDay){            
+            
+           
             
             if(isset($aLocalWeek[$keyDay])){
-               
+              
+                
+                if($aLocalWeek[$keyDay] != null)
                 foreach ($dayTimes as $keyTime => $valueTime){
                   
+                 
+                    
                     if(isset($aLocalWeek[$keyDay][$keyTime])){
-                        
-                        $tempTimeslot =current($aLocalWeek[$keyDay][$keyTime]);
-                        $tempTimeslot['day'] = $valueDay;
-                        $tempTimeslot['AM'] = $valueTime;
-                        
-                        //Get teacher
-                        $aTeacher = new Teacher();
-                        $aTeacher = $aTeacher->getObjectFromDB($tempTimeslot['teacher'][0]['id_teacher']);
-                        
-                        $tempTimeslot['teacher'][0] = $aTeacher;
-                        
-                        //Get classroom
-                        $aClassroom = new Classroom();
-                        $aZone = new Zone();
-                        $tempZones = $tempTimeslot['classroom'][0]['zone'];
-                        $aClassroom = $aClassroom->getObjectFromDB($tempTimeslot['classroom'][0]['id_classroom']);
-                        
-                        //Get zone
-                        $aZone = $aZone->getObjectFromDB($tempZones[0]['id_zone']);
-                        $aClassroom['zone'][0] = $aZone;
+                        if($aLocalWeek[$keyDay][$keyTime] != null){
+                            
                            
                             
-                        //get qualification teached
-                        $aQualificationTeached = new QualificationTeached();
-                        $aQualificationTeached = $aQualificationTeached->getObjectFromDB($tempTimeslot['id_qualification_teached']);
-                        $tempTimeslot['id_qualification_teached']=$aQualificationTeached;
-                        
-                        
-                        $timeslotsForWeekTemporary[current($aLocalWeek[$keyDay][$keyTime])['id_timeslot']] = $tempTimeslot;
+                            $tempTimeslot =current($aLocalWeek[$keyDay][$keyTime]);
+                            $tempTimeslot['id_timeslot'] = $counter;
+                            $tempTimeslot['day'] = $valueDay;
+                            $tempTimeslot['AM'] = $valueTime;
+                            
+                            //Get teacher
+                            $aTeacher = new Teacher();
+                            $aTeacher = $aTeacher->getObjectFromDB($tempTimeslot['teacher'][0]['id_teacher']);
+                            
+                            $tempTimeslot['teacher'][0] = $aTeacher;
+                            
+                            //Get classroom
+                            $aClassroom = new Classroom();
+                            $aZone = new Zone();
+                            $tempZones = $tempTimeslot['classroom'][0]['zone'];
+                            $aClassroom = $aClassroom->getObjectFromDB($tempTimeslot['classroom'][0]['id_classroom']);
+                            
+                            //Get zone
+                            $aZone = $aZone->getObjectFromDB($tempZones[0]['id_zone']);
+                            $aClassroom['zone'][0] = $aZone;
+                               
+                                
+                            //get qualification teached
+                            $aQualificationTeached = new QualificationTeached();
+                            $aQualificationTeached = $aQualificationTeached->getObjectFromDB($tempTimeslot['id_qualification_teached']);
+                            $tempTimeslot['id_qualification_teached']=$aQualificationTeached;
+                            
+                            
+                            $timeslotsForWeekTemporary[] = $tempTimeslot;
+                           
+                        }
                     }
                 }
-                
+               
             }
         }
+       
        
         // For each week day
         foreach ($timeslotsForWeekTemporary as $tempTimeslot) {
@@ -149,6 +165,7 @@ function transformDBScheduleToMemory($dataForSchedule)
             }
         }
         $aWeekList[$aLocalWeek['id_week']] = $aWeek;
+       
     }
     
     $newSchedule['weeks'] = $aWeekList;
