@@ -110,7 +110,7 @@ class BuildingClassroom extends BaseModel {
         
         $line .= "<tr>";
         $line .= "<td>" . $aBuildingClassroom['building']['name'] . " - " . $aBuildingClassroom['building']['address'] .  "</td>";
-        $line .= "<td>";
+        $line .= "<td><div class='scrollable'>";
         
         if(isset($aBuildingClassroom['classrooms'])){
             if($aBuildingClassroom['classrooms'] != null){
@@ -124,7 +124,7 @@ class BuildingClassroom extends BaseModel {
             
         }
         
-        $line .="</td>";
+        $line .="</div></td>";
         if ($canBeUpdated) {
             $line .= "<td><a objtype='building_classroom' action='update' class='action btn' idobj='" . $aBuildingClassroom['building']['id_building'] . "'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
         }

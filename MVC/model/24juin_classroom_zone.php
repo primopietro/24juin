@@ -114,7 +114,7 @@ class ClassroomZone extends BaseModel {
     	
     	$line .= "<tr>";
     	$line .= "<td>" . $aClassroomZone['classroom']['code'] . "</td>";
-    	$line .= "<td>";
+    	$line .= "<td><div class='scrollable'>";
     	
     	if(isset($aClassroomZone['zones'])){
     		if($aClassroomZone['zones'] != null){
@@ -128,7 +128,7 @@ class ClassroomZone extends BaseModel {
     		
     	}
     	
-    	$line .="</td>";
+    	$line .="</div></td>";
     	if ($canBeUpdated) {
     		$line .= "<td><a objtype='classroom_zone' action='update' class='action btn' idobj='" . $aClassroomZone['classroom']['id_classroom'] . "'><i class='fa fa-pencil text-green'></i><div class='ripple-container'></div></a></td>";
     	}
