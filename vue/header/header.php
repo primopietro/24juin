@@ -159,7 +159,7 @@ function getSubMenuItem($localItem,$tempRights){
                     $right=frenchTranslator ($aLocalRight['name']);
                     if($aLocalRight['name'] == "view"  ){
                         
-                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des compétences</a></li> ";
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compétence</a></li> ";
                         
                         
                     }
@@ -170,7 +170,7 @@ function getSubMenuItem($localItem,$tempRights){
                     $right=frenchTranslator ($aLocalRight['name']);
                     if($aLocalRight['name'] == "view"  ){
                         
-                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des groupes</a></li> ";
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des groupe</a></li> ";
                         
                         
                     }
@@ -234,6 +234,7 @@ function getSubMenuItem($localItem,$tempRights){
         foreach ($tempRights as $localItem ) {
             
             if($localItem ['object'] ['name'] == "group_qualification_teached"){
+                foreach ( $localItem ['rights'] as $aLocalRight ) {
                     $right=frenchTranslator ($aLocalRight['name']);
                     if($aLocalRight['name'] == "view"  ){
                         
@@ -254,7 +255,7 @@ function getSubMenuItem($localItem,$tempRights){
                     $right=frenchTranslator ($aLocalRight['name']);
                     if($aLocalRight['name'] == "view"  ){
                         
-                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compétence enseigné</a></li> ";
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des compétence enseigné</a></li> ";
                         
                         
                     }
