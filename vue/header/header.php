@@ -187,7 +187,7 @@ function getSubMenuItem($localItem,$tempRights){
                     $right=frenchTranslator ($aLocalRight['name']);
                     if($aLocalRight['name'] == "view"  ){
                         
-                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à des locaux</a></li> ";
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des locaux</a></li> ";
                         
                         
                     }
@@ -238,7 +238,7 @@ function getSubMenuItem($localItem,$tempRights){
                     $right=frenchTranslator ($aLocalRight['name']);
                     if($aLocalRight['name'] == "view"  ){
                         
-                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner à une compértence</a></li> ";
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des compértences</a></li> ";
                         
                         
                     }
