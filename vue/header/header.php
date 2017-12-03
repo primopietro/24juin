@@ -159,7 +159,7 @@ function getSubMenuItem($localItem,$tempRights){
                     $right=frenchTranslator ($aLocalRight['name']);
                     if($aLocalRight['name'] == "view"  ){
                         
-                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des compétence</a></li> ";
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des compétences</a></li> ";
                         
                         
                     }
@@ -170,7 +170,18 @@ function getSubMenuItem($localItem,$tempRights){
                     $right=frenchTranslator ($aLocalRight['name']);
                     if($aLocalRight['name'] == "view"  ){
                         
-                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des groupe</a></li> ";
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des groupes</a></li> ";
+                        
+                        
+                    }
+                }
+            }
+            if($localItem ['object'] ['name'] == "teacher_qualification_teached"){
+                foreach ( $localItem ['rights'] as $aLocalRight ) {
+                    $right=frenchTranslator ($aLocalRight['name']);
+                    if($aLocalRight['name'] == "view"  ){
+                        
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des compétences<br>&nbsp &nbsp &nbsp enseigné</a></li> ";
                         
                         
                     }
