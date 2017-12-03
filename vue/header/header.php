@@ -181,7 +181,7 @@ function getSubMenuItem($localItem,$tempRights){
                     $right=frenchTranslator ($aLocalRight['name']);
                     if($aLocalRight['name'] == "view"  ){
                         
-                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des compétences<br>&nbsp &nbsp &nbsp enseigné</a></li> ";
+                        $default .= " <li navigation='" . $localItem ['object'] ['name'] . "'><a class='action' action='" . $aLocalRight['name'] . "' ><i class='fa fa-circle-o'></i>Assigner des compétences<br>&nbsp &nbsp &nbsp enseignées</a></li> ";
                         
                         
                     }
